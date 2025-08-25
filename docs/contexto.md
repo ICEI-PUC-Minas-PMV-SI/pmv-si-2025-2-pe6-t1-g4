@@ -25,12 +25,7 @@ Apresente também alguns (pelo menos 2) objetivos específicos dependendo de ond
 > - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 ## Justificativa
-<!-- Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
-
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/) -->
+O setor de academias no Brasil teve uma expansão expressiva na última década, passando de 19.266 em 2014 para 56.833 em 2024 — quase triplicando em tamanho. Com esse aumento de academias e a alta concorrência, gestores precisam de ferramentas que garantam eficiência, organização e qualidade no atendimento. Essa aplicação possibilitará automatizar processos como agendamento automático de aulas, cobranças recorrentes de assinaturas, reduzir erros manuais e oferecer experiências personalizadas aos alunos, aumentando a retenção e a satisfação. Além disso, o acesso a relatórios financeiros e indicadores estratégicos permitirá que decisões sejam tomadas com base em dados concretos, impulsionando a sustentabilidade e a competitividade do negócio.
 
 ## Público-Alvo
 O público-alvo é composto por pessoas envolvidas diretamente e indiretamente na operação de academias, sendo um público diverso, abrangendo os próprios clientes da academia (alunos), professores, personal trainers (treinadores) que auxiliam na execução dos exercícios. Dessa forma o público se classifica em: 
@@ -99,13 +94,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+|02| Necessidade de atender à LGPD/GDPR para evitar vazamentos|
+|03| Pode não atender a todas as necessidades específicas da academia|
 
 # Catálogo de Serviços
 
@@ -140,7 +130,8 @@ Atualizado em: 21/04/2024
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
+| Wellington    | Justificativa    | 20/08/2025     | 25/08/2025 | ✔️     | 25/08/2025      |
+| Wellington    | Restriçoes       | 25/08/2025     | 25/08/2025 | ✔️     | 25/08/2025      |
 | AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
 | AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
 | AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
