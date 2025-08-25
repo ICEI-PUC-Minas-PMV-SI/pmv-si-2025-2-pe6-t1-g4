@@ -64,21 +64,29 @@ Adicione informações sobre o público-alvo por meio de uma descrição textual
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
+As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. A técnica de prorização utilizada foi o MosCow, que classifica os requisiots em Alta, Média ou Baixa prioridade.
 
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Permitir o cadastro de alunos com informações pessoais e dados de saúde. | ALTA | 
+|RF-002| Permitir que o personal cadastre e gerencia fichas de treino de forma individualizada. | ALTA |
+|RF-003| Registrar e acompanhar a evolução física dos alunos. | ALTA |
+|RF-004| Disponibilizar ao aluno o acesso à sua ficha de treino em tempo real por meio de um aplicativo. | ALTA |
+|RF-005| Emitir um relatório de progresso inidividual, para o aluno e personal. | MÉDIA |
+|RF-006| Gerenciar agendamento de treinos e aulas coletivas. | MÉDIA |
+|RF-007| Sistema de notificação sobre pagamento do serviço, com retirada do acesso no caso de inadimplência. | BAIXA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-001| O sistema deve ser responsivo e acessível em dispositivos móveis. | ALTA | 
+|RNF-002| Deve processar requisições do usuário em no máximo 3s. |  ALTA | 
+|RNF-003| O sistema deve armazenar os dados de forma segura, utilizando criptografia. |  ALTA |
+|RNF-004| Interface deve ser intuitiva e de fácil navegação para usuários com baixo letramento digital. |  MÉDIO |
+|RNF-005| O sistema deve ser escalável para suportar até 1.000 usuários simultâneos. |  BAIXA |
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
@@ -104,11 +112,21 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |01| O projeto deverá ser entregue até o final do semestre |
 |02| Necessidade de atender à LGPD/GDPR para evitar vazamentos|
 |03| Pode não atender a todas as necessidades específicas da academia|
+|04| O sistema deve ser desenvolvido como aplicação web responsiva, com a versão para mobile|
+|05| O acesso às funcionalidades será feito por meio de login com autenticação segura (senha única e criptografada)|
+|06| Inicialmente o sistema não terá integração com wearables (smartwatches, pulseiras fitness, entre outros)|
 
 # Catálogo de Serviços
 
-Descreva aqui todos os serviços que serão disponibilizados pelo seu projeto, detalhando suas características e funcionalidades.
+O sistema desenvolvido disponibilizará um conjunto de serviços voltados para alunos, personal trainers e gestores de academias, oferecendo praticidade, organização e eficiência no acompanhamento de treinos, evolução física e gestão operacional.
 
+1. Cadastro e gerenciamento de usuários
+2. Montagem e acompanhamento de fichas de treinos.
+3. Monitoramento da evolução física.
+4. Agendamento de treinos e aulas.
+5. Gestão do vencimento do pagamento.
+6. Relatórios estratégicos.
+   
 # Arquitetura da Solução
 
 Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
