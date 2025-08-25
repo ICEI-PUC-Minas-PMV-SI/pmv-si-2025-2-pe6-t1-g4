@@ -3,7 +3,7 @@
 Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
 
 ## Problema
-Academias e personais frequentemente sofrem com processos manuais e sistemas inexistentes ou fragmentados para cadastrar alunos, criar e montar fichas de exercícios e acompanhar a evolução física. Isso gera, perda de históricos, dificuldade em garantir que o aluno siga a ficha correta e fraca visibilidade do progresso, além de prejudicar o treinamento. 
+Academias e personal trainers frequentemente sofrem com processos manuais e sistemas fragmentados para cadastrar alunos, criar e montar fichas de exercícios e acompanhar a evolução física. Isso gera perda de históricos, dificuldade em garantir que o aluno siga a ficha correta e fraca visibilidade do progresso, além de prejudicar o treinamento. Além disso, o tempo gasto com atividades burocráticas limita a atenção do profissional ao aluno, enquanto a falta de relatórios e acompanhamento digital reduz a motivação, o engajamento e até a fidelização dos clientes.
 <!-- Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
 
 Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
