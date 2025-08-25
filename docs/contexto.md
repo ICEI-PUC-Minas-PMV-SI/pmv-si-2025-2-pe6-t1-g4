@@ -17,12 +17,12 @@ Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thin
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+<!-- Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
 
 Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
  
 > **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/) -->
 
 ## Justificativa
 O setor de academias no Brasil teve uma expansão expressiva na última década, passando de 19.266 em 2014 para 56.833 em 2024 — quase triplicando em tamanho. Com esse aumento de academias e a alta concorrência, gestores precisam de ferramentas que garantam eficiência, organização e qualidade no atendimento. Essa aplicação possibilitará automatizar processos como agendamento automático de aulas, cobranças recorrentes de assinaturas, reduzir erros manuais e oferecer experiências personalizadas aos alunos, aumentando a retenção e a satisfação. Além disso, o acesso a relatórios financeiros e indicadores estratégicos permitirá que decisões sejam tomadas com base em dados concretos, impulsionando a sustentabilidade e a competitividade do negócio.
