@@ -159,7 +159,7 @@ Atualizado em: 25/08/2024
 | Wellington    | Justificativa    | 20/08/2025     | 25/08/2025 | ✔️    | 25/08/2025      |
 | Wellington    | Restriçoes       | 25/08/2025     | 25/08/2025 | ✔️    | 25/08/2025      |
 | Leonardo      | Problema         | 22/08/2025     | 25/08/2025 | ✔️    | 25/08/2025      |
-| Leonardo      | Público-Alvo     | 23/08/2025     | 25/08/2025 | 📝    | 31/08/2025      |
+| Leonardo      | Público-Alvo     | 23/08/2025     | 31/08/2025 | 📝    |                 |
 | AlunoK        | Personas 1       | 01/01/2024     | 12/02/2005 | ❌    |                 |
 
 #### Semana 2
