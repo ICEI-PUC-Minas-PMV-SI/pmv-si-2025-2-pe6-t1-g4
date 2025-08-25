@@ -28,18 +28,26 @@ Apresente também alguns (pelo menos 2) objetivos específicos dependendo de ond
 O setor de academias no Brasil teve uma expansão expressiva na última década, passando de 19.266 em 2014 para 56.833 em 2024 — quase triplicando em tamanho. Com esse aumento de academias e a alta concorrência, gestores precisam de ferramentas que garantam eficiência, organização e qualidade no atendimento. Essa aplicação possibilitará automatizar processos como agendamento automático de aulas, cobranças recorrentes de assinaturas, reduzir erros manuais e oferecer experiências personalizadas aos alunos, aumentando a retenção e a satisfação. Além disso, o acesso a relatórios financeiros e indicadores estratégicos permitirá que decisões sejam tomadas com base em dados concretos, impulsionando a sustentabilidade e a competitividade do negócio.
 
 ## Público-Alvo
-O público-alvo é composto por pessoas envolvidas diretamente e indiretamente na operação de academias, sendo um público diverso, abrangendo os próprios clientes da academia (alunos), professores, personal trainers (treinadores) que auxiliam na execução dos exercícios. Dessa forma o público se classifica em: 
+O público-alvo é composto por pessoas envolvidas diretamente e indiretamente na operação de academias, sendo um público diverso, abrangendo os próprios clientes da academia (alunos), professores e *personal trainers* (treinadores) que auxiliam na execução dos exercícios. Dessa forma o público se classifica em: 
 
 - **Faixa etária:** 18-60 anos (com maior concentração entre as idades de 20-45 para instrutores e de 18-40 para clientes e alunos);
-
 - **Grau de Instrução:** Ensino médio completo para alunos e clientes, ensino superior completo em gestão/educação física, fisioterapia, nutrição e outros cursos de mesma área para professores e personais;
-
 - **Afinidade com tecnologia:** Grande parte do público-alvo tem afinidade com tecnologia, utilizando muito aparelhos celulares e consultando aplicativos, além de utilizar computadores;
+- **Classe Social:** Classe média e classe alta.
+- **Estado Civil:** Solteiros e casados.
 
 ### Persona
 Lucas - Aluno - 20 Anos
-- Contexto: Um aluno que cursa faculdade de administração e começou a fazer exercícios físicos na academia a menos de 6 meses, possui alta motivação para melhorar os exercícios, além de ser um jogvem inteligente e focado nos estudos, eventuamente sai para bares e lugares festivos para se entreter.
-- Conhecimento tecnológico: Alto conhecimento em tecnologia, utiliza frequentimento o telefone celular, usa aplicativos diariamente, além de utilizar o computador com frequência. 
+- **Contexto:** Um aluno que cursa faculdade de administração e começou a fazer academia a menos de 3 meses, pratica esportes nos finais de semana, como futebol e possui alta motivação para melhorar os exercícios físicos, além de ser um jovem inteligente e focado nos estudos, também gosta de sair nos finais de semana para lugares festivos para se entreter. 
+- **Conhecimento tecnológico:** Alto conhecimento em tecnologia, utiliza frequentimente o telefone celular, usa aplicativos diariamente ficando bastante tempo em redes sociais como *Instagram* e *WhatsApp*, além de utilizar o computador com frequência para jogos e estudos. 
+- **Necessidade:** Procurou a academia como forma de sair da rotina e melhor o condicionamento físico nos esportes que pratica, a utilização de facilitadores na prática de exercícios físicos seria bem-vinda.
+- **Frustrações:** Desconhecimento dos exercícios, pouco acompanhamento na hora do treino.
+
+Luiza - Personal - 29 Anos
+- **Contexto:** Uma profissional já formada em educação física, trabalha em uma academia renomada como personal e possui em média 6-10 alunos, monta fichas e ajusta treinos semanalmente. Mora sozinha e utiliza seu tempo livre para ver seres e ficar em casa descansando. Sempre bem humorada adora praticar exercícios quando pode e procura sempre se atualizar para melhorar seu conhecimento na saúde física.
+- **Conhecimento tecnológico:** Conhecimento básico em tecnologia, utiliza frequentimente o telefone celular, usa aplicaticos diariamente ficando bastante tempo em redes sociais como *Instagram* e *WhatsApp*
+- **Necessidade:** Melhorar a eficiência e eficácia das aulas montadas, para aumentar o número de alunos e consequentimente a quantidade de retrabalhos.
+- **Frustrações:** Utilizar papeis para realização de fichas e treinos tornando o processo desorganizado, atulização desgastante, não possui acompanhamento continuo dos alunos em finais de semanas.
 
 <!-- Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
 hierárquicas, etc.
