@@ -1,6 +1,7 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+Nos dias atuais, a tecnologia tem se tornado uma grande aliada no mundo do fitness, observado pelo advento de tantos influenciadores digitais, "personal trainers" com foco a Web, fichas de treino disponíveis na Internet, entre outras novidades deste mercado. Ter um aplicativo de treino exclusivo para a academia facilita a vida dos alunos e melhora a experiência de treinamento. Por meio do App, o aluno pode acessar seus treinos personalizados, acompanhar sua evolução e manter um histórico de exercícios e cargas utilizadas, e um histórico da sua progressão corporal a depender do teu planejamento almejado. Além disso, o sistema permite maior interação com os professores, que podem ajustar planos de treino e dar feedback em tempo real. Outro ponto importante é a praticidade: o aluno leva seu treino sempre no bolso, sem depender de papéis que podem se perder ou ficar desatualizados. Para a academia, isso representa organização, fidelização e maior engajamento dos alunos. Assim, unir musculação e tecnologia é investir em resultados mais rápidos, seguros e motivadores
+
 
 ## Problema
 Academias e personal trainers frequentemente sofrem com processos manuais e sistemas fragmentados para cadastrar alunos, criar e montar fichas de exercícios e acompanhar a evolução física. Isso gera perda de históricos, dificuldade em garantir que o aluno siga a ficha correta e fraca visibilidade do progresso, além de prejudicar o treinamento. Além disso, o tempo gasto com atividades burocráticas limita a atenção do profissional ao aluno, enquanto a falta de relatórios e acompanhamento digital reduz a motivação, o engajamento e até a fidelização dos clientes.
@@ -17,12 +18,14 @@ Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thin
 
 ## Objetivos
 
-<!-- Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
-
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/) -->
+Oferecer aos alunos um aplicativo prático para acompanhamento de treinos.
+•⁠  ⁠Disponibilizar treinos personalizados e atualizados de forma digital.
+•⁠  ⁠Facilitar a comunicação entre professores e alunos.
+•⁠  ⁠Permitir o registro e acompanhamento da evolução física.
+•⁠  ⁠Reduzir o uso de planilhas e treinos em papel.
+•⁠  ⁠Aumentar o engajamento e a motivação dos alunos.
+•⁠  ⁠Melhorar a gestão interna da academia através de um painel web personalizado para a academia.
+•⁠  ⁠Aumentar a fidelização de alunos por meio da tecnologia.
 
 ## Justificativa
 O setor de academias no Brasil teve uma expansão expressiva na última década, passando de 19.266 em 2014 para 56.833 em 2024 — quase triplicando em tamanho. Com esse aumento de academias e a alta concorrência, gestores precisam de ferramentas que garantam eficiência, organização e qualidade no atendimento. Essa aplicação possibilitará automatizar processos como agendamento automático de aulas, cobranças recorrentes de assinaturas, reduzir erros manuais e oferecer experiências personalizadas aos alunos, aumentando a retenção e a satisfação. Além disso, o acesso a relatórios financeiros e indicadores estratégicos permitirá que decisões sejam tomadas com base em dados concretos, impulsionando a sustentabilidade e a competitividade do negócio.
