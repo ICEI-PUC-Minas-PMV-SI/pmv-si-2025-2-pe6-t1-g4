@@ -124,11 +124,24 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 O sistema desenvolvido disponibilizará um conjunto de serviços voltados para alunos, personal trainers e gestores de academias, oferecendo praticidade, organização e eficiência no acompanhamento de treinos, evolução física e gestão operacional.
 
 1. Cadastro e gerenciamento de usuários
+ - Cadastro de alunos com dados pessoais, histórico de saúde e objetivos.
+ - Cadastro de personais/trainers com informações profissionais.
+ - Controle de perfis com diferentes permissões de acesso (aluno, personal, gestor).
 2. Montagem e acompanhamento de fichas de treinos.
+ - Criação de fichas de treino personalizadas pelos personal trainers.
+ - Acesso em tempo real do aluno à ficha de treino por meio de aplicativo ou web.
+ - Possibilidade de atualização dinâmica de exercícios e séries conforme a evolução do aluno.
 3. Monitoramento da evolução física.
+ - Registro de medidas corporais (peso, altura, percentual de gordura, etc.).
+ - Disponibilização de relatórios tanto para alunos quanto para personal trainers.
 4. Agendamento de treinos e aulas.
+ - Agendamento de treinos individuais ou aulas coletivas.
 5. Gestão do vencimento do pagamento.
+ - Controle de status de pagamento dos alunos.
+ - Relatórios básicos de pagamentos para gestores.
 6. Relatórios estratégicos.
+ - Relatórios de adesão, e evolução de treinos.
+ - Relatórios de desempenho físico dos alunos.
    
 # Arquitetura da Solução
 
