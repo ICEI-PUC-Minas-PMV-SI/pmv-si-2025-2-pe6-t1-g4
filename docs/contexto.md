@@ -144,17 +144,12 @@ O sistema desenvolvido disponibilizará um conjunto de serviços voltados para a
  - Relatórios de desempenho físico dos alunos.
    
 # Arquitetura da Solução
+<img width="1048" height="812" alt="Captura de Tela 2025-08-31 às 19 03 15" src="https://github.com/user-attachments/assets/4b9c95fb-34db-4d76-a0b8-40c99fcfe6e9" />
 
-Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
-
-![arq](https://github.com/user-attachments/assets/b9402e05-8445-47c3-9d47-f11696e38a3d)
 
 
 ## Tecnologias Utilizadas
-
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
-
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+A implementação da solução será com o framework .NET MAUI para a aplicação Web e para o Mobile, Firebase para o banco de dados.
 
 ## Hospedagem
 
@@ -178,6 +173,10 @@ Atualizado em: 25/08/2024
 | Leonardo      | Público-Alvo     | 23/08/2025     | 31/08/2025 | 📝    |                 |
 | Lucas         | Requisitos       | 18/08/2025     | 31/08/2025 | ✔️    | 25/08/2025      |
 | Lucas         | Catalogo de S    | 18/08/2025     | 31/08/2025 | ✔️    | 25/08/2025      |
+| Augusto       | Introdução       | 18/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
+| Augusto       | Obj. do projeto  | 18/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
+| Wellington    | Arq. da solução  | 18/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
+| Wellington    | Tec. Utilizadas  | 18/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 
 #### Semana 2
 
