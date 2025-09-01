@@ -1,4 +1,4 @@
-# TÍTULO DO PROJETO
+# FitConnect
 
 `CURSO: Sistemas de Informação`
 
@@ -6,20 +6,22 @@
 
 `SEMESTRE: 6º`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O projeto em desenvolvimento consiste na criação de um aplicativo exclusivo para academias, com o objetivo de modernizar a gestão de treinos e otimizar a experiência dos alunos. A plataforma permitirá que os praticantes tenham acesso rápido e prático aos seus treinos personalizados, históricos de exercícios, cargas utilizadas e evolução corporal, tudo de forma digital e integrada.
+
+Além de beneficiar os alunos, o aplicativo também proporciona vantagens para os professores e a própria academia, já que facilita o acompanhamento individual, possibilita ajustes de treinos em tempo real e promove maior engajamento e fidelização. Dessa forma, a união entre tecnologia e musculação garante praticidade, organização e resultados mais eficientes e motivadores.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+* Augusto Gabriel Lomba Pires
+* Leonardo Almeida Braga
+* Lucas de Souza Nassif Lemos
+* Lucas Dias de Melo
+* Marcos Antonio Ferreira Filho
+* Wellington dos Santos Oliveira
 
 ## Orientador
 
-* Nome completo do professor 1
+* Kleber Jacques Ferreira de Souza
 
 # Planejamento
 
