@@ -91,21 +91,6 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RNF-004| Interface deve ser intuitiva e de fácil navegação para usuários com baixo letramento digital. |  MÉDIO |
 |RNF-005| O sistema deve ser escalável para suportar até 1.000 usuários simultâneos. |  BAIXA |
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
-
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
@@ -113,35 +98,20 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Necessidade de atender à LGPD/GDPR para evitar vazamentos|
-|03| Pode não atender a todas as necessidades específicas da academia|
-|04| O sistema deve ser desenvolvido como aplicação web responsiva, com a versão para mobile|
-|05| O acesso às funcionalidades será feito por meio de login com autenticação segura (senha única e criptografada)|
-|06| Inicialmente o sistema não terá integração com wearables (smartwatches, pulseiras fitness, entre outros)|
 
 # Catálogo de Serviços
 
 O sistema desenvolvido disponibilizará um conjunto de serviços voltados para alunos, personal trainers e gestores de academias, oferecendo praticidade, organização e eficiência no acompanhamento de treinos, evolução física e gestão operacional.
 
-1. Cadastro e gerenciamento de usuários
- - Cadastro de alunos com dados pessoais, histórico de saúde e objetivos.
- - Cadastro de personais/trainers com informações profissionais.
- - Controle de perfis com diferentes permissões de acesso (aluno, personal, gestor).
-2. Montagem e acompanhamento de fichas de treinos.
- - Criação de fichas de treino personalizadas pelos personal trainers.
- - Acesso em tempo real do aluno à ficha de treino por meio de aplicativo ou web.
- - Possibilidade de atualização dinâmica de exercícios e séries conforme a evolução do aluno.
-3. Monitoramento da evolução física.
- - Registro de medidas corporais (peso, altura, percentual de gordura, etc.).
- - Disponibilização de relatórios tanto para alunos quanto para personal trainers.
-4. Agendamento de treinos e aulas.
- - Agendamento de treinos individuais ou aulas coletivas.
-5. Gestão do vencimento do pagamento.
- - Controle de status de pagamento dos alunos.
- - Relatórios básicos de pagamentos para gestores.
-6. Relatórios estratégicos.
- - Relatórios de adesão, e evolução de treinos.
- - Relatórios de desempenho físico dos alunos.
+Entre os principais recursos, está o cadastro e gerenciamento de usuários, que contempla o registro de alunos com seus dados pessoais, histórico de saúde e objetivos, além do cadastro de personal trainers com informações profissionais. Esse módulo também possibilita o controle de perfis com diferentes níveis de permissão de acesso, como aluno, personal ou gestor.
+
+Outro serviço oferecido é a montagem e acompanhamento de fichas de treino, permitindo que os personal trainers criem fichas personalizadas, acessíveis em tempo real pelos alunos por meio de aplicativo ou plataforma web. Esse recurso possibilita ainda a atualização dinâmica de exercícios e séries, acompanhando a evolução de cada aluno.
+
+O sistema conta também com o monitoramento da evolução física, sendo possível registrar medidas corporais como pesoe e altura. Esses dados são organizados em relatórios disponibilizados tanto para alunos quanto para personal trainers, facilitando a visualização do progresso ao longo do tempo.
+
+Para maior comodidade, há a funcionalidade de agendamento de treinos e aulas, que possibilita marcar tanto treinos individuais quanto aulas coletivas. Complementando a gestão administrativa, o sistema conta com o controle de vencimento de pagamentos, permitindo acompanhar o status de quitação dos alunos.
+
+Por fim, estão disponíveis relatórios estratégicos, que incluem evolução dos treinos e desempenho físico dos alunos, apoiando a tomada de decisão e contribuindo para uma gestão mais eficiente e orientada a resultados.
    
 # Arquitetura da Solução
 <img width="1048" height="812" alt="Captura de Tela 2025-08-31 às 19 03 15" src="https://github.com/user-attachments/assets/4b9c95fb-34db-4d76-a0b8-40c99fcfe6e9" />
