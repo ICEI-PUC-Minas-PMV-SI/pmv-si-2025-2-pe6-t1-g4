@@ -115,10 +115,10 @@ Para maior comodidade, há a funcionalidade de agendamento de treinos e aulas, q
 Por fim, estão disponíveis relatórios estratégicos, que incluem evolução dos treinos e desempenho físico dos alunos, apoiando a tomada de decisão e contribuindo para uma gestão mais eficiente e orientada a resultados.
    
 # Arquitetura da Solução
-    ![Infográfico da arquitetura da solução](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g4/blob/d8a8d77364900d2e8b6cc4106ceaf668df3f63bd/docs/img/Captura%20de%20Tela%202025-08-31%20a%CC%80s%2019.03.15.png)
+
+   <img src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g4/blob/d8a8d77364900d2e8b6cc4106ceaf668df3f63bd/docs/img/Captura%20de%20Tela%202025-08-31%20a%CC%80s%2019.03.15.png" alt="Infográfico da arquitetura da solução">
+
     
-
-
 
 ## Tecnologias Utilizadas
 A implementação da solução será com o framework .NET MAUI para a aplicação Web e para o Mobile, Firebase para o banco de dados.
