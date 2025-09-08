@@ -121,7 +121,19 @@ Por fim, estão disponíveis relatórios estratégicos, que incluem evolução d
     
 
 ## Tecnologias Utilizadas
-A implementação da solução será com o framework .NET MAUI para a aplicação Web e para o Mobile, Firebase para o banco de dados.
+Backend (.NET)
+ASP.NET Core Web API → Criação da API dos serviços de cadastro, agendamento, fichas de treino, relatórios;
+
+Frontend (Web e Mobile)
+.NET MAUI → Para a aplicação mobile (Android, iOS);
+
+Serviços de nuvem e dados
+Firebase
+Firebase Authentication → login via e-mail/senha;
+Firebase Firestore → banco de dados NoSQL para armazenar usuários, treinos, agendamentos;
+Firebase Realtime Database  → sincronização em tempo real (check-ins e presença na academia);
+Firebase Storage → guardar fotos de perfil dos alunos, comprovantes, arquivos de treinos.
+Firebase Analytics → métricas de uso do app (frequência, engajamento, retenção).
 
 ## Hospedagem
 
