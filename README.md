@@ -1,4 +1,4 @@
-# FitConnect
+# TrainerHub
 
 `CURSO: Sistemas de Informação`
 
