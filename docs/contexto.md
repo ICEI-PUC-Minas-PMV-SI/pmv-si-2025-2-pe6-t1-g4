@@ -169,10 +169,9 @@ Atualizado em: 08/09/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| Leonardo      | Slides/Apresentação   | 06/09/2025     | 08/09/2025 | ✔️    | 08/09/2025      |
-| Leonardo      | Correção 1ª Etapa     | 04/09/2025     | 08/09/2025 | ✔️    | 08/09/2025                |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛    |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |                 |
+| Leonardo      | Slides/Apresentação   | 06/09/2025     | 08/09/2025 | ✔️    | 08/09/2025  |
+| Leonardo      | Correção 1ª Etapa     | 04/09/2025     | 08/09/2025 | ✔️    | 08/09/2025  |
+| Lucas         | Correção 1ª Etapa     | 04/09/2025     | 08/09/2025 | ✔️    | 07/09/2025  |
 
 Legenda:
 - ✔️: terminado
