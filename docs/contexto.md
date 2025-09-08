@@ -17,15 +17,16 @@ Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thin
 > - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/) -->
 
 ## Objetivos
+Objetivo: Desenvolver um software (aplicativo de academia) que otimize o acompanhamento de treinos, facilite a interação entre alunos e professores e solucione os problemas de processos manuais e sistemas fragmentados.
 
-Oferecer aos alunos um aplicativo prático para acompanhamento de treinos.
-•⁠  ⁠Disponibilizar treinos personalizados e atualizados de forma digital.
-•⁠  ⁠Facilitar a comunicação entre professores e alunos.
-•⁠  ⁠Permitir o registro e acompanhamento da evolução física.
-•⁠  ⁠Reduzir o uso de planilhas e treinos em papel.
-•⁠  ⁠Aumentar o engajamento e a motivação dos alunos.
-•⁠  ⁠Melhorar a gestão interna da academia através de um painel web personalizado para a academia.
-•⁠  ⁠Aumentar a fidelização de alunos por meio da tecnologia.
+Objetivo Específico:
+- Implementar um sistema digital para registro de treinos e evolução física dos alunos, substituindo fichas manuais e minimizando perda de informações.
+- Criar recursos que permitam maior interação entre professores e alunos, como feedback em tempo real e ajustes personalizados de treinos.
+- Desenvolver relatórios e indicadores de desempenho que aumentem a motivação, o engajamento e a fidelização dos alunos.
+- Garantir praticidade e acessibilidade do sistema em dispositivos móveis, tornando o uso mais intuitivo e constante.
+- Permitir o registro e acompanhamento da evolução física.
+- ⁠Aumentar o engajamento e a motivação dos alunos.
+- ⁠Melhorar a gestão interna da academia através de um painel web personalizado para a academia.
 
 ## Justificativa
 O setor de academias no Brasil teve uma expansão expressiva na última década, passando de 19.266 em 2014 para 56.833 em 2024 — quase triplicando em tamanho. Com esse aumento de academias e a alta concorrência, gestores precisam de ferramentas que garantam eficiência, organização e qualidade no atendimento. Essa aplicação possibilitará automatizar processos como agendamento automático de aulas, cobranças recorrentes de assinaturas, reduzir erros manuais e oferecer experiências personalizadas aos alunos, aumentando a retenção e a satisfação. Além disso, o acesso a relatórios financeiros e indicadores estratégicos permitirá que decisões sejam tomadas com base em dados concretos, impulsionando a sustentabilidade e a competitividade do negócio.
