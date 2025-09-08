@@ -128,12 +128,13 @@ Explique como a hospedagem e o lançamento da plataforma foi feita.
 # Planejamento
 
 ##  Quadro de tarefas
+Serão apresentadas as tarefas entre os membros do grupo durante os meses do desenvolvimento de projeto.
 
-> Apresente a divisão de tarefas entre os membros do grupo e o acompanhamento da execução, conforme o exemplo abaixo.
+<!-- > Apresente a divisão de tarefas entre os membros do grupo e o acompanhamento da execução, conforme o exemplo abaixo. -->
 
-### Semana 1
+### 1° Mês
 
-Atualizado em: 25/08/2024
+Atualizado em: 25/08/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
@@ -142,22 +143,22 @@ Atualizado em: 25/08/2024
 | Leonardo      | Problema         | 22/08/2025     | 25/08/2025 | ✔️    | 25/08/2025      |
 | Leonardo      | Público-Alvo     | 23/08/2025     | 31/08/2025 | ✔️    | 25/08/2025      |
 | Lucas         | Requisitos       | 18/08/2025     | 31/08/2025 | ✔️    | 25/08/2025      |
-| Lucas         | Catalogo de S    | 18/08/2025     | 31/08/2025 | ✔️    | 25/08/2025      |
+| Lucas         | Catalogo de S.   | 18/08/2025     | 31/08/2025 | ✔️    | 25/08/2025      |
 | Augusto       | Introdução       | 18/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 | Augusto       | Obj. do projeto  | 18/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 | Wellington    | Arq. da solução  | 18/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 | Wellington    | Tec. Utilizadas  | 18/08/2025     | 31/08/2025 | ✔️    | 31/08/2025      |
 
-#### Semana 2
+#### 2° Mês
 
-Atualizado em: 21/04/2024
+Atualizado em: 08/09/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
+| Leonardo      | Slides/Apresentação   | 06/09/2025     | 08/09/2025 | ✔️    | 08/09/2025      |
+| Leonardo      | Correção 1ª Etapa     | 04/09/2025     | 08/09/2025 | ✔️    | 08/09/2025                |
+| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛    |                 |
+| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |                 |
 
 Legenda:
 - ✔️: terminado
