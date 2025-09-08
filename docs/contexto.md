@@ -115,7 +115,8 @@ Para maior comodidade, há a funcionalidade de agendamento de treinos e aulas, q
 Por fim, estão disponíveis relatórios estratégicos, que incluem evolução dos treinos e desempenho físico dos alunos, apoiando a tomada de decisão e contribuindo para uma gestão mais eficiente e orientada a resultados.
    
 # Arquitetura da Solução
-<img width="1048" height="812" alt="Captura de Tela 2025-08-31 às 19 03 15" src="https://github.com/user-attachments/assets/4b9c95fb-34db-4d76-a0b8-40c99fcfe6e9" />
+    ![Infográfico da arquitetura da solução](docs/img/Captura de Tela 2025-08-31 às 19.03.15.png)
+    
 
 
 
