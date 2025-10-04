@@ -1,13 +1,24 @@
 <?php
 use Symfony\Component\Routing\Route;
 use App\Controllers\AuthController;
-
+use App\Controllers\UsersController;
+use App\Controllers\WorkoutsController;
+use App\Controllers\TrainingController;
+use App\Controllers\ProfessorController;
 
 $routes->add('login', new Route('/login', [
     '_controller' => [new AuthController(), 'login']
 ], [], [], '', [], ['POST']));
 
+ 
+
+
 $resources = [
+    'users' => UsersController::class,
+    'workouts' => WorkoutsController::class,
+    'training' => TrainingController::class,
+    'professor' => ProfessorController::class,
+
 
 ];
 

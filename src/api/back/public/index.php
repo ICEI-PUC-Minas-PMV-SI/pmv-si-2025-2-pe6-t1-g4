@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+
 // cria request do Symfony
 $request = Request::createFromGlobals();
 $path    = trim($request->getPathInfo(), '/'); // ex: profiles/uuid
@@ -19,6 +20,10 @@ if ($path === 'login' && $method === 'POST') {
 
 // mapeamento das entidades para os controllers
 $routes = [
+    'profiles'          => App\Controllers\UsersController::class,
+    'workouts'          => App\Controllers\WorkoutsController::class,
+    'training'          => App\Controllers\TrainingController::class,
+    'professor'         => App\Controllers\ProfessorController::class,
 
 ];
 
