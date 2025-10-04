@@ -1,0 +1,21 @@
+# Ativa o motor de rewrite
+RewriteEngine On
+
+# Base do projeto
+RewriteBase /puc_academia/back/public/
+
+# Se o arquivo ou diretório existir, serve direto
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redireciona todas as requisições para index.php
+RewriteRule ^ index.php [QSA,L]
+
+# Evita listagem de diretórios
+Options -Indexes
+
+# Protege arquivos sensíveis
+<FilesMatch "(\.env|\.htaccess|\.ini|\.log|\.git)">
+    Require all denied
+</FilesMatch>
