@@ -10,6 +10,9 @@ use App\Controllers\SheetController;
 use App\Controllers\SheetTrainingController;
 use App\Controllers\ScheduleWorkoutsController;
 use App\Controllers\ClassController;
+use App\Controllers\ExerciceController;
+use App\Controllers\ScheduledClassesController;
+use App\Controllers\PaymentsController;
 
 $routes->add('login', new Route('/login', [
     '_controller' => [new AuthController(), 'login']
@@ -27,7 +30,9 @@ $resources = [
     'sheet_training' => SheetTrainingController::class,
     'schedule_workouts' => ScheduleWorkoutsController::class,
     'class' => ClassController::class,
-
+    'scheduled_classes' => ScheduledClassesController::class,
+    'payments' => PaymentsController::class,
+    'exercises' => ExerciceController::class,
 ];
 
 foreach ($resources as $name => $controller) {
