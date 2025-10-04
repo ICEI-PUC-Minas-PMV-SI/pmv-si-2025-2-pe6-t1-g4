@@ -1,10 +1,14 @@
 # APIs e Web Services
+O planejamento de uma aplicação de APIs Web é essencial para garantir a comunicação entre o aplicativo mobile (alunos e professores), o painel web da academia e os serviços de backend.
+Para este projeto, a API servirá como intermediária entre o Supabase (banco relacional e serviços de autenticação) e os clientes (app e painel web), assegurando acesso seguro, escalável e padronizado aos recursos da plataforma.
 
-O planejamento de uma aplicação de APIS Web é uma etapa fundamental para o sucesso do projeto. Ao planejar adequadamente, você pode evitar muitos problemas e garantir que a sua API seja segura, escalável e eficiente.
+A proposta da API é integrar as funcionalidades de cadastro de usuários, gerenciamento de fichas de treino, monitoramento de evolução física, agendamento de treinos/aulas e relatórios de progresso, permitindo que todos os módulos do sistema conversem entre si de forma organizada e performática.
+
+<!-- O planejamento de uma aplicação de APIS Web é uma etapa fundamental para o sucesso do projeto. Ao planejar adequadamente, você pode evitar muitos problemas e garantir que a sua API seja segura, escalável e eficiente.
 
 Aqui estão algumas etapas importantes que devem ser consideradas no planejamento de uma aplicação de APIS Web.
 
-[Inclua uma breve descrição do projeto.]
+[Inclua uma breve descrição do projeto.] -->
 
 ## Objetivos da API
 
