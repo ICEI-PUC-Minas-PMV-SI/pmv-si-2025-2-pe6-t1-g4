@@ -28,7 +28,7 @@ $routes = [
     'sheet_training'    => App\Controllers\SheetTrainingController::class,
     'schedule_workouts' => App\Controllers\ScheduleWorkoutsController::class,
     'class'             => App\Controllers\ClassController::class,
-       'exercises'         => App\Controllers\ExerciceController::class,
+    'exercises'         => App\Controllers\ExerciceController::class,
     'scheduled_classes' => App\Controllers\ScheduledClassesController::class,
     'payments'          => App\Controllers\PaymentsController::class,
 
