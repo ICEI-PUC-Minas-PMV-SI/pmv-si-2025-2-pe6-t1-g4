@@ -24,10 +24,10 @@ $routes = [
     'workouts'          => App\Controllers\WorkoutsController::class,
     'training'          => App\Controllers\TrainingController::class,
     'professor'         => App\Controllers\ProfessorController::class,
-    'profiles'          => App\Controllers\UsersController::class,
-    'workouts'          => App\Controllers\WorkoutsController::class,
-    'training'          => App\Controllers\TrainingController::class,
-    'professor'         => App\Controllers\ProfessorController::class,
+    'sheet'             => App\Controllers\SheetController::class,
+    'sheet_training'    => App\Controllers\SheetTrainingController::class,
+    'schedule_workouts' => App\Controllers\ScheduleWorkoutsController::class,
+    'class'             => App\Controllers\ClassController::class,
 
 ];
 

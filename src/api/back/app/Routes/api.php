@@ -6,9 +6,10 @@ use App\Controllers\WorkoutsController;
 use App\Controllers\TrainingController;
 use App\Controllers\ProfessorController;
 use App\Controllers\UsersController;
-use App\Controllers\WorkoutsController;
-use App\Controllers\TrainingController;
-use App\Controllers\ProfessorController;
+use App\Controllers\SheetController;
+use App\Controllers\SheetTrainingController;
+use App\Controllers\ScheduleWorkoutsController;
+use App\Controllers\ClassController;
 
 $routes->add('login', new Route('/login', [
     '_controller' => [new AuthController(), 'login']
@@ -22,11 +23,10 @@ $resources = [
     'workouts' => WorkoutsController::class,
     'training' => TrainingController::class,
     'professor' => ProfessorController::class,
-    'profiles'  => App\Controllers\UsersController::class,
-    'workouts'  => App\Controllers\WorkoutsController::class,
-    'training'  => App\Controllers\TrainingController::class,
-    'professor' => App\Controllers\ProfessorController::class,
-
+    'sheet' => SheetController::class,
+    'sheet_training' => SheetTrainingController::class,
+    'schedule_workouts' => ScheduleWorkoutsController::class,
+    'class' => ClassController::class,
 
 ];
 
