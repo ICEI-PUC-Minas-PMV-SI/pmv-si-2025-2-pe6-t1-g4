@@ -22,10 +22,19 @@ O primeiro passo é definir os objetivos da sua API. O que você espera alcança
 
 
 ## Tecnologias Utilizadas
+A stack tecnológica escolhida garante segurança, performance e facilidade de integração:
 
-Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs Web. A tecnologia certa para o seu projeto dependerá dos seus objetivos, dos seus clientes e dos recursos que a API deve fornecer.
+- Backend: 
+- Mobile: 
+- Banco de Dados: Supabase (PostgreSQL)
+- Autenticação e Autorização: Supabase Auth (com suporte a JWT)
+- Armazenamento de Arquivos: Supabase Storage (para fotos de perfil, comprovantes, etc.)
+- Hospedagem da API: 
+- Monitoramento e Logs: 
 
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+<!-- Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs Web. A tecnologia certa para o seu projeto dependerá dos seus objetivos, dos seus clientes e dos recursos que a API deve fornecer.
+
+[Lista das tecnologias principais que serão utilizadas no projeto.] -->
 
 ## API Endpoints
 
