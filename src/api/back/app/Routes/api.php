@@ -5,6 +5,9 @@ $routes->add('login', new Route('/login', [
     '_controller' => [new App\Controllers\AuthController(), 'login']
 ], [], [], '', [], ['POST']));
 
+ 
+
+
 $resources = [
     'users' => App\Controllers\UsersController::class,
     'training' => App\Controllers\TrainingController::class,
