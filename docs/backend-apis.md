@@ -145,8 +145,10 @@ A segurança da aplicação é garantida pelo uso do Supabase para autenticaçã
 5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
 
 # Referências
-
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+JWT.IO. **JSON Web Token Introduction.** Disponível em: <https://jwt.io/introduction/>. Acesso em: 05 out. 2025.
+SYMFONY. **Symfony Framework Documentation.** Disponível em: <https://symfony.com/doc/current/index.html>. Acesso em: 05 out. 2025.
+SUPABASE. **Supabase Auth Documentation.** Disponível em: <https://supabase.com/docs/guides/auth>. Acesso em: 05 out. 2025.
+<!-- Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho. --> 
 
 # Planejamento
 
