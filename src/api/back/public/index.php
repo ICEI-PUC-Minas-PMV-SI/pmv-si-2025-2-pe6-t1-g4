@@ -3,86 +3,45 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
-// cria request do Symfony
 $request = Request::createFromGlobals();
-$path    = trim($request->getPathInfo(), '/'); // ex: profiles/uuid
-$method  = $request->getMethod();
 
-// rota especial de login
-if ($path === 'login' && $method === 'POST') {
-    $controller = new App\Controllers\AuthController();
-    $response   = $controller->login($request);
-    $response->send();
-    exit;
-}
+$routes = new RouteCollection();
+require __DIR__ . '/../app/Routes/api.php'; 
 
-// mapeamento das entidades para os controllers
-$routes = [
+$context = new RequestContext();
+$context->fromRequest($request);
+$matcher = new UrlMatcher($routes, $context);
 
-];
+try {
+    $parameters = $matcher->match($request->getPathInfo());
 
-// quebra a URL
-$parts  = explode('/', $path);
-$entity = $parts[0] ?? '';
-$id     = $parts[1] ?? null;
-if (isset($routes[$entity])) {
-    $controllerClass = $routes[$entity];
-    $controller      = new $controllerClass();
+    $controller = $parameters['_controller'];
+    unset($parameters['_controller'], $parameters['_route']);
 
-    switch ($method) {
-        case 'GET':
-            $response = $id
-                ? $controller->show($request, $id)
-                : $controller->index($request);
-            break;
-
-        case 'POST':
-            if ($id) {
-                $response = $controller->update($request, $id);
-            }else{
-                $response = $controller->store($request);
-            }
-            break;
-
-        case 'PUT':
-        case 'PATCH':
-            if ($id) {
-                $response = $controller->update($request, $id);
-            } else {
-                $response = new Response(
-                    json_encode(['error' => 'ID obrigatório']),
-                    400,
-                    ['Content-Type' => 'application/json']
-                );
-            }
-            break;
-
-        case 'DELETE':
-            if ($id) {
-                $response = $controller->delete($request, $id);
-            } else {
-                $response = new Response(
-                    json_encode(['error' => 'ID obrigatório']),
-                    400,
-                    ['Content-Type' => 'application/json']
-                );
-            }
-            break;
-
-        default:
-            $response = new Response(
-                json_encode(['error' => 'Method Not Allowed']),
-                405,
-                ['Content-Type' => 'application/json']
-            );
+    if (isset($parameters['coluna'], $parameters['id'])) {
+        $method = 'findByColumn';
+        $parameters = [
+            'request' => $request,
+            'column'  => $parameters['coluna'],
+            'id'      => $parameters['id']
+        ];
+        $response = call_user_func_array([new $controller[0], $method], $parameters);
+    } else {
+        $response = call_user_func_array($controller, array_merge([$request], $parameters));
     }
-} else {
-    $response = new Response(
-        json_encode(['error' => 'Not Found']),
-        404,
-        ['Content-Type' => 'application/json']
-    );
-}
 
-$response->send();
+    $response->send();
+
+} catch (ResourceNotFoundException $e) {
+    $response = new Response(json_encode(['error' => 'Not Found']), 404, ['Content-Type' => 'application/json']);
+    $response->send();
+
+} catch (Exception $e) {
+    $response = new Response(json_encode(['error' => 'Internal Server Error', 'message' => $e->getMessage()]), 500, ['Content-Type' => 'application/json']);
+    $response->send();
+}
