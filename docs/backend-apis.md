@@ -145,8 +145,8 @@ Rodar composer install se houver mudanças em dependências. <br>
 Aplicar migrações e limpar cache (comandos acima). <br>
 Reiniciar PHP-FPM / Nginx para aplicar a nova versão. <br>
 
-5. **Testes**
-
+5. **Testes** <br>
+Teste realizados com o objetivo de cobrir os Requisitos Funcionais da API, assim como verificar a integração  os valores unitários e a carga que da API. Assim como, visualização de endpoints críticos (rota de login, rota de perfil, etc).
    
 
 
@@ -159,14 +159,56 @@ Reiniciar PHP-FPM / Nginx para aplicar a nova versão. <br>
 5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção. -->
 
 ## Testes
+A estratégia contempla 4 frentes: Cobertura dos Requisitos Funcionais e Requisitos Não Funcionais, testes unitários, testes de integração e testes de carga. Testes automatizados rodarão localmente e em CI (GitHub Actions).
 
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+Cobertura dos Requisitos Funcionais e Não Funcionais:
+  
+RF-01 - Cadastro de Alunos
+- CT-001
+
+RF-02 - Gerenciar fichas individuais
+- CT-002
+
+RF-03 - Registrar evolução física
+- CT-003
+
+RF-04 - Acesso em tempo real à ficha
+- CT-004
+
+RF-05 - Relatórios de progresso
+- CT-005
+
+RF-06 - Agendamento
+- CT-006
+
+RF-07 - Notificações/pagamentos
+- CT-007
+
+Testes unitários
+- CT-008
+- CT-009
+
+Testes de Integração
+- CT-010
+- CT-011
+
+Testes de Carga
+- CT-012
+- CT-013
+
+
+
+
+
+
+
+<!-- [Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
 
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
 2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
 3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste. -->
 
 # Referências
 JWT.IO. **JSON Web Token Introduction.** Disponível em: <https://jwt.io/introduction/>. Acesso em: 05 out. 2025.
