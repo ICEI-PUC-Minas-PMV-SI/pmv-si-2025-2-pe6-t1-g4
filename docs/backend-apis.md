@@ -92,7 +92,7 @@ As tecnologias utilizadas são:
 
 ## API Endpoints
 
-[Liste os principais endpoints da API, incluindo as operações disponíveis, os parâmetros esperados e as respostas retornadas.]
+
 
 ### Endpoint 1
 - Método: GET
