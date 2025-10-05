@@ -126,13 +126,37 @@ A segurança da aplicação é garantida pelo uso do Supabase para autenticaçã
 
 ## Implantação
 
-[Instruções para implantar a aplicação distribuída em um ambiente de produção.]
+1. **Requisitos de hardware e software:** <br>
+Hardware (local): máquina/servidor 4 GB RAM, SSD recomendado. <br>
+Software: PHP 8.1+, Git, PHP-FPM Apache. <br>
+Banco e serviços: Supabase (Postgres); conexões com sslmode=require. <br>
+Rede / Segurança: acesso SSH ao servidor local para deploy e configuração.
+
+2. **Escolha da plataforma de hospedagem:** <br>
+Hospedagem local: execução da API em um servidor local (máquina física ou VM) configurado com PHP-FPM + Nginx/Apache. <br>
+GitHub: repositório para versionamento do código e uso do GitHub Actions para pipelines (build, testes e geração de artefatos).
+
+3. **Configurar o ambiente de implantação** <br>
+
+4. **Fazer o deploy** <br>
+Local (manual): <br>
+Atualizar código via git pull no servidor. <br>
+Rodar composer install se houver mudanças em dependências. <br>
+Aplicar migrações e limpar cache (comandos acima). <br>
+Reiniciar PHP-FPM / Nginx para aplicar a nova versão. <br>
+
+5. **Realizar Testes**
+
+   
+
+
+<!-- [Instruções para implantar a aplicação distribuída em um ambiente de produção.]
 
 1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
 2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
 3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
 4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
+5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção. -->
 
 ## Testes
 
