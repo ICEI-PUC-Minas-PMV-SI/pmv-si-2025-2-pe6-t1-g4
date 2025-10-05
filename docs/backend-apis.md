@@ -154,7 +154,7 @@ SUPABASE. **Supabase Auth Documentation.** Disponível em: <https://supabase.com
 
 ##  Quadro de tarefas
 
-### Mês 3 (Setembro/2025)
+### Mês 3 (Set.Out./2025)
 
 Atualizado em: 04/10/2024
 
