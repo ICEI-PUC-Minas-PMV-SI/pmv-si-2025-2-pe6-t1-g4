@@ -11,11 +11,17 @@ Aqui estão algumas etapas importantes que devem ser consideradas no planejament
 [Inclua uma breve descrição do projeto.] -->
 
 ## Objetivos da API
+O objetivo da API é oferecer uma camada de serviços segura e padronizada para suportar as principais operações do sistema, evitando inconsistências e duplicidade de dados.
 
-O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer?
+Principais objetivos:
 
-[Inclua os objetivos da sua api.]
+- Disponibilizar serviços RESTful para cadastro, consulta, atualização e exclusão de dados (CRUD).
+- Integrar aplicativo mobile (.NET MAUI) e painel web de forma centralizada, mantendo dados sincronizados.
+- Garantir autenticação e autorização por meio do Supabase Auth, assegurando o acesso de acordo com o perfil do usuário (aluno, personal ou gestor).
+- Prover escalabilidade e alta disponibilidade para suportar um número crescente de usuários.
+- Facilitar a manutenção e evolução do sistema, seguindo boas práticas de arquitetura de APIs.
 
+<!-- O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer? -->[Inclua os objetivos da sua api.]
 
 ## Modelagem da Aplicação
 A modelagem da aplicação foi construída para refletir as operações de uma academia, integrando usuários, fichas de treino, exercícios, aulas e pagamentos. A figura abaixo apresenta o diagrama de entidades e relacionamentos do banco de dados criado no Supabase.
@@ -71,15 +77,14 @@ Relacionamentos
 
 
 ## Tecnologias Utilizadas
-A stack tecnológica escolhida garante segurança, performance e facilidade de integração:
+As tecnologias utilizadas são:
 
-- Backend: 
-- Mobile: 
-- Banco de Dados: Supabase (PostgreSQL)
-- Autenticação e Autorização: Supabase Auth (com suporte a JWT)
-- Armazenamento de Arquivos: Supabase Storage (para fotos de perfil, comprovantes, etc.)
-- Hospedagem da API: 
-- Monitoramento e Logs: 
+- Backend: PHP com o framework Symfony;
+- Banco de Dados: Supabase;
+- Autenticação e Autorização: Supabase Auth;
+- Armazenamento de Arquivos: Supabase Storage;
+- Hospedagem da API:  Backend está hospedado no GitHub e executado localmente em ambiente de desenvolvimento;
+- Monitoramento e Logs: Integração planejada com Supabase Logs
 
 <!-- Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs Web. A tecnologia certa para o seu projeto dependerá dos seus objetivos, dos seus clientes e dos recursos que a API deve fornecer.
 
@@ -115,8 +120,9 @@ A stack tecnológica escolhida garante segurança, performance e facilidade de i
     ```
 
 ## Considerações de Segurança
+A segurança da aplicação é garantida pelo uso do Supabase para autenticação, autorização e armazenamento de dados. O acesso é controlado por papéis (aluno, professor e administrador) e protegido pelas políticas de Row Level Security (RLS), que limitam cada usuário aos seus próprios dados. A comunicação entre API, banco e clientes é criptografada via SSL, e as credenciais são protegidas com tokens JWT. Além disso, o Supabase assegura que arquivos e informações sensíveis só sejam acessados por usuários autorizados, prevenindo acessos indevidos e mantendo a integridade dos dados.
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+<!-- [Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.] -->
 
 ## Implantação
 
