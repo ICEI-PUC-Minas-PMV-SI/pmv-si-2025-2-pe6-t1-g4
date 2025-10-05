@@ -18,7 +18,56 @@ O primeiro passo é definir os objetivos da sua API. O que você espera alcança
 
 
 ## Modelagem da Aplicação
-[Descreva a modelagem da aplicação, incluindo a estrutura de dados, diagramas de classes ou entidades, e outras representações visuais relevantes.]
+A modelagem da aplicação foi construída para refletir as operações de uma academia, integrando usuários, fichas de treino, exercícios, aulas e pagamentos. A figura abaixo apresenta o diagrama de entidades e relacionamentos do banco de dados criado no Supabase.
+
+Estrutura de Dados
+- **auth.users:** <br>
+Tabela nativa do Supabase responsável por autenticação.
+Armazena credenciais (e-mail, senha, provedores externos) e serve como chave de identificação do usuário.
+
+- **profiles:** <br>
+Tabela vinculada a auth.users.id.
+Contém informações adicionais de cada usuário: full_name, cpf, phone, peso_kg, altura_cm, genero, data_nascimento e o campo role (enum user_role com valores admin, professor, aluno).
+
+- **workouts:** <br>
+Define tipos de treinos disponíveis (ex.: força, resistência, cardio).
+Campos: name, level e created_at.
+
+- **exercises:** <br>
+Armazena exercícios cadastrados: name, muscle_group e description.
+#training_sheets
+Representa fichas de treino associando aluno ↔ professor ↔ treino.
+Campos: aluno_id, professor_id, workout_id, status, created_at.
+
+- **sheet_exercises:** <br>
+Detalha os exercícios contidos em cada ficha: ordem, series, repeticoes, carga e descanso_segundos.
+
+- **classes:** <br>
+Gerencia aulas coletivas ou individuais.
+Campos: professor_id, titulo, descricao, inicio, fim, capacidade e created_at.
+
+- **class_bookings:** <br>
+Liga alunos a aulas específicas, controlando as inscrições: class_id, aluno_id e created_at.
+
+- **payments:** <br>
+Registra pagamentos de mensalidades: aluno_id, due_date, amount, status e paid_at.
+
+
+Relacionamentos
+- auth.users.id ↔ profiles.id – cada usuário autenticado possui um perfil.
+- profiles.id ↔ training_sheets.aluno_id – ficha de treino do aluno.
+- profiles.id ↔ training_sheets.professor_id – ficha vinculada ao professor.
+- training_sheets.id ↔ sheet_exercises.sheet_id – exercícios pertencentes à ficha.
+- exercises.id ↔ sheet_exercises.exercise_id – vínculo do exercício ao item da ficha.
+- profiles.id ↔ payments.aluno_id – pagamentos associados a cada aluno.
+- classes.id ↔ class_bookings.class_id – inscrições feitas em aulas.
+- profiles.id ↔ class_bookings.aluno_id – aluno inscrito na aula.
+
+
+![Image](https://github.com/user-attachments/assets/61db8174-1f96-4ba5-ac19-7c6eff595ffc)
+
+
+<!-- [Descreva a modelagem da aplicação, incluindo a estrutura de dados, diagramas de classes ou entidades, e outras representações visuais relevantes.] -->
 
 
 ## Tecnologias Utilizadas
