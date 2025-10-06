@@ -416,7 +416,8 @@ Atualizado em: 04/10/2024
 | Leonardo      | Atualização do Documento | 02/10/2025    | 05/10/2025 | ✔️    | 05/10/2024      |
 | Leonardo      | Setup base da API/rotas  | 02/10/2025    | 05/10/2025 | ✔️    | 05/10/2024      |
 | Lucas         |                          | 02/10/2025    | 05/10/2025 | 📝    | 05/10/2025      |
-| Wellington    |                          | 02/10/2025    | 05/10/2025 | ⌛    | 05/10/2025      |
+| Wellington    | Implementação do DB      | 30/09/2025    | 05/10/2025 | ✔️    | 05/10/2025      |
+| Wellington    | Setup base da API/rotas  | 20/09/2025    | 05/10/2025 | ✔️    | 05/10/2025      |
 | Augusto       | Setup base da API/rotas  | 11/09/2025    | 05/10/2025 | ✔️    | 05/10/2025      |
 
 Legenda:
