@@ -346,9 +346,9 @@ Teste realizados com o objetivo de cobrir os Requisitos Funcionais da API, assim
 5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção. -->
 
 ## Testes
-A estratégia contempla 4 frentes: Cobertura dos Requisitos Funcionais e Requisitos Não Funcionais, testes unitários, testes de integração e testes de carga. Testes automatizados rodarão localmente e em CI (GitHub Actions).
+A estratégia contempla 4 frentes: Cobertura dos Requisitos Funcionais, testes unitários, testes de integração e testes de carga. Testes automatizados rodarão localmente e em CI (GitHub Actions).
 
-Cobertura dos Requisitos Funcionais e Não Funcionais:
+Cobertura dos Requisitos Funcionais:
   
 RF-01 - Cadastro de Alunos
 - CT-001
