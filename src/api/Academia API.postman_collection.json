@@ -1,0 +1,1428 @@
+{
+	"info": {
+		"_postman_id": "da767190-687f-4b59-ba74-b2e3d8359693",
+		"name": "Academia API",
+		"description": "Coleção com todos os CRUDs da API Academia protegidos por Bearer Token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18565933",
+		"_collection_link": "https://puc777.postman.co/workspace/Puc-Academia~a210e92d-1f40-4ab9-996c-22a04b1f7e1d/collection/18565933-da767190-687f-4b59-ba74-b2e3d8359693?action=share&source=collection_link&creator=18565933"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/700002f4-6278-4b01-9b7e-d690ae678a84",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"700002f4-6278-4b01-9b7e-d690ae678a84"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"Aluno Generico\",\r\n    \"role\": \"aluno\",\r\n    \"cpf\": \"13593614514\",\r\n    \"phone\": \"(32) 99148-1001\",\r\n    \"created_at\": \"01-10-2025 15:19\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"aluno\",\r\n    \"full_name\": \"Aluno para teste\",\r\n    \"cpf\": \"135-936-156-14\",\r\n    \"phone\": \"(32) 991481001\",\r\n    \"created_at\": \"2025-09-29T20:14:01.22931+00:00\",\r\n    \"peso_kg\": 72,\r\n    \"altura_cm\": 172,\r\n    \"genero\": null,\r\n    \"updated_at\": \"2025-10-04T21:35:03.943947+00:00\",\r\n    \"data_nascimento\": \"04/22/2000\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/2f492373-50f4-48a8-930a-e12f30197a25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"2f492373-50f4-48a8-930a-e12f30197a25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Workouts",
+			"item": [
+				{
+					"name": "List Workouts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							},
+							{
+								"key": "apikey",
+								"value": "sb_secret_VCnCXTYEE3J81KRqffeUSw___ZSJae2",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/workouts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workouts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Workout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/workouts/1385f21a-b44f-4b3a-abfa-f73c6a02a615",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workouts",
+								"1385f21a-b44f-4b3a-abfa-f73c6a02a615"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Workout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Peito\",\r\n    \"level\": 1,\r\n    \"created_at\": \"01-10-2025 15:19\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/workouts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workouts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Workout",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Intermediário Hipertrofia\",\r\n    \"level\": 9\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/workouts/1385f21a-b44f-4b3a-abfa-f73c6a02a615",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workouts",
+								"1385f21a-b44f-4b3a-abfa-f73c6a02a615"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Workout",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/workouts/9d52d2d1-52a4-4264-b888-31b40dcecf3f",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"workouts",
+								"9d52d2d1-52a4-4264-b888-31b40dcecf3f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Training",
+			"item": [
+				{
+					"name": "List Training",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/training",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"training"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Training By Aluno",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/training/aluno_id/700002f4-6278-4b01-9b7e-d690ae678a84",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"training",
+								"aluno_id",
+								"700002f4-6278-4b01-9b7e-d690ae678a84"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Training By Professor",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/training/professor_id/97be6980-da60-4a56-ab51-e31d49412dc0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"training",
+								"professor_id",
+								"97be6980-da60-4a56-ab51-e31d49412dc0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Training By Workout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/training/workout_id/ef54e2ef-e4d7-41c1-8088-dfc2d47e9f9c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"training",
+								"workout_id",
+								"ef54e2ef-e4d7-41c1-8088-dfc2d47e9f9c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Training By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/training/2663f444-e9aa-4f5d-8606-8a3dd74eefa4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"training",
+								"2663f444-e9aa-4f5d-8606-8a3dd74eefa4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Training",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"aluno_id\": \"2f492373-50f4-48a8-930a-e12f30197a25\",\r\n    \"professor_id\":\"97be6980-da60-4a56-ab51-e31d49412dc0\",\r\n    \"workout_id\": \"ef54e2ef-e4d7-41c1-8088-dfc2d47e9f9c\",\r\n    \"status\": \"1\",\r\n    \"created_at\": \"01-10-2025 15:19\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/training",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"training"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Training",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"Agachamento\", \"icon\": \"agachamento.png\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/training/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"training",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Training",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/training/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"training",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Professor",
+			"item": [
+				{
+					"name": "List Professors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/professor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"professor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Professor",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/professor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"professor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Professor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"João\", \"specialization\": \"Musculação\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/professor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"professor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Professor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"Maria\", \"specialization\": \"Yoga\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/professor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"professor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Professor",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/professor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"professor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sheet",
+			"item": [
+				{
+					"name": "List Sheets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sheet",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Sheet",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sheet/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sheet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sheet_id\": \"2663f444-e9aa-4f5d-8606-8a3dd74eefa4\",\r\n    \"exercise_id\": \"e243750e-982b-4374-87e0-48f881a522b1\",\r\n    \"ordem\": \"1\",\r\n    \"series\":\"3\",\r\n    \"repeticoes\":\"12\",\r\n    \"carga\":\"30\",\r\n    \"descanso_segundos\":\"60\" \r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/sheet",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sheet",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"status\": \"inativa\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/sheet/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sheet",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sheet/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sheet Training",
+			"item": [
+				{
+					"name": "List Sheet Exercises",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sheet_training",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet_training"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Sheet Training",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sheet_training/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet_training",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sheet Training",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"reps\": 10, \"weight\": 50 }"
+						},
+						"url": {
+							"raw": "{{base_url}}/sheet_training",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet_training"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sheet Training",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"reps\": 12, \"weight\": 55 }"
+						},
+						"url": {
+							"raw": "{{base_url}}/sheet_training/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet_training",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sheet Training",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/sheet_training/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"sheet_training",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "scheduled classes",
+			"item": [
+				{
+					"name": "List scheduled_classes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/scheduled_classes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"scheduled_classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show scheduled_classes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/scheduled_classes/9810d513-8328-4efb-b85c-8bd549dbc7c1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"scheduled_classes",
+								"9810d513-8328-4efb-b85c-8bd549dbc7c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show scheduled_classes by aluno",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/scheduled_classes/aluno_id/700002f4-6278-4b01-9b7e-d690ae678a84",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"scheduled_classes",
+								"aluno_id",
+								"700002f4-6278-4b01-9b7e-d690ae678a84"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show scheduled_classes by class",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/scheduled_classes/class_id/35ea13ae-292d-40c2-a4c0-4ce56ae4a3c2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"scheduled_classes",
+								"class_id",
+								"35ea13ae-292d-40c2-a4c0-4ce56ae4a3c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Schedule Workout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"class_id\": \"35ea13ae-292d-40c2-a4c0-4ce56ae4a3c2\",\r\n    \"aluno_id\": \"2f492373-50f4-48a8-930a-e12f30197a25\",\r\n    \"created_at\": \"01-10-2025 15:19\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/scheduled_classes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"scheduled_classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update scheduled_classes",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"nome\": \"Crossfit\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/scheduled_classes/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"scheduled_classes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete scheduled_classes",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/scheduled_classes/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"scheduled_classes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exercices",
+			"item": [
+				{
+					"name": "List Exercises",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/exercises",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exercises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Exercices",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/exercises/a13b3449-fd78-4443-9631-996099d41996",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exercises",
+								"a13b3449-fd78-4443-9631-996099d41996"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Exercices",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Supino Inclinado com Halteres\",\r\n        \"muscle_group\": \"Peito\",\r\n        \"description\": \"Halteres no peitoral, inclinacao a 45 graus, controle na descida.\"\r\n    }"
+						},
+						"url": {
+							"raw": "{{base_url}}/exercises",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exercises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Exercices",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"Agachamento\", \"icon\": \"agachamento.png\" }"
+						},
+						"url": {
+							"raw": "{{base_url}}/exercises/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exercises",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Exercices",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/exercises/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exercises",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Classes",
+			"item": [
+				{
+					"name": "List class",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/class",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show class",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/class/35ea13ae-292d-40c2-a4c0-4ce56ae4a3c2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"class",
+								"35ea13ae-292d-40c2-a4c0-4ce56ae4a3c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show By Professor",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/class/professor_id/97be6980-da60-4a56-ab51-e31d49412dc0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"class",
+								"professor_id",
+								"97be6980-da60-4a56-ab51-e31d49412dc0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create class",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"professor_id\": \"97be6980-da60-4a56-ab51-e31d49412dc0\",\r\n        \"titulo\": \"Volei\",\r\n        \"descricao\": \"Volei na praia\",\r\n        \"inicio\": \"2025-10-05T15:30:00Z\",\r\n        \"fim\": \"2025-10-05T15:30:00Z\",\r\n        \"capacidade\": 10,\r\n        \"created_at\": \"01-10-2025 15:19\"\r\n    }"
+						},
+						"url": {
+							"raw": "{{base_url}}/class",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update class",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"titulo\": \"Teste treino\",\r\n        \"descricao\": \"Teste treino 2\",\r\n        \"inicio\": \"2025-10-05T09:30:00Z\",\r\n        \"fim\": \"2025-10-05T10:30:00Z\",\r\n        \"capacidade\": \"10\",\r\n        \"created_at\": \"01-10-2025 15:19\"\r\n    }"
+						},
+						"url": {
+							"raw": "{{base_url}}/class/b080e029-a3be-46ff-be4e-80cccfd841b9",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"class",
+								"b080e029-a3be-46ff-be4e-80cccfd841b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete class",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{API_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/class/1a178b45-df8b-40b0-bb0b-ad6718c5f04d",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"class",
+								"1a178b45-df8b-40b0-bb0b-ad6718c5f04d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"augustoglpires@gmail.com\",\n  \"password\": \"augustopuc\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		},
+		{
+			"key": "API_TOKEN",
+			"value": ""
+		}
+	]
+}
