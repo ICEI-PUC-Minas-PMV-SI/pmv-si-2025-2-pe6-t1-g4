@@ -95,29 +95,220 @@ As tecnologias utilizadas são:
 
 
 ### Endpoint 1
+### Endpoint 1
+Buscar Usuário
 - Método: GET
-- URL: /endpoint1
+- URL: {{base_url}}/users/700002f4-6278-4b01-9b7e-d690ac678a84
 - Parâmetros:
-  - param1: [descrição]
+
+param1: id (string, required):700002f4-6278-4b01-9b7e-d690ac678a84
 - Resposta:
   - Sucesso (200 OK)
-    ```
+
+```
+{
+  "id": "700002f4-6278-4b01-9b7e-d690ac678a84",
+  "role": "aluno",
+  "full_name": "Jose Geraldo",
+  "cpf": null,
+  "phone": null,
+  "created_at": "2025-09-27T02:14:31.229311+00:00",
+  "peso_kg": null,
+  "altura_cm": null,
+  "genero": null,
+  "updated_at": "2025-10-04T21:36:53.943907+00:00",
+  "data_nascimento": null
+}
+
+```
+- Erro 404 Not Found — usuário não encontrado:
+
+```
+{
+  "message": "Error",
+  "error": {
+    "code": "not_found",
+    "detail": "User with id 7000024a-6278-4b01-9b7e-d960ac678a84 not found."
+  }
+}
+
+```
+
+### Endpoint 2
+Insert dados do Usuário
+- Método: POST
+- URL: {{base_url}}/users
+- Resposta:
+  - Sucesso (201 Created)
+
+```
+{
+  "code": "23503",
+  "details": "Key (id)=(dbf22f1c-7a3b-4a80-b8db-5dbb8e073b6b) is not present in table \"users\".",
+  "hint": null,
+  "message": "insert or update on table \"profiles\" violates foreign key constraint \"profiles_id_fkey\""
+}
+
+```
+
+### Endpoint 3
+Update
+- Método: PUT
+- URL: {{base_url}}/users/2f492373-56e4-4a08-93ba-e12fbf197a25
+- Resposta:
+  - Sucesso (200 OK)
+
+```
+
+ {
+  "role": "aluno",
+  "full_name": "Aluno para teste",
+  "cpf": "123.456.789-10",
+  "phone": "11999999999",
+  "created_at": "2025-09-27T02:14:31.229311+00:00",
+  "peso_kg": 72,
+  "altura_cm": 172,
+  "genero": null,
+  "updated_at": "2025-10-04T21:36:53.943907+00:00",
+  "data_nascimento": "04/22/2002"
+}
+
+```
+
+### Endpoint 4
+Dados Alterados
+- Método: GET
+- URL: {{base_url}}/users
+- Resposta:
+  - Sucesso (200 OK)
+
+```
+{
+  "id": "21492373-5f14-48a8-938a-a12158079725",
+  "role": "aluno",
+  "full_name": "Aluno para teste",
+  "cpf": "135-934-156-14",
+  "phone": "(32) 991488001",
+  "created_at": "2025-09-29T23:14:01.22931+00:00",
+  "peso_kg": 72,
+  "altura_cm": 172,
+  "genero": null,
+  "updated_at": "2025-10-05T23:03:05.096+00:00",
+  "data_nascimento": "2000-04-22"
+}
+
+```
+
+### Endpoint 5
+Todas fichas de treino
+- Método: GET
+- URL: {{base_url}}/training
+- Parâmetros:
+- Resposta:
+  - Sucesso (200 OK)
+
+```
+{
+  "id": "5512b4d4-8e2d-484a-8449-6ea0c9e5c69e",
+  "aluno_id": "7000024a-6278-4b01-9b7e-d690ac678a84",
+  "professor_id": "97eb9900-dae6-4b5c-a6b1-914d4f4d2dc3",
+  "workout_id": "c5fe4cef-c4d7-41c1-8b85-dfc2447e9f9c",
+  "status": 1,
+  "created_at": "2025-01-10T15:19:00+00:00",
+  "series": [
     {
-      "message": "Success",
-      "data": {
-        ...
+      "id": "f62e767e-a99a-4949-ac71-696c0743d4e9",
+      "sheet_id": "5512b4d4-8e2d-484a-8449-6ea0c9e5c69e",
+      "exercise_id": "2a9ea9cf-790f-4916-9a85-64cf493d0a2a",
+      "ordem": 1,
+      "series": 3,
+      "repeticoes": 12,
+      "carga": 100,
+      "descanso_segundos": 60,
+      "exercicio": {
+        "id": "2a9ea9cf-790f-4916-9a85-64cf493d0a2a",
+        "name": "Supino Reto",
+        "muscle_group": "Peito",
+        "description": "Barra no peitoral, controle na descida."
+      }
+    },
+    {
+      "id": "b6c1d699-e73b-4e61-8cad-99f41370bada",
+      "sheet_id": "5512b4d4-8e2d-484a-8449-6ea0c9e5c69e",
+      "exercise_id": "2f437508-982b-4374-87e0-4f0811a52201",
+      "ordem": 2,
+      "series": 3,
+      "repeticoes": 12,
+      "carga": 30,
+      "descanso_segundos": 60,
+      "exercicio": {
+        "id": "2f437508-982b-4374-87e0-4f0811a52201",
+        "name": "Supino Inclinado com Halteres",
+        "muscle_group": "Peito",
+        "description": "Halteres no peitoral, inclinação a 45 graus, controle na descida."
       }
     }
-    ```
-  - Erro (4XX, 5XX)
-    ```
+
+  ]
+}
+
+```
+
+### Endpoint 6
+Criando ficha nova
+- Método: POST
+- URL: {{base_url}}/training
+- Parâmetros:
+- Resposta:
+  - Sucesso (201 Created)
+
+```
+{
+  "aluno_id": "2f492373-56e4-4a08-93ba-e12fbf197a25",
+  "professor_id": "07be9898-dae6-4a56-a6b1-a914d4f12dc0",
+  "workout_id": "c5fe4cef-c4d7-41c1-8b85-dfc2447e9f9c",
+  "status": 1,
+  "created_at": "01-10-2025 15:19"
+}
+
+```
+
+### Endpoint 7
+Ficha de treino após umas série ter sido adicionada com um exercício
+- Método: GET
+- URL: {{base_url}}/training/2663f444-e9aa-45fd-86d0-8a3dd74eefa4
+- Resposta
+  - Sucesso (200 OK)
+
+```
+{
+  "id": "2663f444-e9aa-45fd-86d0-8a3dd74eefa4",
+  "aluno_id": "2f492373-56e4-4a08-93ba-e12fbf197a25",
+  "professor_id": "07be9898-dae6-4a56-a6b1-a914d4f12dc0",
+  "workout_id": "c5fe4cef-c4d7-41c1-8b85-dfc2447e9f9c",
+  "status": 1,
+  "created_at": "2025-01-10T15:19:00+00:00",
+  "series": [
     {
-      "message": "Error",
-      "error": {
-        ...
+      "id": "841f8b0b-b31b-4674-8824-59b24601b431",
+      "sheet_id": "2663f444-e9aa-45fd-86d0-8a3dd74eefa4",
+      "exercise_id": "2f437508-982b-4374-87e0-4f0811a52201",
+      "ordem": 1,
+      "series": 3,
+      "repeticoes": 12,
+      "carga": 30,
+      "descanso_segundos": 60,
+      "exercicio": {
+        "id": "2f437508-982b-4374-87e0-4f0811a52201",
+        "name": "Supino Inclinado com Halteres",
+        "muscle_group": "Peito",
+        "description": "Halteres no peitoral, inclinacao a 45 graus, controle na descida."
       }
     }
-    ```
+  ]
+}
+
+```
 
 ## Considerações de Segurança
 A segurança da aplicação é garantida pelo uso do Supabase para autenticação, autorização e armazenamento de dados. O acesso é controlado por papéis (aluno, professor e administrador) e protegido pelas políticas de Row Level Security (RLS), que limitam cada usuário aos seus próprios dados. A comunicação entre API, banco e clientes é criptografada via SSL, e as credenciais são protegidas com tokens JWT. Além disso, o Supabase assegura que arquivos e informações sensíveis só sejam acessados por usuários autorizados, prevenindo acessos indevidos e mantendo a integridade dos dados.
