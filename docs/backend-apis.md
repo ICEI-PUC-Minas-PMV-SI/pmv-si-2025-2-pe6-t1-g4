@@ -91,10 +91,6 @@ As tecnologias utilizadas são:
 [Lista das tecnologias principais que serão utilizadas no projeto.] -->
 
 ## API Endpoints
-
-
-
-### Endpoint 1
 ### Endpoint 1
 Buscar Usuário
 - Método: GET
