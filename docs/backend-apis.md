@@ -21,7 +21,7 @@ Principais objetivos:
 - Prover escalabilidade e alta disponibilidade para suportar um número crescente de usuários.
 - Facilitar a manutenção e evolução do sistema, seguindo boas práticas de arquitetura de APIs.
 
-<!-- O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer? -->[Inclua os objetivos da sua api.]
+<!-- O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer? [Inclua os objetivos da sua api.] -->
 
 ## Modelagem da Aplicação
 A modelagem da aplicação foi construída para refletir as operações de uma academia, integrando usuários, fichas de treino, exercícios, aulas e pagamentos. A figura abaixo apresenta o diagrama de entidades e relacionamentos do banco de dados criado no Supabase.
