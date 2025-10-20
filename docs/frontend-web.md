@@ -1,8 +1,10 @@
 # Front-end Web
+O Front-end Web tem como objetivo oferecer uma interface moderna e responsiva para alunos, personal trainers e gestores de academias, permitindo fácil acesso às principais funcionalidades do sistema, cadastramento de aluno, visualização de treinos, acompanhamento de evolução física e agendamento de aulas. Seu design busca unir praticidade e motivação, proporcionando uma experiência intuitiva e envolvente ao usuário.
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+<!-- [Inclua uma breve descrição do projeto e seus objetivos.] -->
 
 ## Projeto da Interface Web
+
 
 [Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
 
