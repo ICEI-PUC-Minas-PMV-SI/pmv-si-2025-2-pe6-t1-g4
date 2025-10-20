@@ -6,13 +6,24 @@ O Front-end Web tem como objetivo oferecer uma interface moderna e responsiva pa
 ## Projeto da Interface Web
 
 
-[Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
+<!-- [Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.] -->
 
 ### Wireframes
 
 [Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
 
 ### Design Visual
+O layout apresenta um design moderno e profissional, com uma paleta de cores escura predominante, composta por tons de preto, cinza e detalhes em vermelho transmitindo força, energia e intensidade, características diretamente associadas ao universo fitness.
+
+Paleta de cores
+- Preto e cinza escuro: base principal, garantindo contraste e foco no conteúdo;
+- Vermelho: cor utilizada em botões e títulos para criar ênfase e dinamismo;
+- Branco e cinza claro: usados para o texto, proporcionando legibilidade e equilíbrio visual.
+- Essa combinação cria um visual sofisticado e impactante, típico de marcas voltadas para performance e tecnologia.
+
+Tipografia
+A tipografia é feita por uma estética moderna e objetiva, com linhas retas e claras reforçando a ideia de elementos de academia e treino.
+A fonte de maior destaque é Rubik seguinta a ideia central do projeto.
 
 [Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
 
