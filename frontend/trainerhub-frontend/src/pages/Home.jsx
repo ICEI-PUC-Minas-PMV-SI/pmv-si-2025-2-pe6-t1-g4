@@ -43,7 +43,8 @@ const Home = () => {
           uma jornada rumo a uma vida mais saudável e equilibrada.
         </p>
 
-        <button className="bg-white text-black font-semibold px-6 py-3 rounded-md hover:bg-gray-200">
+        <button onClick={() => navigate("/Registrar")} className="bg-white text-black font-semibold px-6 py-3 rounded-md hover:bg-gray-200">
+          
           Comece Agora
         </button>
 

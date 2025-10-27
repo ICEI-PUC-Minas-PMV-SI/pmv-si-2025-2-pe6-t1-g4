@@ -16,8 +16,8 @@ const Login = () => {
       {/* Conteúdo */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full">
         {/* Logo */}
-        <div className="absolute top-6 left-6 flex items-center">
-          <img src={logo} alt="TrainerHub Logo" className="w-32 h-auto" />
+        <div className="flex items-center gap-3">
+          <img src={logo} alt="Logo" className="w-36 md:w-36 h-auto" />
         </div>
 
         {/* Caixa de login */}
