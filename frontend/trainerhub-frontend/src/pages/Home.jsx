@@ -18,15 +18,29 @@ const Home = () => {
 
       {/* Navbar */}
       <nav className="relative z-10 flex justify-between items-center max-w-[1440px] mx-auto px-6 md:px-12 py-4">
-        <div className="flex items-center gap-3">
-          <img src={LogoSvg} alt="Logo" className="w-36 md:w-36 h-auto" />
+        {/* Logo + Botão Sobre */}
+        <div className="flex items-center gap-6">
+          <img src={LogoSvg} alt="Logo" className="w-40 md:w-40 h-auto" />
+          <button
+            onClick={() => navigate("/Sobre")}
+            className="bg-gray-400 text-black font-semibold px-5 py-1 rounded-xl text-sm hover:bg-gray-300 transition"
+          >
+            Sobre
+          </button>
         </div>
 
+        {/* Botões de Login / Registrar */}
         <div className="flex gap-3">
-          <button onClick={() => navigate("/Login")} className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200" >
+          <button
+            onClick={() => navigate("/Login")}
+            className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200"
+          >
             Entrar
           </button>
-          <button onClick={() => navigate("/Registrar")} className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200" >
+          <button
+            onClick={() => navigate("/Registrar")}
+            className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200"
+          >
             Registrar
           </button>
         </div>
@@ -44,7 +58,7 @@ const Home = () => {
         </p>
 
         <button onClick={() => navigate("/Registrar")} className="bg-white text-black font-semibold px-6 py-3 rounded-md hover:bg-gray-200">
-          
+
           Comece Agora
         </button>
 
