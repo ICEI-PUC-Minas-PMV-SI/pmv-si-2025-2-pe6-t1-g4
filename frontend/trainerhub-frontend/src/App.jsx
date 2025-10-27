@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registrar from "./pages/Registrar";
 import Sobre from "./pages/Sobre";
+import RedefinirSenha from "./pages/RedefinirSenha";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/Registrar" element={<Registrar />} />
         <Route path="/Sobre" element={<Sobre />} />
+        <Route path="/RedefinirSenha" element={<RedefinirSenha />} />
       </Routes>
   );
 }
