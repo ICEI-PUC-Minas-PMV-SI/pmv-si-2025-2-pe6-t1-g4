@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import LogoSvg from "../img/ef23f9fe-48a2-4fe4-9b52-7bfb8a7e51dc-removebg-preview 1.svg";
 import background from "../img/Home.png";
 
 const Home = () => {
+
+  const navigate = useNavigate();
   return (
     <div
       className="relative min-h-screen bg-cover bg-center text-white overflow-x-hidden"
@@ -20,10 +23,10 @@ const Home = () => {
         </div>
 
         <div className="flex gap-3">
-          <button className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200">
+          <button onClick={() => navigate("/Login")} className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200" >
             Entrar
           </button>
-          <button className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200">
+          <button onClick={() => navigate("/Login")} className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200" >
             Registrar
           </button>
         </div>
