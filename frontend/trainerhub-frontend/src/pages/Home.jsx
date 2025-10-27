@@ -26,7 +26,7 @@ const Home = () => {
           <button onClick={() => navigate("/Login")} className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200" >
             Entrar
           </button>
-          <button onClick={() => navigate("/Login")} className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200" >
+          <button onClick={() => navigate("/Registrar")} className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200" >
             Registrar
           </button>
         </div>
