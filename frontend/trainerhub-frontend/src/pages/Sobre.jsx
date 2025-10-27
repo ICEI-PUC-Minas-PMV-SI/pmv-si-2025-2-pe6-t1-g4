@@ -1,4 +1,8 @@
-export default function SobreTrainerHub() {
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+const SobreTrainerHub = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-black min-h-screen text-white flex flex-col items-center px-6 py-10">
       {/* Cabeçalho */}
@@ -56,9 +60,11 @@ export default function SobreTrainerHub() {
       </div>
       
       {/* Botão de voltar */}
-      <button className="mt-10 bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition">
+      <button onClick={() => navigate("/")} className="mt-10 bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition">
         Página Inicial
       </button>
     </div>
   );
 }
+
+export default SobreTrainerHub;
