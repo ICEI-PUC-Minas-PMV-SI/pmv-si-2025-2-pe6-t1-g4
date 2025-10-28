@@ -4,10 +4,14 @@ O Front-end Web tem como objetivo oferecer uma interface moderna e responsiva pa
 <!-- [Inclua uma breve descrição do projeto e seus objetivos.] -->
 
 ## Projeto da Interface Web
+A estrutura dos projeto está dividida em:
+- **Página Inicial:** Página onde retrata a idealização do projeto, com botões de Sobre, Registrar e Entrar para ambientação do usuário, frase de efeito como estética da aplicação e dados de indicadores de desempenho como (anos de experiência, número de alunos, treinadores e taxa de satisfação).
+<img width="873" height="557" alt="Image" src="https://github.com/user-attachments/assets/2f9795ec-fb66-4037-986c-2a510e25919a" />
 
 
 <!-- [Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]  -->
 
+- **Sobre:** Apresenta uma breve explicação sobre a TrainerHub, seus objetivos e diferenciais, reforçando a credibilidade da aplicação e conectando emocionalmente com o usuário.
 ### Wireframes
 
 [Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
@@ -27,7 +31,7 @@ A fonte de maior destaque é Rubik seguindo a ideia central do projeto.
 
 Ícones
 Os icones escolhidos, seguem a ideia minimalista, sendo pequenos e de cores neutras, como branco ou preto.
-icones como
+icones como 
 
 <!-- [Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.] -->
 
@@ -36,7 +40,12 @@ icones como
 [Diagrama ou descrição do fluxo de dados na aplicação.]
 
 ## Tecnologias Utilizadas
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+As tecnologis utilizadas no Front-end são: 
+
+- React.js – biblioteca principal para criação da interface.
+- GitHub e Git – versionamento e controle colaborativo do código.
+- npm – gerenciamento de dependências.
+<!-- [Lista das tecnologias principais que serão utilizadas no projeto.] -->
 
 ## Considerações de Segurança
 
