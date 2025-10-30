@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Registrar from "./pages/Registrar";
 import Sobre from "./pages/Sobre";
 import RedefinirSenha from "./pages/RedefinirSenha";
+import PaginaInicial from "./pages/PaginaInicial";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/Registrar" element={<Registrar />} />
         <Route path="/Sobre" element={<Sobre />} />
         <Route path="/RedefinirSenha" element={<RedefinirSenha />} />
+        <Route path="/PaginaInicial" element={<PaginaInicial />} />
       </Routes>
   );
 }
