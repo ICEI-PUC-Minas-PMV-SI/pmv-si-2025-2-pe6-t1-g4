@@ -6,6 +6,7 @@ import Registrar from "./pages/Registrar";
 import Sobre from "./pages/Sobre";
 import RedefinirSenha from "./pages/RedefinirSenha";
 import PaginaInicial from "./pages/PaginaInicial";
+import ProfessorPaginaInicial from "./pages/ProfessorPaginaInicial";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Sobre" element={<Sobre />} />
         <Route path="/RedefinirSenha" element={<RedefinirSenha />} />
         <Route path="/PaginaInicial" element={<PaginaInicial />} />
+        <Route path="/ProfessorPaginaInicial" element={<ProfessorPaginaInicial />} />
       </Routes>
   );
 }
