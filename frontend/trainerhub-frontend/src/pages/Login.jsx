@@ -62,17 +62,6 @@ const Login = () => {
               className="p-3 rounded-md bg-[#3E3E3E] text-white placeholder-gray-400 focus:outline-none"
             />
 
-            {/* Checkbox Sou Professor */}
-            <label className="flex items-center gap-2 text-gray-300 text-sm mt-1 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={isProfessor}
-                onChange={(e) => setIsProfessor(e.target.checked)}
-                className="w-4 h-4 accent-red-600"
-              />
-              Sou professor
-            </label>
-
             <button
               type="submit"
               className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-md transition"
