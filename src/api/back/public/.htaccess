@@ -1,21 +1,27 @@
 # Ativa o motor de rewrite
 RewriteEngine On
 
-# Base do projeto
-RewriteBase /puc_academia/back/public/
+# Base do projeto (Render usa a pasta public/ como raiz)
+RewriteBase /
 
-# Se o arquivo ou diretório existir, serve direto
+# Se o arquivo ou diretório solicitado existir, serve diretamente
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Redireciona todas as requisições para index.php
+# Redireciona todas as requisições para index.php (roteamento Symfony custom)
 RewriteRule ^ index.php [QSA,L]
 
-# Evita listagem de diretórios
+# Impede listagem de diretórios
 Options -Indexes
 
-# Protege arquivos sensíveis
-<FilesMatch "(\.env|\.htaccess|\.ini|\.log|\.git)">
+# Protege arquivos sensíveis (.env, logs, configs, etc.)
+<FilesMatch "(\.env|\.htaccess|\.ini|\.log|\.git|composer\.json|composer\.lock)">
     Require all denied
 </FilesMatch>
+
+# Define um charset padrão (opcional, mas útil)
+AddDefaultCharset UTF-8
+
+# Garante que erros 404 caiam também no index.php (caso o rewrite falhe)
+ErrorDocument 404 /index.php
