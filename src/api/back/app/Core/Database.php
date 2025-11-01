@@ -6,15 +6,14 @@ class Database {
     private $anonKey;
     private $serviceKey;
     public function __construct() {
-        $this->baseUrl   = "https://vvhzdmcfoswxextqvsct.supabase.co/rest/v1/";
-        $this->anonKey   = "";
-        $this->serviceKey = "";
+        $this->baseUrl     = getenv("SUPABASE_URL") ?: "https://vvhzdmcfoswxextqvsct.supabase.co/rest/v1/";
+        $this->anonKey     = getenv("SUPABASE_ANON_KEY") ?: "";
+        $this->serviceKey  = getenv("SUPABASE_SERVICE_KEY") ?: "";
     }
 
     private function request($method, $endpoint, $data = null, $filters = [], $useServiceRole = false) {
         $url = rtrim($this->baseUrl, "/") . "/" . ltrim($endpoint, "/");
 
-        // filtros estilo ?id=eq.1&name=eq.Joao
         if (!empty($filters)) {
             $query = http_build_query($filters);
             $url .= "?" . $query;
@@ -22,17 +21,21 @@ class Database {
 
         $ch = curl_init($url);
 
-        $userToken = $this->getUserToken();
+        $headers = [
+            "apikey: {$this->anonKey}",
+            "Content-Type: application/json",
+            "Accept: application/json"
+        ];
 
-        if ($userToken) {
-            $headers = [
-                "apikey: {$this->anonKey}",
-                "Authorization: Bearer {$userToken}",
-                "Content-Type: application/json",
-                "Accept: application/json"
-            ];
-        } 
-        
+        if ($useServiceRole) {
+            $headers[] = "Authorization: Bearer {$this->serviceKey}";
+        } else {
+            $userToken = $this->getUserToken();
+            if ($userToken) {
+                $headers[] = "Authorization: Bearer {$userToken}";
+            }
+        }
+
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
