@@ -40,7 +40,7 @@ const SobreTrainerHub = () => {
             <li>Augusto Gabriel Lomba Pires</li>
             <li>Leonardo Almeida Braga</li>
             <li>Lucas de Souza Nassif Lemos</li>
-            <li>Lucas Dias de Melo</li>
+            <li>Wellington dos Santos Oliveira</li>
           </ul>
         </div>
 
