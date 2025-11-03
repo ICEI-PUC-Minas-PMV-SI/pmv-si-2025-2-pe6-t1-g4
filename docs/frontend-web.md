@@ -5,8 +5,20 @@ O Front-end Web tem como objetivo oferecer uma interface moderna e responsiva pa
 
 ## Projeto da Interface Web
 A estrutura dos projeto está dividida em:
-- **Página Inicial:** Página onde retrata a idealização do projeto, com botões de Sobre, Registrar e Entrar para ambientação do usuário, frase de efeito como estética da aplicação e dados de indicadores de desempenho como (anos de experiência, número de alunos, treinadores e taxa de satisfação).
-<img width="873" height="557" alt="Image" src="https://github.com/user-attachments/assets/2f9795ec-fb66-4037-986c-2a510e25919a" />
+
+- **Página Inicial:** Página que apresenta a idealização do projeto com: botões de navegação (Sobre, Registrar, Entrar), frase de efeito, e indicadores de desempenho (anos de experiência, número de alunos, número de treinadores, taxa de satisfação). Deve ser altamente impactante visualmente, com chamadas para ação (CTA) claras.
+
+- **Sobre:** Apresentação da TrainerHub, objetivos, equipe, mapa de divisão.
+
+- **Registrar (Cadastro):** Formulário de cadastro com campos por tipo de usuário (Aluno, Personal, Gestor).
+
+- **Entrar (Login):** Tela de autenticação com recuperação de senha e login. Preenchida através de e-mail ou CPF e senha.
+
+- **Perfil do Aluno ou Professor:** Dados pessoais (nome, email, CPF), informações físicas (peso, altura), edição de perfil.
+
+- **Agendamentos / Calendário:** Calendário interativo (mês/semana/dia), reserva de aulas, visualização de vagas e histórico de agendamentos.
+
+- **Detalhe da Aula / Reserva:** Informações da aula (instrutor, duração, vagas), botão de reservar/cancelar e regras de participação.
 
 
 <!-- [Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]  -->
@@ -31,9 +43,6 @@ A fonte de maior destaque é Rubik seguindo a ideia central do projeto.
 
 Ícones
 Os icones escolhidos, seguem a ideia minimalista, sendo pequenos e de cores neutras, como branco ou preto.
-icones como 
-
-<!-- [Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.] -->
 
 ## Fluxo de Dados
 
