@@ -168,6 +168,7 @@ Atualizado em: 02/11/2025
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Leonardo      | Atualização Doc. | 13/10/2025   | 02/11/2025 | ✔️    | 02/11/2025      |
 | Leonardo      | Desenvolvimento Front-end    | 13/10/2025    | 02/11/2025 | ✔️    | 31/10/2025 |
+| Lucas         | Desenvolvimento Front-end    | 13/10/2025    | 02/11/2025 | ✔️    | 31/10/2025 |
 
 Legenda:
 - ✔️: terminado
