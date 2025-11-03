@@ -7,10 +7,8 @@ const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nome: "",
-    email: "",
     cpf: "",
-    senha: "",
-    confirmarSenha: "",
+    telefone: "",
   });
 
   const [isProfessor, setIsProfessor] = useState(false);
@@ -27,27 +25,31 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMensagem("");
-
-    if (formData.senha !== formData.confirmarSenha) {
-      setMensagem("⚠️ As senhas não coincidem.");
-      return;
-    }
-
     setCarregando(true);
 
-    // Define o papel do usuário conforme a checkbox
     const role = isProfessor ? "professor" : "aluno";
 
+    // Data e hora formatada (dd-mm-yyyy hh:mm)
+    const agora = new Date();
+    const createdAt = agora.toLocaleString("pt-BR", {
+      timeZone: "America/Sao_Paulo",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).replace(",", "");
+
     try {
-      const response = await fetch("http://localhost:8000/users", {
+      const response = await fetch("https://symfony-api-kxje.onrender.com/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nome: formData.nome,
-          email: formData.email,
+          full_name: formData.nome,
+          role: role,
           cpf: formData.cpf,
-          senha: formData.senha,
-          role, // ✅ envia a role para o backend
+          phone: formData.telefone,
+          created_at: createdAt,
         }),
       });
 
@@ -59,17 +61,16 @@ const Register = () => {
       setMensagem("✅ Registro realizado com sucesso!");
       console.log("Usuário cadastrado:", data);
 
+      // Resetar formulário
       setFormData({
         nome: "",
-        email: "",
         cpf: "",
-        senha: "",
-        confirmarSenha: "",
+        telefone: "",
       });
       setIsProfessor(false);
     } catch (error) {
-      setMensagem("❌ Ocorreu um erro ao registrar. Tente novamente.");
       console.error(error);
+      setMensagem("❌ Ocorreu um erro ao registrar. Tente novamente.");
     } finally {
       setCarregando(false);
     }
@@ -112,15 +113,6 @@ const Register = () => {
               required
             />
             <input
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email"
-              className="p-3 rounded-md bg-[#3E3E3E] text-white placeholder-gray-400 focus:outline-none"
-              required
-            />
-            <input
               name="cpf"
               type="text"
               value={formData.cpf}
@@ -130,20 +122,11 @@ const Register = () => {
               required
             />
             <input
-              name="senha"
-              type="password"
-              value={formData.senha}
+              name="telefone"
+              type="text"
+              value={formData.telefone}
               onChange={handleChange}
-              placeholder="Senha"
-              className="p-3 rounded-md bg-[#3E3E3E] text-white placeholder-gray-400 focus:outline-none"
-              required
-            />
-            <input
-              name="confirmarSenha"
-              type="password"
-              value={formData.confirmarSenha}
-              onChange={handleChange}
-              placeholder="Confirmar senha"
+              placeholder="Telefone"
               className="p-3 rounded-md bg-[#3E3E3E] text-white placeholder-gray-400 focus:outline-none"
               required
             />

@@ -32,7 +32,7 @@ const Home = () => {
         {/* Botões de Login / Registrar */}
         <div className="flex gap-3">
           <button
-            onClick={() => navigate("/Login")}
+            onClick={() => navigate("/login")}
             className="bg-white text-black px-4 py-1 rounded-full text-sm hover:bg-gray-200"
           >
             Entrar
