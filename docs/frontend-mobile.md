@@ -180,10 +180,9 @@ Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvo
 
 ### Semana 1
 
-Atualizado em: 21/04/2024
+Atualizado em: 17/11/2025
 
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
+| Responsável   | Tarefa/Requisito |   Iniciado em  | Prazo      | Status  |  Terminado em  |
 | Augusto       |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Leonardo      |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Lucas         |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
