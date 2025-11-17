@@ -1,9 +1,132 @@
 # Front-end Móvel
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+O projeto consiste no desenvolvimento da interface mobile do aplicativo TrainerHub. O app oferece uma experiência completa para alunos que desejam acompanhar seus treinos, agendar aulas e visualizar métricas de desempenho diretamente pelo celular.
+
+A interface é organizada em fluxos principais: Cadastro/Login, Resumo, Aulas, Treinos e Perfil, apresentando um design moderno, escuro e com elementos visuais voltados para o universo fitness.
 
 ## Projeto da Interface
 [Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
+A interface móvel do TrainerHub foi projetada para oferecer uma experiência moderna, intuitiva e orientada ao usuário, voltada para os alunos que desejam acompanhar treinos, métricas e agendamentos diretamente pelo smartphone. O design combina elementos visuais de alto contraste, fotografias temáticas e uma arquitetura de navegação clara, garantindo fluidez e acessibilidade em todas as etapas do uso.
+
+##Design Visual
+
+A identidade visual do app segue uma estética moderna, fitness e minimalista, utilizando:
+
+* Paleta escura (dark mode) como padrão, reforçando contraste, economia de energia e foco no conteúdo principal.
+
+* Elementos neons/roxos em ícones, botões e destaques, transmitindo inovação e energia.
+
+* Componentes arredondados (cards, botões e frames), alinhados ao design mobile contemporâneo.
+
+* Tipografia limpa, privilegiando legibilidade e hierarquia visual.
+
+##Arquitetura de Navegação
+
+A navegação é baseada em uma barra inferior fixa, com acesso direto às principais áreas:
+
+* Resumo
+
+* Aulas
+
+* Treinos
+
+* Perfil
+
+Essa estrutura permite que o usuário transite rapidamente entre funcionalidades importantes, sem necessidade de menus extensos ou múltiplos passos.
+
+## Layout e Fluxo das Páginas
+
+1. Tela Inicial e Cadastro
+A tela de abertura apresenta:
+
+* imagem de fundo representando ambiente de academia,
+
+* logotipo centralizado,
+
+* botões para Login e Criar Conta.
+O fluxo de cadastro segue um modelo vertical simples, com campos agrupados e botões evidentes, facilitando a leitura e o preenchimento.
+
+(IMAGEM AQUI) 
+
+ ##Login
+A tela de login é objetiva, com:
+
+* campos de e-mail e senha,
+
+* botão de acesso em destaque,
+
+* teclado adaptado ao tipo de input,
+
+* alinhamento centralizado e minimalista.
+
+Essa simplicidade reduz barreiras de entrada e melhora a experiência inicial.
+(IMAGEM AQUI)
+
+##Resumo
+A tela de resumo funciona como um dashboard do aluno, apresentando:
+
+* Cartões de informações rápidas (nível, próximos treinos, aulas agendadas).
+
+* Indicadores de saúde (ex.: batimentos cardíacos ou métricas do treino).
+
+* Acesso rápido às principais funções do dia.
+
+Os cards são coloridos, grandes e fáceis de clicar, reforçando acessibilidade no toque.
+(IMAGEM AQUI)
+
+##Aulas
+A área de aulas oferece recursos de agendamento e visualização:
+
+* Cards com aulas disponíveis ou previstas,
+
+* Tela de calendário para escolha de datas para reagendamento de aulas,
+
+* Botões de “Cancelar” e “Confirmar" bem posicionados,
+
+* Representações visuais de atividades (ex.: spinning, funcional, musculação).
+
+O design promove clareza nas ações e reduz erros do usuário.
+(IMAGEM AQUI)
+
+##Treinos
+A tela de treinos apresenta:
+
+* Cards verticais com o nome do treino, grupo muscular e imagem ilustrativa do respectivo treino,
+
+* Separação por níveis ou tipos de exercício,
+
+* Acesso rápido ao detalhamento de cada treino.
+
+A interface prioriza organização e clareza para o aluno visualizar seus planos de exercício como separação por cores de grupos de treinos (Peito cor roxa, ombros cor verde, etc...).
+(IMAGEM AQUI)
+
+##Perfil
+Nessa seção, o usuário pode gerenciar:
+
+* dados pessoais,
+
+* peso, idade e outras métricas,
+
+* informações de contato,
+
+* Trocar senha.
+
+O layout lembra uma tela de configurações, porém com estética fitness e elementos visuais consistentes com o restante do app.
+(IMAGEM AQUI)
+
+## Interações do Usuário
+
+As interações foram pensadas para serem naturais e consistentes:
+
+* Toques diretos em cards, ícones e opções.
+
+* Transições suaves entre telas, reforçando continuidade.
+
+* Feedback visual em botões (alteração de cor, animações curtas).
+
+* Uso de ícones intuitivos para navegação pela barra inferior.
+
+* Uso de componentes nativos mobile, garantindo familiaridade.
 
 ### Wireframes
 
@@ -60,11 +183,11 @@ Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvo
 Atualizado em: 21/04/2024
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
-| AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
+| :----         |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
+| Augusto       |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
+| Leonardo      |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
+| Lucas         |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
+| Wellington    |Projeto interface |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 
 #### Semana 2
 
