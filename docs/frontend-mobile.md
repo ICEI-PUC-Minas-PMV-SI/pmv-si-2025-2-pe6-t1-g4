@@ -183,6 +183,7 @@ Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvo
 Atualizado em: 17/11/2025
 
 | Responsável   | Tarefa/Requisito |   Iniciado em  | Prazo      | Status  |  Terminado em  |
+| :----         |    :----         |      :----:    | :----:     | :----:  | :----:         |
 | Augusto       |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Leonardo      |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Lucas         |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
