@@ -5,9 +5,9 @@ import { useRouter } from 'expo-router';
 export default function RegisterScreen() {
     const router = useRouter();
 
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [confirmarSenha, setConfirmarSenha] = useState('');
+    const [nomeCompleto, setNomeCompleto] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [dataDeNascimento, setDataDeNascimento] = useState('');
 
     return (
         <KeyboardAvoidingView
@@ -21,14 +21,13 @@ export default function RegisterScreen() {
 
             {/* Inputs */}
             <Text style={{ fontSize: 12, fontWeight: '700', marginTop: 10 }}>
-                E-mail
+                Nome completo
             </Text>
             <View style={{ marginTop: 5 }}>
                 <TextInput
-                    placeholder="jane@example.com"
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
+                    placeholder="Nome completo"
+                    value={nomeCompleto}
+                    onChangeText={setNomeCompleto}
                     autoCapitalize="none"
                     style={{
                         borderWidth: 1,
@@ -39,12 +38,12 @@ export default function RegisterScreen() {
                     }}
                 />
                 <Text style={{ fontSize: 12, fontWeight: '700', marginTop: 5 }}>
-                    Senha
+                    Cpf
                 </Text>
                 <TextInput
-                    placeholder="Senha"
-                    value={senha}
-                    onChangeText={setSenha}
+                    placeholder="Cpf"
+                    value={cpf}
+                    onChangeText={setCpf}
                     secureTextEntry
                     style={{
                         borderWidth: 1,
@@ -55,12 +54,12 @@ export default function RegisterScreen() {
                     }}
                 />
                 <Text style={{ fontSize: 12, fontWeight: '700', marginTop: 5 }}>
-                    Confirmar Senha
+                    Data de nascimento
                 </Text>
                 <TextInput
-                    placeholder="Confirmar senha"
-                    value={confirmarSenha}
-                    onChangeText={setConfirmarSenha}
+                    placeholder="Data de nascimento"
+                    value={dataDeNascimento}
+                    onChangeText={setDataDeNascimento}
                     secureTextEntry
                     style={{
                         borderWidth: 1,
@@ -74,7 +73,7 @@ export default function RegisterScreen() {
 
             {/* Botão */}
             <TouchableOpacity
-                onPress={() => router.replace("/(auth)/registerPersonal")}
+                onPress={() => router.replace("/(auth)/registerPersonalInfo")}
                 style={{
                     backgroundColor: 'black',
                     padding: 16,
