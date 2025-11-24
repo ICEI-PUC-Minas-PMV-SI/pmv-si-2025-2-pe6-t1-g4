@@ -9,12 +9,15 @@ import RegisterStep1 from "./src/RegisterStep1";
 import RegisterStep2 from "./src/RegisterStep2";
 import RegisterStep3 from "./src/RegisterStep3";
 import ResumoScreen from "./src/ResumoScreen";
+import ClassesScreen from "./src/ClassesScreen";
+import RescheduleScreen from "./src/RescheduleScreen";
 
 export default function App() {
   // controla qual tela está aberta
   const [screen, setScreen] = useState("home");
   // guarda dados do cadastro entre os steps
   const [formData, setFormData] = useState({});
+  const [classToReschedule, setClassToReschedule] = useState(null);
 
   // -------- LOGIN --------
   function handleLoginSubmit(data) {
@@ -110,16 +113,39 @@ export default function App() {
     );
   }
 
+  // AULAS
+if (screen === "aulas") {
+  return (
+    <ClassesScreen
+      onRemarcar={(dadosDaAula) => {
+        setClassToReschedule(dadosDaAula);
+        setScreen("reschedule");
+      }}
+      onBack={() => setScreen("resumo")}
+    />
+  );
+}
+
+
+  if (screen === "reschedule") {
+    return (
+      <RescheduleScreen
+        classData={classToReschedule}
+        onBack={() => setScreen("aulas")}
+      />
+    );
+  }
+
+
   // RESUMO / DASHBOARD
   if (screen === "resumo") {
     return (
       <ResumoScreen
         activeTab="resumo"
-        onPressProfile={() => Alert.alert("Perfil", "Tela de perfil ainda será criada.")}
-        onChangeTab={(tab) => {
-          if (tab === "resumo") return;
-          Alert.alert("Em breve", `Tela '${tab}' ainda não foi implementada.`);
-        }}
+        onPressProfile={() =>
+          Alert.alert("Perfil", "Tela de perfil ainda será criada.")
+        }
+        onChangeTab={(tab) => setScreen(tab)}   // <--- ALTERADO
         nextClassTitle={"Próxima\nAula:"}
         nextClassDate={"12/12"}
       />
