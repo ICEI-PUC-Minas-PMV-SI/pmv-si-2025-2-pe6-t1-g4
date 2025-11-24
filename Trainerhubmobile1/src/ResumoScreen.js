@@ -18,6 +18,13 @@ export default function ResumoScreen({
   nextClassTitle = "Próxima\nAula:",
   nextClassDate = "12/12",
 }) {
+
+  const agora = new Date();
+  const dia = agora.getDate().toString().padStart(2, "0");
+  const mes = agora.toLocaleString("pt-BR", { month: "short" });
+  const ano = agora.getFullYear();
+  const horas = agora.getHours().toString().padStart(2, "0");
+  const minutos = agora.getMinutes().toString().padStart(2, "0");
   return (
     <ImageBackground
       source={require("../assets/Home.png")}
@@ -67,20 +74,19 @@ export default function ResumoScreen({
           {/* CARD BATIMENTOS */}
           <View style={[styles.card, styles.cardLarge]}>
             <View style={styles.heartRow}>
-             <MaterialCommunityIcons
-               name="heart-pulse"
-               size={60}
-               color="#FF4B4B"
+              <MaterialCommunityIcons
+                name="heart-pulse"
+                size={60}
+                color="#FF4B4B"
               />
               <View style={{ marginLeft: 12 }}>
                 <Text style={styles.heartBpmValue}>130</Text>
                 <Text style={styles.heartBpmLabel}>BPM</Text>
               </View>
             </View>
-
             <View style={styles.heartInfo}>
-              <Text style={styles.heartDate}>16 Nov 2025</Text>
-              <Text style={styles.heartDate}>16:15</Text>
+              <Text style={styles.heartDate}>{`${dia} ${mes} ${ano}`}</Text>
+              <Text style={styles.heartDate}>{`${horas}:${minutos}`}</Text>
             </View>
           </View>
 
@@ -143,10 +149,10 @@ function TabItem({ label, icon, isActive, onPress }) {
       activeOpacity={0.8}
     >
       <MaterialCommunityIcons
-  name={icon}
-  size={22}
-  color={isActive ? "#FFFFFF" : "#1E1E1E"} 
-/>
+        name={icon}
+        size={22}
+        color={isActive ? "#FFFFFF" : "#1E1E1E"}
+      />
 
 
       <Text style={[styles.tabLabel, isActive && styles.tabLabelActive]}>
@@ -231,18 +237,18 @@ const styles = StyleSheet.create({
   },
 
   cardNextTitle: {
-  fontSize: 18,
-  fontWeight: "700",              // antes 600
-  color: "rgba(255,90,122,0.95)", // mais forte
-  lineHeight: 22,
-},
+    fontSize: 18,
+    fontWeight: "700",              // antes 600
+    color: "rgba(255,90,122,0.95)", // mais forte
+    lineHeight: 22,
+  },
 
   cardNextDate: {
-  marginTop: 8,
-  fontSize: 24,
-  fontWeight: "800",     // mais grosso
-  color: "rgba(255,255,255,0.95)",
-},
+    marginTop: 8,
+    fontSize: 24,
+    fontWeight: "800",     // mais grosso
+    color: "rgba(255,255,255,0.95)",
+  },
 
   heartRow: {
     flexDirection: "row",
@@ -306,42 +312,42 @@ const styles = StyleSheet.create({
   },
 
   tabBar: {
-  flexDirection: "row",
-  backgroundColor: "rgba(255, 255, 255, 0.50)", // Figma: 50%
-  borderRadius: 32,
-  padding: 8,
-  borderWidth: 1,
-  borderColor: "rgba(255, 255, 255, 0.30)", // suave
-  width: "85%",
-  alignSelf: "center",
-},
-tabItem: {
-  flex: 1,
-  borderRadius: 22,
-  paddingVertical: 10,
-  justifyContent: "center",
-  alignItems: "center",
-  flexDirection: "column",
-  gap: 4,
-},
-tabItemActive: {
-  backgroundColor: "#6366F1",               // Indigo principal da sua marca
-  shadowColor: "rgba(0,0,0,0.40)",          // Cinza com 40% de opacidade
-  shadowOpacity: 0.4,                        // Mantém coerência com o shadowColor
-  shadowOffset: { width: 0, height: 4 },
-  shadowRadius: 10,
-  elevation: 8,                              // Dá mais profundidade no Android
-},
+    flexDirection: "row",
+    backgroundColor: "rgba(255, 255, 255, 0.50)", // Figma: 50%
+    borderRadius: 32,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.30)", // suave
+    width: "85%",
+    alignSelf: "center",
+  },
+  tabItem: {
+    flex: 1,
+    borderRadius: 22,
+    paddingVertical: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    gap: 4,
+  },
+  tabItemActive: {
+    backgroundColor: "#6366F1",               // Indigo principal da sua marca
+    shadowColor: "rgba(0,0,0,0.40)",          // Cinza com 40% de opacidade
+    shadowOpacity: 0.4,                        // Mantém coerência com o shadowColor
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 10,
+    elevation: 8,                              // Dá mais profundidade no Android
+  },
 
 
-tabLabel: {
-  fontSize: 13,
-  color: "#1E1E1E", // 40% mais escuro
-  fontWeight: "600",
-},
-tabLabelActive: {
-  color: "#FFFFFF",
-  fontWeight: "700",
-},
+  tabLabel: {
+    fontSize: 13,
+    color: "#1E1E1E", // 40% mais escuro
+    fontWeight: "600",
+  },
+  tabLabelActive: {
+    color: "#FFFFFF",
+    fontWeight: "700",
+  },
 
 });
