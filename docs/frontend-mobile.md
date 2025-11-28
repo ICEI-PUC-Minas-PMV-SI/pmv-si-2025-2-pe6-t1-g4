@@ -5,7 +5,8 @@ O projeto consiste no desenvolvimento da interface mobile do aplicativo TrainerH
 A interface é organizada em fluxos principais: Cadastro/Login, Resumo, Aulas, Treinos e Perfil, apresentando um design moderno, escuro e com elementos visuais voltados para o universo fitness.
 
 # Projeto da Interface
-[Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
+<!-- [Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.] -->
+
 A interface móvel do TrainerHub foi projetada para oferecer uma experiência moderna, intuitiva e orientada ao usuário, voltada para os alunos que desejam acompanhar treinos, métricas e agendamentos diretamente pelo smartphone. O design combina elementos visuais de alto contraste, fotografias temáticas e uma arquitetura de navegação clara, garantindo fluidez e acessibilidade em todas as etapas do uso.
 
 ## Design Visual
@@ -129,12 +130,10 @@ As interações foram pensadas para serem naturais e consistentes:
 * Uso de componentes nativos mobile, garantindo familiaridade.
 
 ### Wireframes
-
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
-
-### Design Visual
-
-[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
+<!-- [Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.] -->
+Os wireframes do TrainerHub seguem um visual dark, com cards grandes, botões arredondados e ícones simples, mantendo sempre o mesmo estilo moderno e fitness. Todas as telas usam fotos de fundo, cores fortes para destaque e uma navegação inferior fixa. A organização é vertical, com elementos bem espaçados e consistentes em todo o app.
+<img width="795" height="828" alt="Image" src="https://github.com/user-attachments/assets/9085846e-5aef-46b7-9762-60c6c24bc144" /> <br/>
+Imagem 3 - WireFrames
 
 ## Fluxo de Dados
 
@@ -160,24 +159,34 @@ As interações foram pensadas para serem naturais e consistentes:
 
 ## Testes
 
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+<!-- [Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
 
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
 2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
 3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste. -->
 
 # Referências
-
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+<!-- Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho. -->
+- Documentação oficial React Native.
+- Documentação Expo (se usar Expo).
+- TypeScript handbook.
+- React Navigation docs.
+- Node.js e Express / NestJS docs.
+- PostgreSQL official docs.
+- Docker e Kubernetes guides.
+- OAuth2 / RFC (autenticação e autorização).
+- JWT RFC.
+- OWASP Mobile Top 10 e OWASP API Security Top 10.
+- Materiais sobre LGPD (Lei Geral de Proteção de Dados) — regras de tratamento de dados no Brasil.
+- Boas práticas de CI/CD (GitHub Actions / GitLab CI).
+- Guias de design mobile: Material Design / Apple Human Interface Guidelines (para heurísticas de UX).
+- Ferramentas de testes: Jest, Detox, Cypress, k6.
 
 # Planejamento
-
+O projeto seguiu sendo realizado por meio de divisões de tarefas para cada integrante da equipe, tornando o a realização do projeto mais eficiente e veloz.
 ##  Quadro de tarefas
-
-> Apresente a divisão de tarefas entre os membros do grupo e o acompanhamento da execução, conforme o exemplo abaixo.
-
 ### Semana 1
 
 Atualizado em: 17/11/2025
@@ -188,17 +197,8 @@ Atualizado em: 17/11/2025
 | Leonardo      |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Lucas         |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Wellington    |Projeto interface |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
+| Leonardo      |Atualização GitHub|    23/11/2025  | 28/11/2025 | ✔️      |   17/11/2025   |
 
-#### Semana 2
-
-Atualizado em: 21/04/2024
-
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
 
 Legenda:
 - ✔️: terminado
