@@ -21,6 +21,13 @@ export default function ResumoScreen({
   nextClassTitle = "Próxima\nAula:",
   nextClassDate = "12/12",
 }) {
+
+  const agora = new Date();
+  const dia = agora.getDate().toString().padStart(2, "0");
+  const mes = agora.toLocaleString("pt-BR", { month: "short" });
+  const ano = agora.getFullYear();
+  const horas = agora.getHours().toString().padStart(2, "0");
+  const minutos = agora.getMinutes().toString().padStart(2, "0");
   return (
     <ImageBackground
       source={require("../assets/Home.png")}
@@ -79,10 +86,9 @@ export default function ResumoScreen({
                 <Text style={styles.heartBpmLabel}>BPM</Text>
               </View>
             </View>
-
             <View style={styles.heartInfo}>
-              <Text style={styles.heartDate}>16 Nov 2025</Text>
-              <Text style={styles.heartDate}>16:15</Text>
+              <Text style={styles.heartDate}>{`${dia} ${mes} ${ano}`}</Text>
+              <Text style={styles.heartDate}>{`${horas}:${minutos}`}</Text>
             </View>
           </View>
 
