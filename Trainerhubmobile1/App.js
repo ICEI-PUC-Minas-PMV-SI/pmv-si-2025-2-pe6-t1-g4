@@ -1,48 +1,51 @@
-
+// App.js
 import React, { useState } from "react";
 import { Alert } from "react-native";
 
-// TELAS
 import HomeScreen from "./src/HomeScreen";
 import LoginScreen from "./src/LoginScreen";
 import RegisterStep1 from "./src/RegisterStep1";
 import RegisterStep2 from "./src/RegisterStep2";
 import RegisterStep3 from "./src/RegisterStep3";
 import ResumoScreen from "./src/ResumoScreen";
+import AulasScreen from "./src/AulasScreen";
+import TreinosScreen from "./src/TreinosScreen";
+import PerfilScreen from "./src/PerfilScreen";
 
 export default function App() {
-  // controla qual tela está aberta
   const [screen, setScreen] = useState("home");
-  // guarda dados do cadastro entre os steps
   const [formData, setFormData] = useState({});
+  // qual é a “tela principal” atual (Resumo, Aulas ou Treinos)?
+  const [lastMainScreen, setLastMainScreen] = useState("resumo");
 
-  // -------- LOGIN --------
+  // --------- LOGIN ----------
   function handleLoginSubmit(data) {
     console.log("Dados de login:", data);
 
     Alert.alert("Sucesso", "Login realizado com sucesso!", [
       {
         text: "OK",
-        onPress: () => setScreen("resumo"), // vai pro dashboard
+        onPress: () => {
+          setLastMainScreen("resumo");
+          setScreen("resumo");
+        },
       },
     ]);
   }
 
-  // -------- CADASTRO STEP 1 -> 2 --------
+  // --------- CADASTRO STEP 1 -> 2 ----------
   function handleStep1Next(data) {
-    // data = { email, senha }
-    setFormData(data);
+    setFormData(data); // { email, senha }
     setScreen("register2");
   }
 
-  // -------- CADASTRO STEP 2 -> 3 --------
+  // --------- CADASTRO STEP 2 -> 3 ----------
   function handleStep2Next(data) {
-    // junta com o que já tinha
     setFormData((prev) => ({ ...prev, ...data }));
     setScreen("register3");
   }
 
-  // -------- CADASTRO STEP 3 -> FINAL --------
+  // --------- CADASTRO STEP 3 -> FINAL ----------
   function handleStep3Finish(data) {
     const allData = { ...formData, ...data };
     console.log("Cadastro completo:", allData);
@@ -52,15 +55,29 @@ export default function App() {
         text: "OK",
         onPress: () => {
           setFormData({});
-          setScreen("resumo"); // manda pro dashboard
+          setLastMainScreen("resumo");
+          setScreen("resumo");
         },
       },
     ]);
   }
 
-  // --------- RENDERIZAÇÃO DAS TELAS ---------
+  // --------- TROCA DE ABA NO MENU INFERIOR ----------
+  function handleChangeTab(tab) {
+    if (tab === "resumo") {
+      setLastMainScreen("resumo");
+      setScreen("resumo");
+    } else if (tab === "aulas") {
+      setLastMainScreen("aulas");
+      setScreen("aulas");
+    } else if (tab === "treinos") {
+      setLastMainScreen("treinos");
+      setScreen("treinos");
+    }
+  }
 
-  // HOME (botões Login / Registrar)
+  // --------- RENDERIZAÇÃO DAS TELAS ----------
+
   if (screen === "home") {
     return (
       <HomeScreen
@@ -70,7 +87,6 @@ export default function App() {
     );
   }
 
-  // LOGIN
   if (screen === "login") {
     return (
       <LoginScreen
@@ -80,7 +96,6 @@ export default function App() {
     );
   }
 
-  // REGISTER STEP 1
   if (screen === "register1") {
     return (
       <RegisterStep1
@@ -90,7 +105,6 @@ export default function App() {
     );
   }
 
-  // REGISTER STEP 2
   if (screen === "register2") {
     return (
       <RegisterStep2
@@ -100,7 +114,6 @@ export default function App() {
     );
   }
 
-  // REGISTER STEP 3
   if (screen === "register3") {
     return (
       <RegisterStep3
@@ -110,22 +123,79 @@ export default function App() {
     );
   }
 
-  // RESUMO / DASHBOARD
   if (screen === "resumo") {
     return (
       <ResumoScreen
         activeTab="resumo"
-        onPressProfile={() => Alert.alert("Perfil", "Tela de perfil ainda será criada.")}
-        onChangeTab={(tab) => {
-          if (tab === "resumo") return;
-          Alert.alert("Em breve", `Tela '${tab}' ainda não foi implementada.`);
+        onPressProfile={() => {
+          setScreen("perfil");
         }}
+        onChangeTab={handleChangeTab}
         nextClassTitle={"Próxima\nAula:"}
         nextClassDate={"12/12"}
       />
     );
   }
 
-  // fallback (não deveria chegar aqui)
+  if (screen === "aulas") {
+    return (
+      <AulasScreen
+        activeTab="aulas"
+        onPressProfile={() => {
+          setScreen("perfil");
+        }}
+        onChangeTab={handleChangeTab}
+        lessons={[
+          {
+            id: 1,
+            date: "12/12",
+            time: "08:00",
+            title: "Spinning",
+            description: "Mantenha a coluna reta com o abdômen contraído.",
+          },
+          {
+            id: 2,
+            date: "13/12",
+            time: "19:00",
+            title: "Funcional",
+            description: "Trabalhe o corpo todo com movimentos controlados.",
+          },
+          {
+            id: 3,
+            date: "15/12",
+            time: "07:30",
+            title: "Musculação",
+            description:
+              "Ajuste a carga de acordo com a orientação do instrutor.",
+          },
+        ]}
+      />
+    );
+  }
+
+  if (screen === "treinos") {
+    return (
+      <TreinosScreen
+        activeTab="treinos"
+        onPressProfile={() => {
+          setScreen("perfil");
+        }}
+        onChangeTab={handleChangeTab}
+      />
+    );
+  }
+
+  if (screen === "perfil") {
+    return (
+      <PerfilScreen
+        // botão "Voltar" leva pra última tela principal (Resumo/Aulas/Treinos)
+        onPressBack={() => setScreen(lastMainScreen)}
+        activeTab={lastMainScreen}
+        onChangeTab={handleChangeTab}
+      />
+    );
+  }
+
+  // fallback
   return null;
 }

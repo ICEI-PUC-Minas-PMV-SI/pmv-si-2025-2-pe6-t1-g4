@@ -1,4 +1,7 @@
+
 import React from "react";
+import BottomTab from "./BottomTab";
+
 import {
   View,
   Text,
@@ -34,7 +37,6 @@ export default function ResumoScreen({
             onPress={onPressProfile}
             activeOpacity={0.8}
           >
-            {/* Troque essa imagem pelo avatar do aluno depois */}
             <Image
               source={require("../assets/profile.png")}
               style={styles.avatar}
@@ -43,21 +45,21 @@ export default function ResumoScreen({
           </TouchableOpacity>
         </View>
 
-        {/* CONTEÚDO SCROLLÁVEL */}
+        {/* CONTEÚDO */}
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingBottom: 24 }}
           showsVerticalScrollIndicator={false}
         >
-          {/* LINHA DOS 2 CARDS MENORES */}
+          {/* LINHA COM DOIS CARDS MENORES */}
           <View style={styles.row}>
-            {/* CARD NÍVEL (ESTÁTICO) */}
+            {/* NÍVEL */}
             <View style={[styles.card, styles.cardSmall]}>
               <Text style={styles.cardSmallTitle}>Nível</Text>
               <Text style={styles.cardLevelValue}>1</Text>
             </View>
 
-            {/* CARD PRÓXIMA AULA (DINÂMICO) */}
+            {/* PRÓXIMA AULA */}
             <View style={[styles.card, styles.cardSmall]}>
               <Text style={styles.cardNextTitle}>{nextClassTitle}</Text>
               <Text style={styles.cardNextDate}>{nextClassDate}</Text>
@@ -67,10 +69,10 @@ export default function ResumoScreen({
           {/* CARD BATIMENTOS */}
           <View style={[styles.card, styles.cardLarge]}>
             <View style={styles.heartRow}>
-             <MaterialCommunityIcons
-               name="heart-pulse"
-               size={60}
-               color="#FF4B4B"
+              <MaterialCommunityIcons
+                name="heart-pulse"
+                size={60}
+                color="#FF4B4B"
               />
               <View style={{ marginLeft: 12 }}>
                 <Text style={styles.heartBpmValue}>130</Text>
@@ -84,7 +86,7 @@ export default function ResumoScreen({
             </View>
           </View>
 
-          {/* CARD ACADEMIA / LOCALIZAÇÃO */}
+          {/* CARD ACADEMIA */}
           <View style={[styles.card, styles.cardLarge]}>
             <View style={styles.gymRow}>
               <View style={styles.gymIconWrapper}>
@@ -101,7 +103,6 @@ export default function ResumoScreen({
                 </Text>
               </View>
 
-              {/* “MAPA” ESTÁTICO – troque por MapView depois */}
               <View style={styles.mapPlaceholder}>
                 <Text style={styles.mapText}>MAPA</Text>
               </View>
@@ -109,50 +110,10 @@ export default function ResumoScreen({
           </View>
         </ScrollView>
 
-        {/* MENU INFERIOR (TABS) */}
-        <View style={styles.tabBar}>
-          <TabItem
-            label="Resumo"
-            icon="rhombus"
-            isActive={activeTab === "resumo"}
-            onPress={() => onChangeTab && onChangeTab("resumo")}
-          />
-          <TabItem
-            label="Aulas"
-            icon="calendar"
-            isActive={activeTab === "aulas"}
-            onPress={() => onChangeTab && onChangeTab("aulas")}
-          />
-          <TabItem
-            label="Treinos"
-            icon="dumbbell"
-            isActive={activeTab === "treinos"}
-            onPress={() => onChangeTab && onChangeTab("treinos")}
-          />
-        </View>
+        {/* TAB BAR INFERIOR */}
+        <BottomTab activeTab={activeTab} onChangeTab={onChangeTab} />
       </SafeAreaView>
     </ImageBackground>
-  );
-}
-
-function TabItem({ label, icon, isActive, onPress }) {
-  return (
-    <TouchableOpacity
-      style={[styles.tabItem, isActive && styles.tabItemActive]}
-      onPress={onPress}
-      activeOpacity={0.8}
-    >
-      <MaterialCommunityIcons
-  name={icon}
-  size={22}
-  color={isActive ? "#FFFFFF" : "#1E1E1E"} 
-/>
-
-
-      <Text style={[styles.tabLabel, isActive && styles.tabLabelActive]}>
-        {label}
-      </Text>
-    </TouchableOpacity>
   );
 }
 
@@ -165,6 +126,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 16,
   },
+
   headerRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -198,7 +160,7 @@ const styles = StyleSheet.create({
 
   card: {
     backgroundColor: "rgba(255,255,255,0.16)",
-    borderRadius: 20,              // antes 24
+    borderRadius: 20,
     padding: 16,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.2)",
@@ -210,12 +172,12 @@ const styles = StyleSheet.create({
   },
   cardSmall: {
     width: "48%",
-    minHeight: 140,                // antes 120
+    minHeight: 140,
     justifyContent: "center",
   },
   cardLarge: {
     width: "100%",
-    minHeight: 140,                // novo: ocupa mais tela
+    minHeight: 140,
     marginBottom: 16,
   },
 
@@ -231,18 +193,17 @@ const styles = StyleSheet.create({
   },
 
   cardNextTitle: {
-  fontSize: 18,
-  fontWeight: "700",              // antes 600
-  color: "rgba(255,90,122,0.95)", // mais forte
-  lineHeight: 22,
-},
-
+    fontSize: 18,
+    fontWeight: "700",
+    color: "rgba(255,90,122,0.95)",
+    lineHeight: 22,
+  },
   cardNextDate: {
-  marginTop: 8,
-  fontSize: 24,
-  fontWeight: "800",     // mais grosso
-  color: "rgba(255,255,255,0.95)",
-},
+    marginTop: 8,
+    fontSize: 24,
+    fontWeight: "800",
+    color: "rgba(255,255,255,0.95)",
+  },
 
   heartRow: {
     flexDirection: "row",
@@ -305,43 +266,5 @@ const styles = StyleSheet.create({
     color: "#000",
   },
 
-  tabBar: {
-  flexDirection: "row",
-  backgroundColor: "rgba(255, 255, 255, 0.50)", // Figma: 50%
-  borderRadius: 32,
-  padding: 8,
-  borderWidth: 1,
-  borderColor: "rgba(255, 255, 255, 0.30)", // suave
-  width: "85%",
-  alignSelf: "center",
-},
-tabItem: {
-  flex: 1,
-  borderRadius: 22,
-  paddingVertical: 10,
-  justifyContent: "center",
-  alignItems: "center",
-  flexDirection: "column",
-  gap: 4,
-},
-tabItemActive: {
-  backgroundColor: "#6366F1",               // Indigo principal da sua marca
-  shadowColor: "rgba(0,0,0,0.40)",          // Cinza com 40% de opacidade
-  shadowOpacity: 0.4,                        // Mantém coerência com o shadowColor
-  shadowOffset: { width: 0, height: 4 },
-  shadowRadius: 10,
-  elevation: 8,                              // Dá mais profundidade no Android
-},
-
-
-tabLabel: {
-  fontSize: 13,
-  color: "#1E1E1E", // 40% mais escuro
-  fontWeight: "600",
-},
-tabLabelActive: {
-  color: "#FFFFFF",
-  fontWeight: "700",
-},
-
+  
 });
