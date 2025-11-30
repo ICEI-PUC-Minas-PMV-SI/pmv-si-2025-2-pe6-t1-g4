@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BottomTab from "./BottomTab";
 
 import {
@@ -11,8 +10,12 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
+  Alert,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { API_URL } from "./config/api";
+
+const ALUNO_ID = "2f492373-50f4-48a8-930a-e12f30197a25";
 
 export default function ResumoScreen({
   onPressProfile,
@@ -21,6 +24,9 @@ export default function ResumoScreen({
   nextClassTitle = "Próxima\nAula:",
   nextClassDate = "12/12",
 }) {
+  // estado do perfil vindo da API
+  const [aluno, setAluno] = useState(null);
+  const [loadingPerfil, setLoadingPerfil] = useState(true);
 
   const agora = new Date();
   const dia = agora.getDate().toString().padStart(2, "0");
@@ -28,6 +34,33 @@ export default function ResumoScreen({
   const ano = agora.getFullYear();
   const horas = agora.getHours().toString().padStart(2, "0");
   const minutos = agora.getMinutes().toString().padStart(2, "0");
+
+  useEffect(() => {
+    async function carregarPerfil() {
+      try {
+        setLoadingPerfil(true);
+        const resp = await fetch(`${API_URL}/api/profiles/${ALUNO_ID}`);
+
+        if (!resp.ok) {
+          throw new Error(`HTTP ${resp.status}`);
+        }
+
+        const json = await resp.json();
+        setAluno(json);
+      } catch (e) {
+        console.log("Erro ao carregar perfil:", e);
+        Alert.alert(
+          "Erro",
+          "Não foi possível carregar os dados do aluno. Verifique a API."
+        );
+      } finally {
+        setLoadingPerfil(false);
+      }
+    }
+
+    carregarPerfil();
+  }, []);
+
   return (
     <ImageBackground
       source={require("../assets/Home.png")}
@@ -37,7 +70,16 @@ export default function ResumoScreen({
       <SafeAreaView style={styles.safeArea}>
         {/* HEADER */}
         <View style={styles.headerRow}>
-          <Text style={styles.title}>Resumo</Text>
+          <View>
+            <Text style={styles.title}>Resumo</Text>
+            {loadingPerfil ? (
+              <Text style={styles.subtitle}>Carregando aluno...</Text>
+            ) : aluno ? (
+              <Text style={styles.subtitle}>{aluno.full_name}</Text>
+            ) : (
+              <Text style={styles.subtitle}>Aluno</Text>
+            )}
+          </View>
 
           <TouchableOpacity
             style={styles.avatarWrapper}
@@ -64,6 +106,17 @@ export default function ResumoScreen({
             <View style={[styles.card, styles.cardSmall]}>
               <Text style={styles.cardSmallTitle}>Nível</Text>
               <Text style={styles.cardLevelValue}>1</Text>
+              <Text style={styles.cardSmallSubtitle}>
+                {aluno
+                  ? `${aluno.peso_kg ?? "--"} kg • ${
+                      aluno.altura_cm
+                        ? (aluno.altura_cm / 100).toFixed(2)
+                        : "--"
+                    } m`
+                  : loadingPerfil
+                  ? "Carregando..."
+                  : "--"}
+              </Text>
             </View>
 
             {/* PRÓXIMA AULA */}
@@ -145,6 +198,11 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#FFFFFF",
   },
+  subtitle: {
+    marginTop: 4,
+    fontSize: 14,
+    color: "rgba(255,255,255,0.8)",
+  },
   avatarWrapper: {
     width: 54,
     height: 54,
@@ -191,6 +249,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "rgba(255,255,255,0.8)",
     marginBottom: 8,
+  },
+  cardSmallSubtitle: {
+    marginTop: 6,
+    fontSize: 14,
+    color: "rgba(255,255,255,0.85)",
   },
   cardLevelValue: {
     fontSize: 32,
@@ -271,6 +334,4 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#000",
   },
-
-  
 });

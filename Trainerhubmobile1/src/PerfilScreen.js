@@ -1,4 +1,4 @@
-
+// Trainerhubmobile1/src/PerfilScreen.js
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import BottomTab from "./BottomTab";
+import { API_URL, ALUNO_ID } from "./config/api"; // 👈 importante
 
 // Habilita LayoutAnimation no Android
 if (
@@ -32,19 +33,83 @@ export default function PerfilScreen({
 }) {
   const [activeSection, setActiveSection] = useState("pessoal");
   const [avatarUri, setAvatarUri] = useState(null);
+  const [loadingPerfil, setLoadingPerfil] = useState(true);
 
-  // MOCK — depois pluga na API
   const [profile, setProfile] = useState({
-    nome: "José",
-    sobrenome: "Mac",
-    nascimento: "07/08/1999",
-    altura: "190cm",
-    peso: "90kg",
-    email: "jose@example.com",
-    telefone: "3199777-0000",
+    nome: "Nome",
+    sobrenome: "Sobrenome",
+    nascimento: "dd/mm/aaaa",
+    altura: "",
+    peso: "",
+    email: "",
+    telefone: "",
     senha: "",
     confirmarSenha: "",
   });
+
+  // --------- CARREGAR PERFIL DA API ----------
+  useEffect(() => {
+    async function carregarPerfil() {
+      try {
+        console.log("Carregando perfil a partir da API...");
+        const inicio = Date.now();
+
+        setLoadingPerfil(true);
+        const resp = await fetch(`${API_URL}/api/profiles/${ALUNO_ID}`);
+
+        const fim = Date.now();
+        console.log("Tempo perfil (ms):", fim - inicio);
+        console.log("Status HTTP perfil:", resp.status);
+
+        if (!resp.ok) {
+          const txt = await resp.text();
+          console.log("Resposta de erro do backend:", txt);
+          throw new Error(`HTTP ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        console.log("Perfil recebido:", data);
+
+        const fullName = data.full_name || "";
+        const partes = fullName.trim().split(" ");
+        const nome = partes.shift() || "";
+        const sobrenome = partes.join(" ");
+
+        let nascimento = "dd/mm/aaaa";
+        if (data.data_nascimento) {
+          const [ano, mes, dia] = data.data_nascimento.split("-");
+          if (dia && mes && ano) {
+            nascimento = `${dia}/${mes}/${ano}`;
+          }
+        }
+
+        const altura = data.altura_cm ? `${data.altura_cm} cm` : "";
+        const peso =
+          data.peso_kg != null ? `${parseFloat(data.peso_kg)} kg` : "";
+
+        setProfile((prev) => ({
+          ...prev,
+          nome,
+          sobrenome,
+          nascimento,
+          altura,
+          peso,
+          email: data.email || "",
+          telefone: data.phone || "",
+        }));
+      } catch (err) {
+        console.log("Erro ao carregar perfil:", err);
+        Alert.alert(
+          "Erro",
+          "Não foi possível carregar os dados do perfil. Verifique a API."
+        );
+      } finally {
+        setLoadingPerfil(false);
+      }
+    }
+
+    carregarPerfil();
+  }, []);
 
   function handleChange(field, value) {
     setProfile((prev) => ({ ...prev, [field]: value }));
@@ -85,10 +150,61 @@ export default function PerfilScreen({
     }
   }
 
-  function handleSave() {
-    // aqui você depois manda pro backend
-    console.log("Salvar perfil:", profile, avatarUri);
-    Alert.alert("Perfil", "Dados salvos (mock).");
+  // --------- SALVAR PERFIL NA API ----------
+  async function handleSave() {
+    try {
+      const full_name = `${profile.nome} ${profile.sobrenome}`.trim() || null;
+
+      const alturaNum = profile.altura
+        ? parseInt(profile.altura.replace(/\D/g, ""), 10)
+        : null;
+
+      const pesoNum = profile.peso
+        ? parseFloat(profile.peso.replace(",", ".").replace(/[^\d.]/g, ""))
+        : null;
+
+      let dataNascimentoIso = null;
+      if (profile.nascimento && profile.nascimento.includes("/")) {
+        const [dia, mes, ano] = profile.nascimento.split("/");
+        if (dia && mes && ano) {
+          dataNascimentoIso = `${ano}-${mes.padStart(2, "0")}-${dia.padStart(
+            2,
+            "0"
+          )}`;
+        }
+      }
+
+      const payload = {
+        full_name,
+        phone: profile.telefone || null,
+        altura_cm: alturaNum,
+        peso_kg: pesoNum,
+        data_nascimento: dataNascimentoIso,
+      };
+
+      console.log("Enviando payload perfil:", payload);
+
+      const resp = await fetch(`${API_URL}/api/profiles/${ALUNO_ID}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      console.log("Status HTTP salvar perfil:", resp.status);
+
+      if (!resp.ok) {
+        const txt = await resp.text();
+        console.log("Erro ao salvar (corpo):", txt);
+        throw new Error(`HTTP ${resp.status}`);
+      }
+
+      Alert.alert("Perfil", "Dados atualizados com sucesso! ✅");
+    } catch (err) {
+      console.log("Erro ao salvar perfil:", err);
+      Alert.alert("Erro", "Não foi possível salvar os dados do perfil.");
+    }
   }
 
   return (
@@ -104,8 +220,10 @@ export default function PerfilScreen({
             <Text style={styles.backText}>Voltar</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={handleSave}>
-            <Text style={styles.saveText}>Salvar</Text>
+          <TouchableOpacity onPress={handleSave} disabled={loadingPerfil}>
+            <Text style={[styles.saveText, loadingPerfil && { opacity: 0.5 }]}>
+              Salvar
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -137,6 +255,12 @@ export default function PerfilScreen({
             onChangeText={(v) => handleChange("sobrenome", v)}
           />
         </View>
+
+        {loadingPerfil && (
+          <Text style={{ color: "#fff", textAlign: "center", marginTop: 8 }}>
+            Carregando dados do perfil...
+          </Text>
+        )}
 
         {/* CONTEÚDO VARIÁVEL (PESSOAL / SEGURANÇA) */}
         {activeSection === "pessoal" ? (
@@ -250,13 +374,13 @@ export default function PerfilScreen({
           </TouchableOpacity>
         </View>
 
-        {/* TAB BAR INFERIOR PADRÃO */}
         <BottomTab activeTab={activeTab} onChangeTab={onChangeTab} />
       </SafeAreaView>
     </ImageBackground>
   );
 }
 
+// 🔻 AQUI ESTÃO OS STYLES (o erro era justamente por não ter esse bloco)
 const styles = StyleSheet.create({
   background: {
     flex: 1,

@@ -1,0 +1,19 @@
+{
+    "name": "welloliveira/backend-php",
+    "autoload": {
+        "psr-4": {
+            "Welloliveira\\BackendPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Well Oliv",
+            "email": "wsantos3199@outlook.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4",
+        "slim/psr7": "^1.8",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
