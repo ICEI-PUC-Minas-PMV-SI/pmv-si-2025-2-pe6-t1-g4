@@ -136,7 +136,25 @@ Imagem 3 - WireFrames
 
 ## Fluxo de Dados
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
+Usuário (App Mobile)
+- Interage com telas: Login / Cadastro, Resumo, Aulas, Treinos, Perfil.
+- Ações do usuário geram requisições HTTP(S) para a API (ex.: autenticar, buscar treinos, marcar aula, atualizar perfil).
+- Cliente (React Native / Expo)
+
+Implementa chamadas à API usando Axios
+- Armazena localmente apenas o necessário em storage seguro.
+
+API Backend (PHP)
+- Recebe as requisições, valida, executa regras de negócio e persiste/consulta dados no banco.
+- Retorna JSON com status/códigos HTTP adequados.
+
+Banco de Dados (Supabase / PostgreSQL)
+- Guarda usuários, treinos, aulas, histórico e relacionamentos.
+- Backups e replicação são responsabilidade do provedor (Supabase) quando usado como serviço.
+
+Fluxos auxiliares
+- Uploads (ex.: imagem de perfil) podem ser enviados ao backend que persiste em storage.
+- Notificações push (opcional): expo notifications ou serviço externo integrados via backend.
 
 ## Tecnologias Utilizadas
 - React Native (via Expo)
