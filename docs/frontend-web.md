@@ -136,6 +136,32 @@ Etapas do Processo de Deploy:
 5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.-->
 
 ## Testes
+Fluxo de Login
+- Foram realizadas múltiplas tentativas de login utilizando e-mail e senha.
+- Os logs confirmam o envio correto dos dados para a API.
+- O retorno do servidor indica que o login foi processado e a resposta foi recebida sem erros críticos de autenticação.
+
+Carregamento e Exibição dos Dados do Usuário
+- Após o login, o app requisita informações do perfil.
+- Os dados retornados incluem CPF, nome completo, gênero, data de criação, data de nascimento, peso, altura, telefone e outros identificadores.
+- Os logs mostram que a aplicação consegue interpretar e exibir esses dados de maneira consistente.
+
+Teste de Salvamento/Atualização de Perfil
+- O app envia payloads contendo informações atualizadas do usuário (peso, altura, nome etc.).
+- As requisições são aceitas pela API e retornam Status HTTP 200, indicando sucesso no salvamento.
+- O log mostra o corpo enviado e o retorno da API, confirmando a integridade do processo.
+
+Alertas de Depreciação
+- Foram emitidos avisos do React Native sobre componentes que serão removidos no futuro (react-native-safe-area-context).
+- Esses avisos não impedem o funcionamento, mas indicam necessidade de atualização futura.
+
+Erros de Estilo (não críticos)
+- Há logs de pequenos erros como “Property styles doesn’t exist”, relacionados provavelmente a algum componente visual.
+- Eles não interrompem os testes de API, mas indicam ajustes no front-end.
+
+<img width="1280" height="775" alt="Image" src="https://github.com/user-attachments/assets/34f63fc8-d6e6-4232-a67e-b1b8afa1ceba" />
+
+Imagem 10 - Testes
 
 <!-- [Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
 
