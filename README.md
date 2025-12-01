@@ -40,4 +40,4 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
 
 # Apresentação
 
-<li><a href="presentation/README.md"> Apresentação da solução</a></li>
+<li><a href="https://www.canva.com/design/DAGyZbI3i7g/NWmOu9Jy8R_cgc1qVbMrhQ/edit?utm_content=DAGyZbI3i7g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"> Apresentação da solução</a></li>
