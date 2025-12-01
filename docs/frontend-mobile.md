@@ -139,11 +139,11 @@ Imagem 3 - WireFrames
 [Diagrama ou descrição do fluxo de dados na aplicação.]
 
 ## Tecnologias Utilizadas
-React Native (via Expo)
-Expo CLI 
-react-native-paper 
-@expo/vector-icons, expo-image-picker, expo-status-bar
-AsyncStorage / SecureStore (armazenamento local)
+- React Native (via Expo)
+- Expo CLI 
+- react-native-paper 
+- @expo/vector-icons, expo-image-picker, expo-status-bar
+- AsyncStorage / SecureStore (armazenamento local)
 
 ## Considerações de Segurança
 Armazenamento Seguro
