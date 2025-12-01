@@ -152,10 +152,6 @@ Banco de Dados (Supabase / PostgreSQL)
 - Guarda usuários, treinos, aulas, histórico e relacionamentos.
 - Backups e replicação são responsabilidade do provedor (Supabase) quando usado como serviço.
 
-Fluxos auxiliares
-- Uploads (ex.: imagem de perfil) podem ser enviados ao backend que persiste em storage.
-- Notificações push (opcional): expo notifications ou serviço externo integrados via backend.
-
 ## Tecnologias Utilizadas
 - React Native (via Expo)
 - Expo CLI 
