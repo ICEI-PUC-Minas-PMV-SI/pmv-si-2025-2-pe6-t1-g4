@@ -204,14 +204,23 @@ Dependência com o Backend (mínima, mas importante)
 - Erros vindos da API não devem revelar informações internas.
 
 ## Implantação
+1. A aplicação mobile utiliza React Native com Expo, exigindo apenas um ambiente com Node.js e Expo CLI para gerar a aplicação. Para publicação, é necessário acesso a serviços de build do Expo e, caso o app seja distribuído as máquinas configuradas para geração de builds nativas (Android e iOS). O backend deve estar hospedado e acessível por meio de uma URL estável.
 
-[Instruções para implantar a aplicação distribuída em um ambiente de produção.]
+2. Como o app é distribuído via Expo Go durante o desenvolvimento, o que precisa de hospedagem é apenas o backend. Pode-se utilizar plataformas como Render, Railway, Vercel, DigitalOcean ou outro serviço de nuvem que suporte a API utilizada pela aplicação.
+
+3. No backend, configurar variáveis como URL do banco de dados, chaves de acesso e parâmetros de segurança. No front-end, ajustar variáveis de ambiente para apontar para a API em produção. Todas as dependências devem estar instaladas conforme definido no projeto.
+
+4. Enviar o backend para a plataforma selecionada e validar que a API está acessível. O app em React Native pode ser executado por meio do Expo Go no dispositivo móvel para acessar a versão apontando para o backend em produção. Quando necessário, também é possível gerar builds nativas usando o serviço de build do Expo.
+
+5. Validar funcionalidades diretamente no dispositivo físico, garantindo funcionamento de autenticação, navegação, carregamento de dados, imagens e demais recursos integrados ao backend hospedado
+
+<!-- [Instruções para implantar a aplicação distribuída em um ambiente de produção.]
 
 1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
 2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
 3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
 4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
+5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção. -->
 
 ## Testes
 
