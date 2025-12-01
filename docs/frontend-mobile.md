@@ -130,7 +130,6 @@ As interações foram pensadas para serem naturais e consistentes:
 * Uso de componentes nativos mobile, garantindo familiaridade.
 
 ### Wireframes
-<!-- [Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.] -->
 Os wireframes do TrainerHub seguem um visual dark, com cards grandes, botões arredondados e ícones simples, mantendo sempre o mesmo estilo moderno e fitness. Todas as telas usam fotos de fundo, cores fortes para destaque e uma navegação inferior fixa. A organização é vertical, com elementos bem espaçados e consistentes em todo o app.
 <img width="795" height="828" alt="Image" src="https://github.com/user-attachments/assets/9085846e-5aef-46b7-9762-60c6c24bc144" /> <br/>
 Imagem 3 - WireFrames
@@ -140,12 +139,38 @@ Imagem 3 - WireFrames
 [Diagrama ou descrição do fluxo de dados na aplicação.]
 
 ## Tecnologias Utilizadas
-
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+React Native (via Expo)
+Expo CLI 
+react-native-paper 
+@expo/vector-icons, expo-image-picker, expo-status-bar
+AsyncStorage / SecureStore (armazenamento local)
 
 ## Considerações de Segurança
+Armazenamento Seguro
+- Tokens de autenticação devem ser guardados no SecureStore.
+- AsyncStorage apenas para informações não sensíveis (tema, preferências).
+- Limpar todo o armazenamento no logout.
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+Comunicação com a API
+- Apenas HTTPS.
+- Token enviado no cabeçalho: Authorization: Bearer <token>.
+- Nunca registrar tokens em logs.
+
+Validação no Front-end
+- Validar dados básicos antes de enviar: e-mail, CPF, campos obrigatórios.
+- Evitar inputs maliciosos e limitar tamanhos de texto.
+
+Proteção de Sessão
+- Se o token expirar, redirecionar para o login.
+- Bloquear telas privadas sem autenticação.
+
+Interface Segura
+- Mascarar CPF e outros dados sensíveis.
+- Não exibir mensagens de erro detalhadas.
+
+Dependência com o Backend (mínima, mas importante)
+- Backend deve validar tudo novamente.
+- Erros vindos da API não devem revelar informações internas.
 
 ## Implantação
 
@@ -168,28 +193,21 @@ Imagem 3 - WireFrames
 5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste. -->
 
 # Referências
-<!-- Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho. -->
+
 - Documentação oficial React Native.
 - Documentação Expo (se usar Expo).
-- TypeScript handbook.
 - React Navigation docs.
-- Node.js e Express / NestJS docs.
 - PostgreSQL official docs.
-- Docker e Kubernetes guides.
-- OAuth2 / RFC (autenticação e autorização).
-- JWT RFC.
-- OWASP Mobile Top 10 e OWASP API Security Top 10.
 - Materiais sobre LGPD (Lei Geral de Proteção de Dados) — regras de tratamento de dados no Brasil.
 - Boas práticas de CI/CD (GitHub Actions / GitLab CI).
 - Guias de design mobile: Material Design / Apple Human Interface Guidelines (para heurísticas de UX).
-- Ferramentas de testes: Jest, Detox, Cypress, k6.
 
 # Planejamento
 O projeto seguiu sendo realizado por meio de divisões de tarefas para cada integrante da equipe, tornando o a realização do projeto mais eficiente e veloz.
 ##  Quadro de tarefas
-### Semana 1
+### Mês 4
 
-Atualizado em: 17/11/2025
+Atualizado em: 30/11/2025
 
 | Responsável   | Tarefa/Requisito |   Iniciado em  | Prazo      | Status  |  Terminado em  |
 | :----         |    :----         |      :----:    | :----:     | :----:  | :----:         |
@@ -197,7 +215,7 @@ Atualizado em: 17/11/2025
 | Leonardo      |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Lucas         |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Wellington    |Projeto interface |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
-| Leonardo      |Atualização GitHub|    23/11/2025  | 30/11/2025 | ✔️      |   28/11/2025   |
+| Leonardo      |Atualização GitHub|    10/11/2025  | 30/11/2025 | ✔️      |   30/11/2025   |
 
 
 Legenda:
