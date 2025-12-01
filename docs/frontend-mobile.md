@@ -37,7 +37,7 @@ Essa estrutura permite que o usuário transite rapidamente entre funcionalidades
 
 ## Layout e Fluxo das Páginas
 
-Tela Inicial e Cadastro
+## Tela Inicial e Cadastro
 A tela de abertura apresenta:
 
 * imagem de fundo representando ambiente de academia,
@@ -47,7 +47,9 @@ A tela de abertura apresenta:
 * botões para Login e Criar Conta.
 O fluxo de cadastro segue um modelo vertical simples, com campos agrupados e botões evidentes, facilitando a leitura e o preenchimento.
 
-(IMAGEM AQUI) 
+<img width="300" height="900" alt="Image" src="https://github.com/user-attachments/assets/9ab4a834-44b8-40e4-83a1-c7a36a851d17" />
+
+Imagem 3 - Tela Inicial
 
 ## Login
 A tela de login é objetiva, com:
@@ -61,7 +63,10 @@ A tela de login é objetiva, com:
 * alinhamento centralizado e minimalista.
 
 Essa simplicidade reduz barreiras de entrada e melhora a experiência inicial.
-(IMAGEM AQUI)
+
+<img width="300" height="900" alt="Image" src="https://github.com/user-attachments/assets/5c66e834-9aff-4c28-bb54-76e2e1caab31" />
+
+Imagem 4 - Login
 
 ## Resumo
 A tela de resumo funciona como um dashboard do aluno, apresentando:
@@ -73,7 +78,10 @@ A tela de resumo funciona como um dashboard do aluno, apresentando:
 * Acesso rápido às principais funções do dia.
 
 Os cards são coloridos, grandes e fáceis de clicar, reforçando acessibilidade no toque.
-(IMAGEM AQUI)
+
+<img width="300" height="900" alt="Image" src="https://github.com/user-attachments/assets/1e32db45-7244-4da1-a290-65f694eed8df" />
+
+Imagem 5 - Resumo
 
 ## Aulas
 A área de aulas oferece recursos de agendamento e visualização:
@@ -87,7 +95,10 @@ A área de aulas oferece recursos de agendamento e visualização:
 * Representações visuais de atividades (ex.: spinning, funcional, musculação).
 
 O design promove clareza nas ações e reduz erros do usuário.
-(IMAGEM AQUI)
+
+<img width="300" height="900" alt="Image" src="https://github.com/user-attachments/assets/689240b8-681a-47de-9312-b062a243c03e" />
+
+Imagem 6 - Aulas
 
 ## Treinos
 A tela de treinos apresenta:
@@ -99,7 +110,10 @@ A tela de treinos apresenta:
 * Acesso rápido ao detalhamento de cada treino.
 
 A interface prioriza organização e clareza para o aluno visualizar seus planos de exercício como separação por cores de grupos de treinos (Peito cor roxa, ombros cor verde, etc...).
-(IMAGEM AQUI)
+
+<img width="300" height="900" alt="Image" src="https://github.com/user-attachments/assets/cdbed148-9ff7-44a0-81ad-c3879d9b96b6" />
+
+Imagem 7 - Treinos
 
 ## Perfil
 Nessa seção, o usuário pode gerenciar:
@@ -113,7 +127,10 @@ Nessa seção, o usuário pode gerenciar:
 * Trocar senha.
 
 O layout lembra uma tela de configurações, porém com estética fitness e elementos visuais consistentes com o restante do app.
-(IMAGEM AQUI)
+
+<img width="300" height="900" alt="Image" src="https://github.com/user-attachments/assets/a917575c-b4af-499a-9997-26d0e44d4a70" />
+
+Imagem 8 - Perfil
 
 ## Interações do Usuário
 
