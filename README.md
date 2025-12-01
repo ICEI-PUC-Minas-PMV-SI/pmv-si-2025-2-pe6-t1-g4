@@ -15,8 +15,6 @@ Além de beneficiar os alunos, o aplicativo também proporciona vantagens para o
 * Augusto Gabriel Lomba Pires
 * Leonardo Almeida Braga
 * Lucas de Souza Nassif Lemos
-* Lucas Dias de Melo
-* Marcos Antonio Ferreira Filho
 * Wellington dos Santos Oliveira
 
 ## Orientador
