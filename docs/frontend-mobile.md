@@ -256,6 +256,7 @@ Atualizado em: 30/11/2025
 | Augusto       |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Leonardo      |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Lucas         |Design de usuário |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
+| Lucas         |Atualização GitHub|    10/11/2025  | 30/11/2025 | ✔️      |   17/11/2025   |
 | Wellington    |Projeto interface |    10/11/2025  | 17/11/2025 | ✔️      |   17/11/2025   |
 | Leonardo      |Atualização GitHub|    10/11/2025  | 30/11/2025 | ✔️      |   30/11/2025   |
 
