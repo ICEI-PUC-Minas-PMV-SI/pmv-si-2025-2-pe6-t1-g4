@@ -1,29 +1,24 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title:
+title: TrainerHub
 authors:
-  - family-names:
-    given-names:
-  - family-names:
-    given-names:
-  - family-names:
-    given-names:
-  - family-names:
-    given-names:
-  - family-names:
-    given-names:
-  - family-names:
-    given-names:
-  - family-names:
-    given-names:
-  - name-suffix: Professor XXXX
+  - family-names: Almeida Braga
+    given-names: Leonardo 
+  - family-names: de Souza Nassif Lemos
+    given-names: Lucas 
+  - family-names: dos Santos Oliveira
+    given-names: Wellington
+  - family-names: Gabriel Lomba Pires
+    given-names: Augusto 
+  - name-suffix: Professor Kleber Jacques Ferreira de Souza
     affiliation: PUC Minas
-    family-names:
-    given-names:
+    family-names: Jacques Ferreira de Souza
+    given-names: Kleber
 keywords:
-  -
-  -
-repository-code:
+  - TrainerHub
+  - PUC Minas
+  - Eixo 6
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g4.git
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2023-06-30
