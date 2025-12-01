@@ -148,8 +148,10 @@ As interações foram pensadas para serem naturais e consistentes:
 
 ### Wireframes
 Os wireframes do TrainerHub seguem um visual dark, com cards grandes, botões arredondados e ícones simples, mantendo sempre o mesmo estilo moderno e fitness. Todas as telas usam fotos de fundo, cores fortes para destaque e uma navegação inferior fixa. A organização é vertical, com elementos bem espaçados e consistentes em todo o app.
-<img width="795" height="828" alt="Image" src="https://github.com/user-attachments/assets/9085846e-5aef-46b7-9762-60c6c24bc144" /> <br/>
-Imagem 3 - WireFrames
+
+<img width="795" height="828" alt="Image" src="https://github.com/user-attachments/assets/9085846e-5aef-46b7-9762-60c6c24bc144" />
+
+Imagem 9 - WireFrames
 
 ## Fluxo de Dados
 
