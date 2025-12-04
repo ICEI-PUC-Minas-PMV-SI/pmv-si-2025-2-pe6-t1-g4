@@ -35,7 +35,6 @@ if (
 }
 
 // 🔹 Helper para fazer upload do avatar no Supabase Storage
-// 🔹 Helper para fazer upload do avatar no Supabase Storage
 async function uploadAvatarToSupabase(localUri, userId) {
   try {
     if (!localUri) throw new Error("URI da imagem não informada.");
@@ -547,7 +546,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 16,
   },
-
+  
   content: {
     flex: 1,
     paddingBottom: 80,

@@ -1,0 +1,11 @@
+SUPABASE_HOST=aws-1-sa-east-1.pooler.supabase.com
+SUPABASE_PORT=5432
+SUPABASE_DB=postgres
+SUPABASE_USER=postgres.vvhzdmcfoswxextqvsct
+SUPABASE_PASSWORD=Trainerhub2025
+SUPABASE_SSLMODE=require
+
+API_DEBUG=true
+
+
+

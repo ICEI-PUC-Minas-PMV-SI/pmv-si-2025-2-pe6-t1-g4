@@ -405,11 +405,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 16,
   },
+
   title: {
-    fontSize: 32,
-    fontWeight: "600",
+    fontSize: 36,
     color: "#FFFFFF",
+    fontFamily: "Comfortaa_700Bold",
   },
+
   headerAvatarWrapper: {
     width: 54,
     height: 54,
@@ -467,10 +469,17 @@ const styles = StyleSheet.create({
   cardTextBox: { flex: 1 },
   cardTitle: {
     fontSize: 18,
-    fontWeight: "700",
     color: "#FFFFFF",
     marginBottom: 6,
+    fontFamily: "Comfortaa_700Bold",
+    cardTitle: {
+      fontSize: 18,
+      color: "#FFFFFF",
+      marginBottom: 6,
+      fontFamily: "Comfortaa_700Bold", // título do treino
+    },
   },
+
   cardDescription: {
     fontSize: 14,
     color: "rgba(255,255,255,0.95)",

@@ -25,6 +25,9 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Mobile interface for Trainerhub website"
+    "description": "Mobile interface for Trainerhub website",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

@@ -38,7 +38,7 @@ function TabItem({ label, icon, isActive, onPress }) {
       <MaterialCommunityIcons
         name={icon}
         size={22}
-        color={isActive ? "#FFFFFF" : "#1E1E1E"}
+        color={isActive ? "rgba(29, 25, 43, 1)" : "#1E1E1E"}
       />
       <Text style={[styles.tabLabel, isActive && styles.tabLabelActive]}>
         {label}
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   tabItemActive: {
-    backgroundColor: "#6366F1",
-    shadowColor: "rgba(0,0,0,0.40)",
+    backgroundColor: "#3434387f",
+    shadowColor: "rgba(0, 0, 0, 1)",
     shadowOpacity: 0.4,
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 10,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   tabLabelActive: {
-    color: "#FFFFFF",
+    color: "rgba(29, 25, 43, 1)",
     fontWeight: "700",
   },
 });

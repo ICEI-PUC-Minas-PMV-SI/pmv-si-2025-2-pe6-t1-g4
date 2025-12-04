@@ -348,11 +348,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 24,
   },
+  
   title: {
     fontSize: 36,
-    fontWeight: "600",
     color: "#FFFFFF",
+    fontFamily: "Comfortaa-Bold",
   },
+
   subtitle: {
     marginTop: 4,
     fontSize: 14,
@@ -402,11 +404,11 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    backgroundColor: "rgba(255,255,255,0.16)",
+    backgroundColor: "rgba(243,244,246,0.32)",
     borderRadius: 20,
     padding: 16,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.2)",
+    borderColor: "rgba(209, 213, 219, 0.3)",
     shadowColor: "#000",
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 6 },

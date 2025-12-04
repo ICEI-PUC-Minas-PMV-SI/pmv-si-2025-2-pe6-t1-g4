@@ -156,7 +156,9 @@ $app->get('/api/alunos/{alunoId}/treinos', function (Request $request, Response 
         left join workouts w    on w.id = ts.workout_id
         left join profiles prof on prof.id = ts.professor_id
         where ts.aluno_id = :aluno_id
-        order by ts.created_at desc
+        order by w.name asc, ts.created_at asc
+
+
     ";
 
     $stmt = $pdo->prepare($sql);

@@ -26,22 +26,21 @@ function formatarDataHoraBR(timestamp) {
     return { data: "--/--", hora: "--:--" };
   }
 
-  // exemplo: "2025-12-05 16:40:00+00"
-  const [dataParte, horaParte] = timestamp.split(" "); // ["2025-12-05", "16:40:00+00"]
+  const [dataParte, horaParte] = timestamp.split(" ");
   if (!dataParte || !horaParte) {
     return { data: "--/--", hora: "--:--" };
   }
 
   const [ano, mes, dia] = dataParte.split("-");
-  const [hora, minuto] = horaParte.split(":"); // "16", "40", "00+00"
+  const [hora, minuto] = horaParte.split(":");
 
   if (!ano || !mes || !dia || !hora || !minuto) {
     return { data: "--/--", hora: "--:--" };
   }
 
   return {
-    data: `${dia}/${mes}`, // 05/12
-    hora: `${hora}:${minuto}`, // 16:40
+    data: `${dia}/${mes}`,
+    hora: `${hora}:${minuto}`,
   };
 }
 
@@ -61,18 +60,18 @@ export default function AulasScreen({
   const [lessons, setLessons] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [currentIndex, setCurrentIndex] = useState(0); // índice atual do carrossel
+  const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef(null);
 
   // --------- ESTADO REMARCAÇÃO ----------
   const [rescheduleVisible, setRescheduleVisible] = useState(false);
   const [selectedLesson, setSelectedLesson] = useState(null);
-  const [availableSlots, setAvailableSlots] = useState([]); // [{date:"2025-12-20", time:"09:00"}]
-  const [selectedDate, setSelectedDate] = useState(null); // "2025-12-20"
-  const [selectedTime, setSelectedTime] = useState(null); // "09:00"
+  const [availableSlots, setAvailableSlots] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
   const [loadingSlots, setLoadingSlots] = useState(false);
 
-  // avatar do usuário (igual outras telas)
+  // avatar
   const loggedUser = getLoggedUser();
   const avatarUrl = loggedUser?.avatar_url || null;
   const avatarLetter =
@@ -136,7 +135,7 @@ export default function AulasScreen({
     carregarAulas();
   }, []);
 
-  // aula atual do carrossel, usada no botão Remarcar
+  // aula atual do carrossel (usada para remarcar)
   const currentLesson =
     lessons.length > 0
       ? lessons[Math.min(currentIndex, lessons.length - 1)]
@@ -146,14 +145,11 @@ export default function AulasScreen({
   function handleConfirmLesson(lesson) {
     if (!lesson) return;
     Alert.alert("Aulas", "Aula confirmada com sucesso! ✅");
-    // Futuro: chamar endpoint para marcar como confirmada
   }
 
   // --------- ABRIR MODAL DE REMARCAR ----------
   async function handleOpenReschedule() {
-    // usa a aula atual do carrossel
     const lesson = currentLesson;
-
     if (!lesson) return;
 
     setSelectedLesson(lesson);
@@ -168,7 +164,6 @@ export default function AulasScreen({
       const user = getLoggedUser();
       const token = user?.token;
 
-      // usamos o booking_id e a rota /api/aulas/{bookingId}/slots
       const bookingId = lesson.booking_id;
 
       const resp = await fetch(`${API_URL}/api/aulas/${bookingId}/slots`, {
@@ -188,7 +183,6 @@ export default function AulasScreen({
 
       const data = await resp.json();
       console.log("Slots recebidos:", data);
-      // espera algo assim: { status:"ok", slots:[{date,time,...}, ...] }
       setAvailableSlots(data.slots || []);
     } catch (err) {
       console.log("Erro slots:", err);
@@ -201,7 +195,6 @@ export default function AulasScreen({
     }
   }
 
-  // --------- CONFIRMAR REMARCAÇÃO ----------
   // --------- CONFIRMAR REMARCAÇÃO ----------
   async function handleConfirmReschedule() {
     if (!selectedDate || !selectedTime) {
@@ -217,7 +210,6 @@ export default function AulasScreen({
       return;
     }
 
-    // acha o slot escolhido (mesma data + horário)
     const slot = availableSlots.find(
       (s) => s.date === selectedDate && s.time === selectedTime
     );
@@ -233,10 +225,8 @@ export default function AulasScreen({
     try {
       const user = getLoggedUser();
       const token = user?.token;
-
       const bookingId = selectedLesson.booking_id;
 
-      // chama o endpoint de REMARCAR no backend
       const resp = await fetch(`${API_URL}/api/aulas/${bookingId}/remarcar`, {
         method: "POST",
         headers: {
@@ -244,7 +234,7 @@ export default function AulasScreen({
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify({
-          class_id: slot.class_id, // 👈 nova turma escolhida
+          class_id: slot.class_id,
         }),
       });
 
@@ -259,14 +249,14 @@ export default function AulasScreen({
       const data = await resp.json();
       console.log("Resposta remarcação:", data);
 
-      // Atualiza o estado local `lessons` para refletir os novos dados
+      // Atualiza lista local
       setLessons((prev) =>
         prev.map((lesson) => {
           if (lesson.booking_id === selectedLesson.booking_id) {
             return {
               ...lesson,
               class_id: slot.class_id,
-              inicio: slot.inicio, // vem do slots do backend
+              inicio: slot.inicio,
               fim: slot.fim,
               cover_url: slot.cover_url || lesson.cover_url,
             };
@@ -291,13 +281,13 @@ export default function AulasScreen({
     }
   }
 
-  // datas marcadas no calendário (cinza escuro)
+  // datas marcadas no calendário
   const markedDates = availableSlots.reduce((acc, slot) => {
     if (!slot.date) return acc;
     acc[slot.date] = {
       selected: slot.date === selectedDate,
       marked: true,
-      selectedColor: "#111827", // cinza escuro
+      selectedColor: "#111827",
       dotColor: "#111827",
     };
     return acc;
@@ -381,8 +371,8 @@ export default function AulasScreen({
                             <Text style={styles.lessonDate}>{data}</Text>
                             <Text style={styles.lessonTime}>{hora}</Text>
                             <Text style={styles.lessonTitle}>
-                              {lesson.titulo || "Aula"}
-                            </Text>
+                                   {lesson.titulo || "Aula"} 
+                                   </Text>
                           </View>
 
                           {/* Imagem */}
@@ -406,48 +396,49 @@ export default function AulasScreen({
                         ) : null}
                       </View>
 
-                      {/* BOTÕES REMARCAR / CONFIRMAR */}
-                      <View style={styles.actionsRow}>
-                        <TouchableOpacity
-                          style={styles.remarcarButton}
-                          onPress={handleOpenReschedule} // usa currentLesson
-                        >
-                          <Text style={styles.remarcarText}>Remarcar</Text>
-                        </TouchableOpacity>
+                      {/* BOTÕES + BOLINHAS COLADAS */}
+                      <View style={styles.actionsWrapper}>
+                        <View style={styles.actionsRow}>
+                          <TouchableOpacity
+                            style={styles.remarcarButton}
+                            onPress={handleOpenReschedule}
+                          >
+                            <Text style={styles.remarcarText}>Remarcar</Text>
+                          </TouchableOpacity>
 
-                        <TouchableOpacity
-                          style={styles.confirmarButton}
-                          onPress={() => handleConfirmLesson(lesson)}
-                        >
-                          <Text style={styles.confirmarText}>Confirmar</Text>
-                        </TouchableOpacity>
+                          <TouchableOpacity
+                            style={styles.confirmarButton}
+                            onPress={() => handleConfirmLesson(lesson)}
+                          >
+                            <Text style={styles.confirmarText}>Confirmar</Text>
+                          </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.dotsRow}>
+                          {lessons.map((_, dotIndex) => (
+                            <TouchableOpacity
+                              key={dotIndex}
+                              style={[
+                                styles.dot,
+                                dotIndex === currentIndex && styles.dotActive,
+                              ]}
+                              onPress={() => {
+                                setCurrentIndex(dotIndex);
+                                if (scrollRef.current) {
+                                  scrollRef.current.scrollTo({
+                                    x: dotIndex * SCREEN_WIDTH,
+                                    animated: true,
+                                  });
+                                }
+                              }}
+                            />
+                          ))}
+                        </View>
                       </View>
                     </View>
                   );
                 })}
               </ScrollView>
-
-              {/* “Bolinhas” do carrossel */}
-              <View style={styles.dotsRow}>
-                {lessons.map((_, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    style={[
-                      styles.dot,
-                      index === currentIndex && styles.dotActive,
-                    ]}
-                    onPress={() => {
-                      setCurrentIndex(index);
-                      if (scrollRef.current) {
-                        scrollRef.current.scrollTo({
-                          x: index * SCREEN_WIDTH,
-                          animated: true,
-                        });
-                      }
-                    }}
-                  />
-                ))}
-              </View>
             </>
           )}
         </View>
@@ -482,12 +473,11 @@ export default function AulasScreen({
                 </View>
               ) : (
                 <>
-                  {/* CALENDÁRIO */}
                   <Calendar
                     markingType="simple"
                     markedDates={markedDates}
                     onDayPress={(day) => {
-                      const dateStr = day.dateString; // "YYYY-MM-DD"
+                      const dateStr = day.dateString;
                       const temSlot = availableSlots.some(
                         (s) => s.date === dateStr
                       );
@@ -504,7 +494,6 @@ export default function AulasScreen({
                     }}
                   />
 
-                  {/* HORÁRIOS DISPONÍVEIS */}
                   <View style={styles.timeBox}>
                     {selectedDate ? (
                       timesForSelectedDate.length === 0 ? (
@@ -543,7 +532,6 @@ export default function AulasScreen({
                 </>
               )}
 
-              {/* BOTÕES MODAL */}
               <View style={styles.modalButtonsRow}>
                 <TouchableOpacity
                   style={styles.modalCancelButton}
@@ -578,7 +566,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingBottom: 80, // espaço da tab
+    paddingBottom: 80,
   },
 
   // HEADER
@@ -591,9 +579,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 36,
-    fontWeight: "600",
     color: "#FFFFFF",
+    fontFamily: "Comfortaa-Bold",
   },
+
   headerAvatarWrapper: {
     width: 54,
     height: 54,
@@ -639,7 +628,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  // CADA PÁGINA DO CARROSSEL
+  // PÁGINA DO CARROSSEL
   page: {
     width: SCREEN_WIDTH,
   },
@@ -665,18 +654,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   lessonDate: {
-    fontSize: 20,
-    fontWeight: "800",
+    fontSize: 28,
+    fontWeight: "700",
     color: "#FF383C",
   },
   lessonTime: {
-    fontSize: 18,
-    fontWeight: "700",
+    fontSize: 20,
+    fontWeight: "600",
     color: "#FF383C",
-    marginBottom: 6,
+    marginBottom: 18,
   },
   lessonTitle: {
-    fontSize: 20,
+    fontFamily: "Comfortaa-Bold",
+    fontSize: 25,
     fontWeight: "700",
     color: "#111827",
   },
@@ -702,33 +692,42 @@ const styles = StyleSheet.create({
   },
   lessonDescription: {
     marginTop: 12,
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: "600",
     color: "#111827",
   },
 
-  // BOTÕES PRINCIPAIS
+  // BOTÕES + DOTS
+  actionsWrapper: {
+    marginTop: 18,
+    alignItems: "center",
+  },
   actionsRow: {
     flexDirection: "row",
-    marginTop: 18,
+    alignItems: "center",
     justifyContent: "space-between",
+    padding: 10,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,255,255,0.28)",
+    width: "60%",
   },
   remarcarButton: {
     flex: 1,
-    marginRight: 8,
-    paddingVertical: 14,
+    paddingVertical: 10,
     borderRadius: 999,
-    backgroundColor: "rgba(243,244,246,0.85)",
+    backgroundColor: "rgba(255, 255, 255, 0.50)",
     justifyContent: "center",
     alignItems: "center",
+    marginRight: 4,
   },
   confirmarButton: {
     flex: 1,
-    marginLeft: 8,
-    paddingVertical: 14,
+    paddingVertical: 10,
     borderRadius: 999,
     backgroundColor: "#2563EB",
     justifyContent: "center",
     alignItems: "center",
+    marginLeft: 4,
   },
   remarcarText: {
     fontSize: 16,
@@ -737,7 +736,7 @@ const styles = StyleSheet.create({
   },
   confirmarText: {
     fontSize: 16,
-    fontWeight: "700",
+    fontWeight: "600",
     color: "#FFFFFF",
   },
 
@@ -745,19 +744,19 @@ const styles = StyleSheet.create({
   dotsRow: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 12,
+    marginTop: 10,
   },
   dot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: "rgba(156,163,175,0.7)", // prata
-    marginHorizontal: 4,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "rgba(156,163,175,0.7)",
+    marginHorizontal: 3,
   },
   dotActive: {
-    width: 18,
-    borderRadius: 9,
-    backgroundColor: "#F9FAFB", // prata clara
+    width: 8,
+    borderRadius: 8,
+    backgroundColor: "#ffffffff",
   },
 
   // TAB FIXA

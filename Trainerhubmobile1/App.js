@@ -1,7 +1,6 @@
 // App.js
 import React, { useState } from "react";
 import { Alert } from "react-native";
-
 import HomeScreen from "./src/HomeScreen";
 import LoginScreen from "./src/LoginScreen";
 import RegisterStep1 from "./src/RegisterStep1";
@@ -11,6 +10,8 @@ import ResumoScreen from "./src/ResumoScreen";
 import AulasScreen from "./src/AulasScreen";
 import TreinosScreen from "./src/TreinosScreen";
 import PerfilScreen from "./src/PerfilScreen";
+import { useFonts, Comfortaa_400Regular, Comfortaa_700Bold } from "@expo-google-fonts/comfortaa";
+
 
 import { API_URL, setLoggedUser, clearAuth } from "./src/config/api";
 
@@ -19,6 +20,16 @@ export default function App() {
   const [formData, setFormData] = useState({});
   const [lastMainScreen, setLastMainScreen] = useState("resumo");
   const [loadingLogin, setLoadingLogin] = useState(false);
+  const [fontsLoaded] = useFonts({
+    "Comfortaa-Regular": Comfortaa_400Regular,
+    "Comfortaa-Bold": Comfortaa_700Bold,
+  });
+
+if (!fontsLoaded) {
+  // enquanto a fonte carrega, não renderiza nada
+  return null;
+  
+}
 
   // --------- LOGIN REAL ----------
 async function handleLoginSubmit(payload) {
