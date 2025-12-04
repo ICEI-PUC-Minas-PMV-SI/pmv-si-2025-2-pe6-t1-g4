@@ -1,4 +1,4 @@
-
+// Trainerhubmobile1/src/LoginScreen.js
 import React, { useState } from "react";
 import {
   View,
@@ -22,7 +22,13 @@ export default function LoginScreen({ onSubmit, onBack }) {
       return;
     }
 
-    onSubmit && onSubmit({ email, senha });
+    console.log("LoginScreen -> enviando para App:", {
+      email,
+      senha,
+    });
+
+    // devolve pro App.js
+    onSubmit && onSubmit({ email, password: senha });
   }
 
   return (
@@ -36,10 +42,19 @@ export default function LoginScreen({ onSubmit, onBack }) {
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
         <View style={styles.content}>
+          {/* HEADER SIMPLES */}
+          <View style={styles.headerRow}>
+            {onBack && (
+              <TouchableOpacity onPress={onBack}>
+                <Text style={styles.backText}>Voltar</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+
           <Text style={styles.title}>Log in</Text>
 
           <View style={styles.form}>
-            {/* Inputs em glass (como já está) */}
+            {/* EMAIL */}
             <View style={styles.glassInput}>
               <TextInput
                 style={styles.input}
@@ -52,6 +67,7 @@ export default function LoginScreen({ onSubmit, onBack }) {
               />
             </View>
 
+            {/* SENHA */}
             <View style={styles.glassInput}>
               <TextInput
                 style={styles.input}
@@ -64,18 +80,9 @@ export default function LoginScreen({ onSubmit, onBack }) {
             </View>
 
             {/* BOTÃO GLASS */}
-           <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <TouchableOpacity style={styles.button} onPress={handleLogin}>
               <Text style={styles.buttonText}>LOG IN</Text>
-           </TouchableOpacity>
-           {onBack && (
-  <TouchableOpacity
-    style={styles.backButton}
-    onPress={onBack}
-  >
-    <Text style={styles.backText}>Voltar</Text>
-  </TouchableOpacity>
-
-            )}
+            </TouchableOpacity>
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -95,6 +102,15 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    marginBottom: 16,
+  },
+  backText: {
+    color: "#6366F1",
+    fontSize: 18,
+  },
   title: {
     fontSize: 32,
     fontWeight: "600",
@@ -104,8 +120,6 @@ const styles = StyleSheet.create({
   form: {
     gap: 16,
   },
-
-  /* Inputs glass */
   glassInput: {
     borderRadius: 12,
     paddingHorizontal: 14,
@@ -123,40 +137,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#FFFFFF",
   },
-
-  /* BOTÃO GLASS*/
-button: {
-  marginTop: 32,
-  height: 54,
-  justifyContent: "center",
-  alignItems: "center",
-  borderRadius: 14,
-  borderWidth: 2,
-  borderColor: "rgba(255,255,255,0.8)", // borda branca brilhante
-  backgroundColor: "rgba(0,0,0,0.35)", // leve transparência — premium
-  shadowColor: "#FFFFFF",
-  shadowOpacity: 0.25,
-  shadowOffset: { width: 0, height: 2 },
-  shadowRadius: 6,
-  elevation: 4,
-},
-buttonText: {
-  color: "#FFFFFF",
-  fontWeight: "700",
-  fontSize: 18,
-  letterSpacing: 1.2,
-},
-
-backButton: {
-  marginTop: 16,
-  alignItems: "center",
-},
-
-backText: {
-  color: "rgba(255,255,255,0.8)",
-  fontSize: 14,
-  fontWeight: "500",
-},
-
-
+  button: {
+    marginTop: 32,
+    height: 54,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 14,
+    borderWidth: 2,
+    borderColor: "rgba(255,255,255,0.8)",
+    backgroundColor: "rgba(0,0,0,0.35)",
+    shadowColor: "#FFFFFF",
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontWeight: "700",
+    fontSize: 18,
+    letterSpacing: 1.2,
+  },
 });

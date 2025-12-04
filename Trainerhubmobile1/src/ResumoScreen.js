@@ -1,6 +1,5 @@
+// Trainerhubmobile1/src/ResumoScreen.js
 import React, { useEffect, useState } from "react";
-import BottomTab from "./BottomTab";
-
 import {
   View,
   Text,
@@ -13,21 +12,53 @@ import {
   Alert,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { API_URL } from "./config/api";
+import MapView, { Marker } from "react-native-maps";
 
-const ALUNO_ID = "2f492373-50f4-48a8-930a-e12f30197a25";
+import BottomTab from "./BottomTab";
+import { API_URL, getAlunoId, getLoggedUser } from "./config/api";
+
+// formata "2025-12-05 16:40:00+00" -> { diaMes: "05/12", hora: "16:40" }
+function formatarDataProximaAula(timestamp) {
+  if (!timestamp || typeof timestamp !== "string") {
+    return { diaMes: "--/--", hora: "--:--" };
+  }
+
+  const [dataParte, horaParte] = timestamp.split(" ");
+  if (!dataParte || !horaParte) {
+    return { diaMes: "--/--", hora: "--:--" };
+  }
+
+  const [ano, mes, dia] = dataParte.split("-");
+  const [hora, minuto] = horaParte.split(":");
+
+  if (!ano || !mes || !dia || !hora || !minuto) {
+    return { diaMes: "--/--", hora: "--:--" };
+  }
+
+  return {
+    diaMes: `${dia}/${mes}`,
+    hora: `${hora}:${minuto}`,
+  };
+}
 
 export default function ResumoScreen({
   onPressProfile,
   onChangeTab,
   activeTab = "resumo",
-  nextClassTitle = "Próxima\nAula:",
-  nextClassDate = "12/12",
 }) {
-  // estado do perfil vindo da API
   const [aluno, setAluno] = useState(null);
   const [loadingPerfil, setLoadingPerfil] = useState(true);
 
+  // estado da próxima aula
+  const [nextLesson, setNextLesson] = useState(null);
+  const [loadingNextLesson, setLoadingNextLesson] = useState(true);
+
+  // usuário logado (do login / perfil)
+  const loggedUser = getLoggedUser();
+  const fullNameFromUser = loggedUser?.full_name || null;
+  const avatarUrlFromUser = loggedUser?.avatar_url || null;
+
+  // data/hora atual (para o card de batimentos)
   const agora = new Date();
   const dia = agora.getDate().toString().padStart(2, "0");
   const mes = agora.toLocaleString("pt-BR", { month: "short" });
@@ -35,20 +66,35 @@ export default function ResumoScreen({
   const horas = agora.getHours().toString().padStart(2, "0");
   const minutos = agora.getMinutes().toString().padStart(2, "0");
 
+  // -------- PERFIL --------
   useEffect(() => {
     async function carregarPerfil() {
       try {
         setLoadingPerfil(true);
-        const resp = await fetch(`${API_URL}/api/profiles/${ALUNO_ID}`);
+
+        const alunoId = getAlunoId();
+        console.log("ResumoScreen -> alunoId:", alunoId);
+
+        if (!alunoId) {
+          console.log("Nenhum alunoId retornado por getAlunoId()");
+          setLoadingPerfil(false);
+          return;
+        }
+
+        const resp = await fetch(`${API_URL}/api/profiles/${alunoId}`);
+        console.log("Status HTTP perfil (Resumo):", resp.status);
 
         if (!resp.ok) {
+          const txt = await resp.text();
+          console.log("Erro ao carregar perfil (Resumo):", txt);
           throw new Error(`HTTP ${resp.status}`);
         }
 
         const json = await resp.json();
+        console.log("Perfil recebido (Resumo):", json);
         setAluno(json);
       } catch (e) {
-        console.log("Erro ao carregar perfil:", e);
+        console.log("Erro ao carregar perfil (Resumo):", e);
         Alert.alert(
           "Erro",
           "Não foi possível carregar os dados do aluno. Verifique a API."
@@ -61,6 +107,81 @@ export default function ResumoScreen({
     carregarPerfil();
   }, []);
 
+  // -------- PRÓXIMA AULA --------
+  useEffect(() => {
+    async function carregarProximaAula() {
+      try {
+        setLoadingNextLesson(true);
+
+        const alunoId = getAlunoId();
+        if (!alunoId) {
+          console.log("ResumoScreen -> sem alunoId para próxima aula");
+          setLoadingNextLesson(false);
+          return;
+        }
+
+        const user = getLoggedUser();
+        const token = user?.token;
+
+        const resp = await fetch(`${API_URL}/api/alunos/${alunoId}/aulas`, {
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        });
+
+        console.log("Status HTTP aulas (Resumo):", resp.status);
+
+        if (!resp.ok) {
+          const txt = await resp.text();
+          console.log("Erro ao carregar aulas (Resumo):", txt);
+          throw new Error(`HTTP ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        console.log("Aulas recebidas (Resumo):", data);
+
+        if (!Array.isArray(data) || data.length === 0) {
+          setNextLesson(null);
+          return;
+        }
+
+        // A API já devolve order by c.inicio asc,
+        // então a primeira posição é a "próxima aula".
+        setNextLesson(data[0]);
+      } catch (e) {
+        console.log("Erro ao carregar próxima aula (Resumo):", e);
+        setNextLesson(null);
+      } finally {
+        setLoadingNextLesson(false);
+      }
+    }
+
+    if (activeTab === "resumo") {
+      carregarProximaAula();
+    }
+  }, [activeTab]);
+
+  // Nome exibido em destaque (prioriza o que vem da API de perfil)
+  const displayName = aluno?.full_name || fullNameFromUser || "Aluno";
+
+  // Avatar: prioriza o que está em loggedUser, depois o que vier do profile
+  const avatarUrl = avatarUrlFromUser || aluno?.avatar_url || null;
+
+  // texto do card de próxima aula
+  let proxDataTexto = "--/--";
+  let proxNomeAula = "";
+
+  if (loadingNextLesson) {
+    proxDataTexto = "...";
+  } else if (nextLesson && nextLesson.inicio) {
+    const { diaMes, hora } = formatarDataProximaAula(nextLesson.inicio);
+    proxDataTexto = `${diaMes} · ${hora}`;
+    proxNomeAula = nextLesson.titulo || "";
+  } else {
+    proxDataTexto = "Sem aula";
+  }
+
   return (
     <ImageBackground
       source={require("../assets/Home.png")}
@@ -68,109 +189,137 @@ export default function ResumoScreen({
       resizeMode="cover"
     >
       <SafeAreaView style={styles.safeArea}>
-        {/* HEADER */}
-        <View style={styles.headerRow}>
-          <View>
-            <Text style={styles.title}>Resumo</Text>
-            {loadingPerfil ? (
-              <Text style={styles.subtitle}>Carregando aluno...</Text>
-            ) : aluno ? (
-              <Text style={styles.subtitle}>{aluno.full_name}</Text>
-            ) : (
-              <Text style={styles.subtitle}>Aluno</Text>
-            )}
+        {/* CONTEÚDO PRINCIPAL (deixa espaço pra TAB fixa) */}
+        <View style={styles.content}>
+          {/* HEADER */}
+          <View style={styles.headerRow}>
+            <View>
+              <Text style={styles.title}>Resumo</Text>
+
+              {loadingPerfil ? (
+                <Text style={styles.subtitle}>Carregando aluno...</Text>
+              ) : (
+                <Text style={styles.nameHighlight}>{displayName}</Text>
+              )}
+            </View>
+
+            <TouchableOpacity
+              onPress={onPressProfile}
+              style={styles.avatarWrapper}
+              activeOpacity={0.8}
+            >
+              {avatarUrl ? (
+                <Image source={{ uri: avatarUrl }} style={styles.avatarImage} />
+              ) : (
+                <View style={styles.avatarCircle}>
+                  <Text style={styles.avatarLetter}>
+                    {displayName?.[0]?.toUpperCase() || "A"}
+                  </Text>
+                </View>
+              )}
+            </TouchableOpacity>
           </View>
 
-          <TouchableOpacity
-            style={styles.avatarWrapper}
-            onPress={onPressProfile}
-            activeOpacity={0.8}
+          {/* CONTEÚDO SCROLLÁVEL */}
+          <ScrollView
+            style={{ flex: 1 }}
+            contentContainerStyle={{ paddingBottom: 24 }}
+            showsVerticalScrollIndicator={false}
           >
-            <Image
-              source={require("../assets/profile.png")}
-              style={styles.avatar}
-              resizeMode="cover"
-            />
-          </TouchableOpacity>
-        </View>
-
-        {/* CONTEÚDO */}
-        <ScrollView
-          style={{ flex: 1 }}
-          contentContainerStyle={{ paddingBottom: 24 }}
-          showsVerticalScrollIndicator={false}
-        >
-          {/* LINHA COM DOIS CARDS MENORES */}
-          <View style={styles.row}>
-            {/* NÍVEL */}
-            <View style={[styles.card, styles.cardSmall]}>
-              <Text style={styles.cardSmallTitle}>Nível</Text>
-              <Text style={styles.cardLevelValue}>1</Text>
-              <Text style={styles.cardSmallSubtitle}>
-                {aluno
-                  ? `${aluno.peso_kg ?? "--"} kg • ${
-                      aluno.altura_cm
-                        ? (aluno.altura_cm / 100).toFixed(2)
-                        : "--"
-                    } m`
-                  : loadingPerfil
-                  ? "Carregando..."
-                  : "--"}
-              </Text>
-            </View>
-
-            {/* PRÓXIMA AULA */}
-            <View style={[styles.card, styles.cardSmall]}>
-              <Text style={styles.cardNextTitle}>{nextClassTitle}</Text>
-              <Text style={styles.cardNextDate}>{nextClassDate}</Text>
-            </View>
-          </View>
-
-          {/* CARD BATIMENTOS */}
-          <View style={[styles.card, styles.cardLarge]}>
-            <View style={styles.heartRow}>
-              <MaterialCommunityIcons
-                name="heart-pulse"
-                size={60}
-                color="#FF4B4B"
-              />
-              <View style={{ marginLeft: 12 }}>
-                <Text style={styles.heartBpmValue}>130</Text>
-                <Text style={styles.heartBpmLabel}>BPM</Text>
-              </View>
-            </View>
-            <View style={styles.heartInfo}>
-              <Text style={styles.heartDate}>{`${dia} ${mes} ${ano}`}</Text>
-              <Text style={styles.heartDate}>{`${horas}:${minutos}`}</Text>
-            </View>
-          </View>
-
-          {/* CARD ACADEMIA */}
-          <View style={[styles.card, styles.cardLarge]}>
-            <View style={styles.gymRow}>
-              <View style={styles.gymIconWrapper}>
-                <MaterialCommunityIcons
-                  name="dumbbell"
-                  size={20}
-                  color="#000"
-                />
-              </View>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.gymName}>FitClub Anchieta</Text>
-                <Text style={styles.gymAddress}>
-                  Rua Esplendor, 767{"\n"}(31) 3044-0090
+            {/* LINHA COM DOIS CARDS MENORES */}
+            <View style={styles.row}>
+              {/* NÍVEL */}
+              <View style={[styles.card, styles.cardSmall]}>
+                <Text style={styles.cardSmallTitle}>Nível</Text>
+                <Text style={styles.cardLevelValue}>1</Text>
+                <Text style={styles.cardSmallSubtitle}>
+                  {aluno
+                    ? `${aluno.peso_kg ?? "--"} kg • ${
+                        aluno.altura_cm
+                          ? (aluno.altura_cm / 100).toFixed(2)
+                          : "--"
+                      } m`
+                    : loadingPerfil
+                    ? "Carregando..."
+                    : "--"}
                 </Text>
               </View>
 
-              <View style={styles.mapPlaceholder}>
-                <Text style={styles.mapText}>MAPA</Text>
+              {/* PRÓXIMA AULA (REAL) */}
+              <View style={[styles.card, styles.cardSmall]}>
+                <Text style={styles.cardNextTitle}>Próxima Aula</Text>
+                <Text style={styles.cardNextDate}>{proxDataTexto}</Text>
+                {proxNomeAula ? (
+                  <Text style={styles.cardNextSubtitle}>{proxNomeAula}</Text>
+                ) : null}
               </View>
             </View>
-          </View>
-        </ScrollView>
 
-        {/* TAB BAR INFERIOR */}
-        <BottomTab activeTab={activeTab} onChangeTab={onChangeTab} />
+            {/* CARD BATIMENTOS (mock) */}
+            <View style={[styles.card, styles.cardLarge]}>
+              <View style={styles.heartRow}>
+                <MaterialCommunityIcons
+                  name="heart-pulse"
+                  size={60}
+                  color="#FF4B4B"
+                />
+                <View style={{ marginLeft: 12 }}>
+                  <Text style={styles.heartBpmValue}>130</Text>
+                  <Text style={styles.heartBpmLabel}>BPM</Text>
+                </View>
+              </View>
+              <View style={styles.heartInfo}>
+                <Text style={styles.heartDate}>{`${dia} ${mes} ${ano}`}</Text>
+                <Text style={styles.heartDate}>{`${horas}:${minutos}`}</Text>
+              </View>
+            </View>
+
+            {/* CARD ACADEMIA COM MAPA REAL */}
+            <View style={[styles.card, styles.cardLarge]}>
+              <View style={styles.gymRow}>
+                <View style={styles.gymIconWrapper}>
+                  <MaterialCommunityIcons
+                    name="dumbbell"
+                    size={20}
+                    color="#000"
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.gymName}>FitClub Anchieta</Text>
+                  <Text style={styles.gymAddress}>
+                    Rua Esplendor, 767{"\n"}(31) 3044-0090
+                  </Text>
+                </View>
+
+                <View style={styles.mapPlaceholder}>
+                  <MapView
+                    style={styles.map}
+                    initialRegion={{
+                      latitude: -19.9585,
+                      longitude: -43.9222,
+                      latitudeDelta: 0.01,
+                      longitudeDelta: 0.01,
+                    }}
+                  >
+                    <Marker
+                      coordinate={{
+                        latitude: -19.9585,
+                        longitude: -43.9222,
+                      }}
+                      title="FitClub Anchieta"
+                      description="Rua Esplendor, 767"
+                    />
+                  </MapView>
+                </View>
+              </View>
+            </View>
+          </ScrollView>
+        </View>
+
+        {/* TAB BAR INFERIOR PADRONIZADA */}
+        <View style={styles.tabWrapper}>
+          <BottomTab activeTab={activeTab} onChangeTab={onChangeTab} />
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -186,6 +335,12 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
 
+  content: {
+    flex: 1,
+    paddingBottom: 80, // espaço pra tab fixa
+  },
+
+  // HEADER
   headerRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -203,6 +358,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "rgba(255,255,255,0.8)",
   },
+  nameHighlight: {
+    marginTop: 4,
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#FF383C",
+  },
+
+  // AVATAR HEADER
   avatarWrapper: {
     width: 54,
     height: 54,
@@ -210,12 +373,28 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.8)",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  avatar: {
+  avatarImage: {
     width: "100%",
     height: "100%",
   },
+  avatarCircle: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 27,
+    backgroundColor: "rgba(255,255,255,0.85)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  avatarLetter: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#111827",
+  },
 
+  // CARDS
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -258,7 +437,7 @@ const styles = StyleSheet.create({
   cardLevelValue: {
     fontSize: 32,
     fontWeight: "700",
-    color: "#6366F1", // indigo
+    color: "#6366F1",
   },
 
   cardNextTitle: {
@@ -269,11 +448,18 @@ const styles = StyleSheet.create({
   },
   cardNextDate: {
     marginTop: 8,
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "800",
     color: "rgba(255,255,255,0.95)",
   },
+  cardNextSubtitle: {
+    marginTop: 4,
+    fontSize: 14,
+    fontWeight: "600",
+    color: "rgba(255,90,122,0.95)",
+  },
 
+  // CARD BATIMENTOS
   heartRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -297,6 +483,7 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,0.9)",
   },
 
+  // CARD ACADEMIA
   gymRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -325,13 +512,21 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 18,
     backgroundColor: "rgba(255,255,255,0.3)",
+    overflow: "hidden",
     justifyContent: "center",
     alignItems: "center",
     marginLeft: 12,
   },
-  mapText: {
-    fontSize: 12,
-    fontWeight: "600",
-    color: "#000",
+  map: {
+    width: "100%",
+    height: "100%",
+  },
+
+  // TAB FIXA
+  tabWrapper: {
+    position: "absolute",
+    left: 16,
+    right: 16,
+    bottom: 16,
   },
 });

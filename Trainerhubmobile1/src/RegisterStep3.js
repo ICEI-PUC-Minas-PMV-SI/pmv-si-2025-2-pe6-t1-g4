@@ -1,4 +1,4 @@
-// src/RegisterStep3.js
+// Trainerhubmobile1/src/RegisterStep3.js
 import React, { useState } from "react";
 import {
   View,
@@ -33,6 +33,11 @@ function maskPeso(value) {
   return v.replace(/(\d+)(\d{2})$/, "$1,$2"); // 7500 -> 75,00
 }
 
+/**
+ * props:
+ * - onFinish(dadosStep3)  => chamado quando o usuário termina
+ * - onBack()              => voltar para a etapa anterior
+ */
 export default function RegisterStep3({ onFinish, onBack }) {
   const [genero, setGenero] = useState("");
   const [altura, setAltura] = useState("");
@@ -45,6 +50,7 @@ export default function RegisterStep3({ onFinish, onBack }) {
       return;
     }
 
+    // devolve os dados para o componente pai
     onFinish &&
       onFinish({
         genero,
@@ -117,19 +123,15 @@ export default function RegisterStep3({ onFinish, onBack }) {
 
             {/* BOTÃO FINALIZAR */}
             <TouchableOpacity style={styles.button} onPress={handleFinish}>
-              <Text style={styles.buttonText}>NEXT</Text>
+              <Text style={styles.buttonText}>FINALIZAR</Text>
             </TouchableOpacity>
 
             {/* VOLTAR */}
             {onBack && (
-              <TouchableOpacity
-                style={styles.backButton}
-                onPress={onBack}
-              >
+              <TouchableOpacity style={styles.backButton} onPress={onBack}>
                 <Text style={styles.backText}>Voltar</Text>
               </TouchableOpacity>
             )}
-            
           </View>
         </View>
       </KeyboardAvoidingView>

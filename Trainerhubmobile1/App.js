@@ -12,25 +12,86 @@ import AulasScreen from "./src/AulasScreen";
 import TreinosScreen from "./src/TreinosScreen";
 import PerfilScreen from "./src/PerfilScreen";
 
+import { API_URL, setLoggedUser, clearAuth } from "./src/config/api";
+
 export default function App() {
   const [screen, setScreen] = useState("home");
   const [formData, setFormData] = useState({});
-  // qual é a “tela principal” atual (Resumo, Aulas ou Treinos)?
   const [lastMainScreen, setLastMainScreen] = useState("resumo");
+  const [loadingLogin, setLoadingLogin] = useState(false);
 
-  // --------- LOGIN ----------
-  function handleLoginSubmit(data) {
-    console.log("Dados de login:", data);
+  // --------- LOGIN REAL ----------
+async function handleLoginSubmit(payload) {
+  console.log("handleLoginSubmit payload:", payload);
+  const { email, password } = payload;
 
-    Alert.alert("Sucesso", "Login realizado com sucesso!", [
-      {
-        text: "OK",
-        onPress: () => {
-          setLastMainScreen("resumo");
-          setScreen("resumo");
-        },
+  if (loadingLogin) return;
+
+  try {
+    setLoadingLogin(true);
+    console.log("Tentando login na API...", email);
+
+    const resp = await fetch(`${API_URL}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    ]);
+      body: JSON.stringify({ email, password }),
+    });
+
+
+      console.log("Status HTTP /api/login:", resp.status);
+
+      const data = await resp.json().catch(() => null);
+      console.log("Resposta /api/login:", data);
+
+      if (!resp.ok) {
+        const msg =
+          data?.message ||
+          data?.error ||
+          "Não foi possível fazer login. Verifique suas credenciais.";
+        Alert.alert("Erro de login", msg);
+        return;
+      }
+
+      // API pode responder:
+      // { user: { id, full_name, email, ... }, token: "..." }
+      const apiUser = data.user || data;
+      const token = data.token || apiUser.token;
+
+      const user = {
+        id: apiUser.id,
+        full_name: apiUser.full_name,
+        email: apiUser.email,
+        token: token,
+        ...apiUser,
+      };
+
+      // guarda usuário logado para o resto do app (getAlunoId)
+      setLoggedUser(user);
+
+      Alert.alert(
+        "Bem-vindo",
+        `Olá, ${user.full_name || user.email || "aluno"}!`,
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              setLastMainScreen("resumo");
+              setScreen("resumo");
+            },
+          },
+        ]
+      );
+    } catch (err) {
+      console.log("Erro ao chamar /api/login:", err);
+      Alert.alert(
+        "Erro",
+        "Não foi possível conectar ao servidor. Verifique se a API está rodando e o IP no api.js."
+      );
+    } finally {
+      setLoadingLogin(false);
+    }
   }
 
   // --------- CADASTRO STEP 1 -> 2 ----------
@@ -45,21 +106,102 @@ export default function App() {
     setScreen("register3");
   }
 
-  // --------- CADASTRO STEP 3 -> FINAL ----------
-  function handleStep3Finish(data) {
+  // --------- CADASTRO STEP 3 -> FINAL (AGORA REAL) ----------
+  async function handleStep3Finish(data) {
     const allData = { ...formData, ...data };
-    console.log("Cadastro completo:", allData);
+    console.log("Dados de cadastro (form):", allData);
 
-    Alert.alert("Sucesso", "Cadastro efetuado com sucesso!", [
-      {
-        text: "OK",
-        onPress: () => {
-          setFormData({});
-          setLastMainScreen("resumo");
-          setScreen("resumo");
+    try {
+      // altura: "1,70" -> 170
+      const alturaNum = allData.altura
+        ? parseInt(String(allData.altura).replace(/\D/g, ""), 10)
+        : null;
+
+      // peso: "70" -> 70
+      const pesoNum = allData.peso
+        ? parseFloat(
+            String(allData.peso)
+              .replace(",", ".")
+              .replace(/[^\d.]/g, "")
+          )
+        : null;
+
+      // dataNascimento: "06/05/1998" -> "1998-05-06"
+      let dataNascimentoIso = null;
+      if (
+        allData.dataNascimento &&
+        String(allData.dataNascimento).includes("/")
+      ) {
+        const [dia, mes, ano] = String(allData.dataNascimento).split("/");
+        if (dia && mes && ano) {
+          dataNascimentoIso = `${ano}-${mes.padStart(2, "0")}-${dia.padStart(
+            2,
+            "0"
+          )}`;
+        }
+      }
+
+      const payload = {
+        email: allData.email,
+        password: allData.senha, // mesmo campo que você usa no login
+        full_name: allData.nomeCompleto || allData.full_name || null,
+        cpf: allData.cpf || null,
+        phone: allData.telefone || null,
+        gender: allData.genero || null,
+        altura_cm: alturaNum,
+        peso_kg: pesoNum,
+        data_nascimento: dataNascimentoIso,
+      };
+
+      console.log("Enviando payload de cadastro:", payload);
+
+      const resp = await fetch(`${API_URL}/api/auth/register`, {
+        // 👆 TROQUEI de /api/register para /api/auth/register
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      },
-    ]);
+        body: JSON.stringify(payload),
+      });
+
+      console.log("Status HTTP /api/auth/register:", resp.status);
+      const respBodyText = await resp.text();
+      console.log("Corpo /api/auth/register:", respBodyText);
+
+      if (!resp.ok) {
+        let msg = "Não foi possível concluir o cadastro.";
+        try {
+          const parsed = JSON.parse(respBodyText);
+          msg = parsed?.message || parsed?.error || msg;
+        } catch (_) {
+          // se não for JSON, ignora e usa msg padrão
+        }
+
+        Alert.alert("Erro no cadastro", msg);
+        return;
+      }
+
+      // Se chegou aqui, o cadastro foi criado
+      Alert.alert(
+        "Sucesso",
+        "Cadastro efetuado com sucesso! Agora é só fazer login.",
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              setFormData({});
+              setScreen("login"); // manda direto pro login
+            },
+          },
+        ]
+      );
+    } catch (err) {
+      console.log("Erro ao chamar /api/auth/register:", err);
+      Alert.alert(
+        "Erro",
+        "Não foi possível conectar ao servidor de cadastro. Verifique a API."
+      );
+    }
   }
 
   // --------- TROCA DE ABA NO MENU INFERIOR ----------
@@ -74,6 +216,14 @@ export default function App() {
       setLastMainScreen("treinos");
       setScreen("treinos");
     }
+  }
+
+  // --------- LOGOUT ----------
+  function handleLogout() {
+    clearAuth(); // limpa usuário/alunoId na API
+    setFormData({}); // limpa dados de cadastro temporários
+    setLastMainScreen("resumo");
+    setScreen("home"); // volta pra tela inicial
   }
 
   // --------- RENDERIZAÇÃO DAS TELAS ----------
@@ -145,30 +295,6 @@ export default function App() {
           setScreen("perfil");
         }}
         onChangeTab={handleChangeTab}
-        lessons={[
-          {
-            id: 1,
-            date: "12/12",
-            time: "08:00",
-            title: "Spinning",
-            description: "Mantenha a coluna reta com o abdômen contraído.",
-          },
-          {
-            id: 2,
-            date: "13/12",
-            time: "19:00",
-            title: "Funcional",
-            description: "Trabalhe o corpo todo com movimentos controlados.",
-          },
-          {
-            id: 3,
-            date: "15/12",
-            time: "07:30",
-            title: "Musculação",
-            description:
-              "Ajuste a carga de acordo com a orientação do instrutor.",
-          },
-        ]}
       />
     );
   }
@@ -188,14 +314,13 @@ export default function App() {
   if (screen === "perfil") {
     return (
       <PerfilScreen
-        // botão "Voltar" leva pra última tela principal (Resumo/Aulas/Treinos)
         onPressBack={() => setScreen(lastMainScreen)}
         activeTab={lastMainScreen}
         onChangeTab={handleChangeTab}
+        onLogout={handleLogout} // botão "Sair da conta" chama isso
       />
     );
   }
 
-  // fallback
   return null;
 }

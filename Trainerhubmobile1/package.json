@@ -9,12 +9,17 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
+    "@supabase/supabase-js": "^2.86.0",
     "expo": "~54.0.25",
     "expo-image-picker": "~17.0.8",
+    "expo-linear-gradient": "~15.0.7",
     "expo-status-bar": "~3.0.8",
     "react": "19.1.0",
     "react-native": "0.81.5",
-    "react-native-paper": "4.9.2"
+    "react-native-calendars": "^1.1313.0",
+    "react-native-maps": "1.20.1",
+    "react-native-paper": "4.9.2",
+    "react-native-url-polyfill": "^3.0.0"
   },
   "private": true
 }

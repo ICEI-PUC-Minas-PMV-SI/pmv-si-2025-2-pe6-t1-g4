@@ -1,87 +1,180 @@
-
-import React, { useRef, useState, useMemo } from "react";
+// Trainerhubmobile1/src/TreinosScreen.js
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
-  Image,
   ImageBackground,
+  Image,
   TouchableOpacity,
   SafeAreaView,
-  Dimensions,
-  FlatList,
+  ScrollView,
+  ActivityIndicator,
+  Alert,
 } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient"; // ⬅️ IMPORTANTE
 import BottomTab from "./BottomTab";
-
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const ITEMS_PER_PAGE = 3;
-
-// MOCK DE EXERCÍCIOS – depois você troca pelo resultado da API
-const TREINOS = [
-  {
-    id: "1",
-    title: "Supino Reto",
-    group: "Peito",
-    description: "Barra no peitoral, controle na descida.",
-    image: require("../assets/supino_reto_peito.png"),
-  },
-  {
-    id: "2",
-    title: "Desenvolvimento com Halteres",
-    group: "Ombros",
-    description: "Empurre acima da cabeça.",
-    image: require("../assets/alteres_ombros.png"),
-  },
-  {
-    id: "3",
-    title: "Agachamento Livre",
-    group: "Pernas",
-    description: "Mantenha a coluna neutra e desça até 90º.",
-    image: require("../assets/agachamento_livre_pernas.png"),
-  },
-  {
-    id: "4",
-    title: "Supino Inclinado",
-    group: "Peito",
-    description: "Banco inclinado a 45º, controle na descida.",
-    image: require("../assets/icon.png"),
-  },
-];
-
-// cor do card de acordo com o grupo
-function getGroupColor(group) {
-  switch (group) {
-    case "Peito":
-      // Indigo #6366F1 com 30% opacidade
-      return "rgba(99, 102, 241, 0.3)";
-    case "Ombros":
-      // Verde #22C55E com 30% opacidade
-      return "rgba(34, 197, 94, 0.3)";
-    case "Pernas":
-      // #FF2D55 com 30% opacidade
-      return "rgba(255, 45, 85, 0.3)";
-    default:
-      // fallback: cinza glass
-      return "rgba(110, 107, 107, 0.5)";
-  }
-}
+import { API_URL, getAlunoId, getLoggedUser } from "./config/api";
 
 export default function TreinosScreen({
   onPressProfile,
   onChangeTab,
   activeTab = "treinos",
 }) {
-  const flatListRef = useRef(null);
-  const [pageIndex, setPageIndex] = useState(0);
+  const [treinos, setTreinos] = useState([]);
+  const [loadingTreinos, setLoadingTreinos] = useState(true);
+  const [selectedTreinoId, setSelectedTreinoId] = useState(null);
+  const [detalhe, setDetalhe] = useState(null); // { treino, exercicios }
+  const [loadingDetalhe, setLoadingDetalhe] = useState(false);
 
-  // agrupa exercícios em páginas com até 3 por página
-  const pages = useMemo(() => {
-    const chunks = [];
-    for (let i = 0; i < TREINOS.length; i += ITEMS_PER_PAGE) {
-      chunks.push(TREINOS.slice(i, i + ITEMS_PER_PAGE));
+  // --------- INFO DO USUÁRIO (avatar) ----------
+  const loggedUser = getLoggedUser();
+  const avatarUrl = loggedUser?.avatar_url || null;
+  const avatarLetter =
+    (loggedUser?.full_name &&
+      loggedUser.full_name.trim().charAt(0).toUpperCase()) ||
+    (loggedUser?.email && loggedUser.email.trim().charAt(0).toUpperCase()) ||
+    "A";
+
+  // ---------------- GRADIENTE PREMIUM POR NOME DO TREINO ----------------
+  // ---------------- GRADIENTE PREMIUM + GLASS POR NOME DO TREINO ----------------
+  function getMuscleGradientFromName(name) {
+    // fallback bem discreto
+    if (!name) {
+      return ["rgba(15,23,42,0.65)", "rgba(15,23,42,0.25)"];
     }
-    return chunks;
+
+    const n = name.toLowerCase();
+
+    // Peito / tríceps -> indigo roxo com transparência
+    if (n.includes("peito")) {
+      return ["rgba(79,70,229,0.85)", "rgba(129,140,248,0.25)"];
+    }
+
+    // Pernas -> vinho / laranja queimado transparente
+    if (n.includes("perna")) {
+      return ["rgba(127,29,29,0.85)", "rgba(248,113,113,0.25)"];
+    }
+
+    // Ombros -> verde petróleo / verde lima transparente
+    if (n.includes("ombro")) {
+      return ["rgba(6,95,70,0.85)", "rgba(45,212,191,0.25)"];
+    }
+
+    // Full body -> roxo / magenta transparente
+    if (n.includes("full")) {
+      return ["rgba(76,29,149,0.85)", "rgba(236,72,153,0.25)"];
+    }
+
+    // Resistência -> cinza aço
+    if (n.includes("resistência") || n.includes("resistencia")) {
+      return ["rgba(31,41,55,0.9)", "rgba(148,163,184,0.25)"];
+    }
+
+    // default escuro translúcido
+    return ["rgba(15,23,42,0.7)", "rgba(15,23,42,0.25)"];
+  }
+
+  // continua pra fundo dos cards de exercício
+  function getMuscleColor(muscleGroup) {
+    if (!muscleGroup) return "rgba(15,23,42,0.95)";
+    const mg = muscleGroup.toLowerCase();
+
+    if (mg.includes("peito")) return "rgba(79,70,229,0.95)";
+    if (mg.includes("ombro")) return "rgba(34,197,94,0.95)";
+    if (mg.includes("perna")) return "rgba(239,68,68,0.95)";
+    return "rgba(15,23,42,0.95)";
+  }
+
+  // ---------------- CARREGAR LISTA DE TREINOS ----------------
+  useEffect(() => {
+    async function carregarTreinos() {
+      try {
+        const alunoId = getAlunoId();
+        if (!alunoId) {
+          console.log("Nenhum aluno logado em getAlunoId()");
+          setLoadingTreinos(false);
+          return;
+        }
+
+        setLoadingTreinos(true);
+        console.log("Buscando treinos de:", alunoId);
+
+        const user = getLoggedUser();
+        const token = user?.token;
+
+        const resp = await fetch(`${API_URL}/api/alunos/${alunoId}/treinos`, {
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        });
+        console.log("Status HTTP /treinos:", resp.status);
+
+        if (!resp.ok) {
+          const txt = await resp.text();
+          console.log("Erro ao buscar treinos:", txt);
+          throw new Error(`HTTP ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        console.log("Treinos recebidos:", data);
+        setTreinos(data);
+      } catch (err) {
+        console.log("Erro carregar treinos:", err);
+        Alert.alert(
+          "Erro",
+          "Não foi possível carregar seus treinos. Verifique a API."
+        );
+      } finally {
+        setLoadingTreinos(false);
+      }
+    }
+
+    carregarTreinos();
   }, []);
+
+  // ---------------- CARREGAR DETALHE DE UM TREINO ----------------
+  async function handleOpenTreino(treinoId) {
+    try {
+      if (selectedTreinoId === treinoId && detalhe) {
+        setSelectedTreinoId(null);
+        setDetalhe(null);
+        return;
+      }
+
+      setSelectedTreinoId(treinoId);
+      setLoadingDetalhe(true);
+      setDetalhe(null);
+
+      const user = getLoggedUser();
+      const token = user?.token;
+
+      const resp = await fetch(`${API_URL}/api/treinos/${treinoId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+      });
+      console.log("Status HTTP /treinos/{id}:", resp.status);
+
+      if (!resp.ok) {
+        const txt = await resp.text();
+        console.log("Erro ao buscar detalhe do treino:", txt);
+        throw new Error(`HTTP ${resp.status}`);
+      }
+
+      const data = await resp.json();
+      console.log("Detalhe treino:", data);
+      setDetalhe(data);
+    } catch (err) {
+      console.log("Erro detalhe treino:", err);
+      Alert.alert("Erro", "Não foi possível carregar o detalhe do treino.");
+    } finally {
+      setLoadingDetalhe(false);
+    }
+  }
 
   return (
     <ImageBackground
@@ -90,205 +183,363 @@ export default function TreinosScreen({
       resizeMode="cover"
     >
       <SafeAreaView style={styles.safeArea}>
-        {/* HEADER */}
-        <View style={styles.headerRow}>
-          <Text style={styles.title}>Treinos</Text>
+        {/* CONTEÚDO PRINCIPAL */}
+        <View style={styles.content}>
+          {/* HEADER */}
+          <View style={styles.headerRow}>
+            <Text style={styles.title}>Treinos</Text>
 
-          <TouchableOpacity
-            style={styles.avatarWrapper}
-            onPress={onPressProfile}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={require("../assets/profile.png")}
-              style={styles.avatar}
-              resizeMode="cover"
-            />
-          </TouchableOpacity>
-        </View>
-
-        {/* CARROSSEL DE PÁGINAS (CADA UMA COM ATÉ 3 CARDS) */}
-        <FlatList
-          ref={flatListRef}
-          data={pages}
-          keyExtractor={(_, index) => `page-${index}`}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onScroll={(e) => {
-            const pos = Math.round(
-              e.nativeEvent.contentOffset.x / SCREEN_WIDTH
-            );
-            setPageIndex(pos);
-          }}
-          renderItem={({ item: pageExercises }) => (
-            <View style={styles.pageContainer}>
-              {pageExercises.map((exercise) => (
-                <View key={exercise.id} style={styles.cardContainer}>
-                  <View
-                    style={[
-                      styles.card,
-                      { backgroundColor: getGroupColor(exercise.group) },
-                    ]}
-                  >
-                    <View style={styles.cardRow}>
-                      <View style={styles.cardInfo}>
-                        <Text style={styles.exerciseTitle}>
-                          {exercise.title}
-                        </Text>
-                        <Text style={styles.exerciseGroup}>
-                          {exercise.group}
-                        </Text>
-                        <Text style={styles.exerciseDescription}>
-                          {exercise.description}
-                        </Text>
-                      </View>
-
-                      <View style={styles.cardImageWrapper}>
-                        <Image
-                          source={exercise.image}
-                          style={styles.exerciseImage}
-                          resizeMode="contain"
-                        />
-                      </View>
-                    </View>
-                  </View>
+            <TouchableOpacity
+              style={styles.headerAvatarWrapper}
+              onPress={onPressProfile}
+              activeOpacity={0.8}
+            >
+              {avatarUrl ? (
+                <Image
+                  source={{ uri: avatarUrl }}
+                  style={styles.headerAvatar}
+                />
+              ) : (
+                <View style={styles.headerAvatarCircle}>
+                  <Text style={styles.headerAvatarLetter}>{avatarLetter}</Text>
                 </View>
-              ))}
-            </View>
-          )}
-        />
+              )}
+            </TouchableOpacity>
+          </View>
 
-        {/* DOTS (carrossel de páginas) */}
-        <View style={styles.dotsWrapper}>
-          {pages.map((_, i) => (
-            <View
-              key={i}
-              style={[styles.dot, i === pageIndex && styles.dotActive]}
-            />
-          ))}
+          {/* LISTA DE TREINOS */}
+          {loadingTreinos ? (
+            <View style={styles.centerBox}>
+              <ActivityIndicator size="large" color="#FFFFFF" />
+              <Text style={styles.loadingText}>Carregando treinos...</Text>
+            </View>
+          ) : treinos.length === 0 ? (
+            <View style={styles.centerBox}>
+              <Text style={styles.emptyText}>
+                Você ainda não possui treinos cadastrados.
+              </Text>
+            </View>
+          ) : (
+            <ScrollView
+              style={{ flex: 1 }}
+              contentContainerStyle={{ paddingBottom: 16 }}
+              showsVerticalScrollIndicator={false}
+            >
+              {treinos.map((t) => {
+                const isOpen = selectedTreinoId === t.id;
+                const gradientColors = getMuscleGradientFromName(
+                  t.workout_name
+                );
+
+                return (
+                  <View key={t.id} style={styles.treinoWrapper}>
+                    {/* CARD PRINCIPAL COM GRADIENTE */}
+                    <TouchableOpacity
+                      activeOpacity={0.9}
+                      onPress={() => handleOpenTreino(t.id)}
+                    >
+                      <LinearGradient
+                        colors={gradientColors}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                        style={styles.card}
+                      >
+                        <View style={styles.cardRow}>
+                          <View style={styles.imageBox}>
+                            {t.workout_cover_url ? (
+                              <Image
+                                source={{ uri: t.workout_cover_url }}
+                                style={styles.imageBoxImage}
+                                resizeMode="cover"
+                              />
+                            ) : null}
+                          </View>
+
+                          <View style={styles.cardTextBox}>
+                            <Text style={styles.cardTitle}>
+                              {t.workout_name || "Treino"}
+                            </Text>
+
+                            <Text
+                              style={styles.cardDescription}
+                              numberOfLines={3}
+                              ellipsizeMode="tail"
+                            >
+                              {t.workout_description ||
+                                "Toque para ver os exercícios desse treino."}
+                            </Text>
+                          </View>
+                        </View>
+                      </LinearGradient>
+                    </TouchableOpacity>
+
+                    {/* DETALHE (lista de exercícios) */}
+                    {isOpen && (
+                      <View style={styles.detailBox}>
+                        {loadingDetalhe && (
+                          <View style={styles.centerBox}>
+                            <ActivityIndicator size="small" color="#FFFFFF" />
+                            <Text style={styles.loadingText}>
+                              Carregando exercícios...
+                            </Text>
+                          </View>
+                        )}
+
+                        {!loadingDetalhe && detalhe && detalhe.exercicios && (
+                          <>
+                            {detalhe.exercicios.map((ex) => (
+                              <View
+                                key={ex.id}
+                                style={[
+                                  styles.exerciseCard,
+                                  {
+                                    backgroundColor: getMuscleColor(
+                                      ex.exercise_muscle_group
+                                    ),
+                                  },
+                                ]}
+                              >
+                                <View
+                                  style={{
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                    marginBottom: 8,
+                                  }}
+                                >
+                                  {ex.image_url ? (
+                                    <Image
+                                      source={{ uri: ex.image_url }}
+                                      style={{
+                                        width: 60,
+                                        height: 60,
+                                        borderRadius: 12,
+                                        marginRight: 10,
+                                      }}
+                                    />
+                                  ) : (
+                                    <MaterialCommunityIcons
+                                      name="arm-flex"
+                                      size={32}
+                                      color="#fff"
+                                      style={{ marginRight: 10 }}
+                                    />
+                                  )}
+
+                                  <View style={{ flex: 1 }}>
+                                    <Text style={styles.exerciseName}>
+                                      {ex.exercise_name}
+                                    </Text>
+                                    {ex.exercise_description && (
+                                      <Text
+                                        style={styles.exerciseDesc}
+                                        numberOfLines={3}
+                                        ellipsizeMode="tail"
+                                      >
+                                        {ex.exercise_description}
+                                      </Text>
+                                    )}
+                                  </View>
+                                </View>
+
+                                <Text style={styles.exerciseInfo}>
+                                  Séries:{" "}
+                                  <Text style={styles.bold}>
+                                    {ex.series ?? "—"}
+                                  </Text>{" "}
+                                  • Reps:{" "}
+                                  <Text style={styles.bold}>
+                                    {ex.repeticoes ?? "—"}
+                                  </Text>
+                                </Text>
+
+                                <Text style={styles.exerciseInfo}>
+                                  Carga:{" "}
+                                  <Text style={styles.bold}>
+                                    {ex.carga != null ? `${ex.carga} kg` : "—"}
+                                  </Text>{" "}
+                                  • Descanso:{" "}
+                                  <Text style={styles.bold}>
+                                    {ex.descanso_segundos != null
+                                      ? `${ex.descanso_segundos}s`
+                                      : "—"}
+                                  </Text>
+                                </Text>
+                              </View>
+                            ))}
+                          </>
+                        )}
+                      </View>
+                    )}
+                  </View>
+                );
+              })}
+            </ScrollView>
+          )}
         </View>
 
-        {/* TAB BAR INFERIOR – componente padronizado */}
-        <BottomTab activeTab={activeTab} onChangeTab={onChangeTab} />
+        {/* TAB BAR FIXA NO RODAPÉ */}
+        <View style={styles.tabWrapper}>
+          <BottomTab activeTab={activeTab} onChangeTab={onChangeTab} />
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
+  background: { flex: 1 },
   safeArea: {
     flex: 1,
     paddingHorizontal: 16,
     paddingBottom: 16,
   },
+  content: {
+    flex: 1,
+    paddingBottom: 80,
+  },
 
-  // HEADER
   headerRow: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
+    alignItems: "center",
     marginTop: 8,
-    marginBottom: 24,
+    marginBottom: 16,
   },
   title: {
-    fontSize: 36,
+    fontSize: 32,
     fontWeight: "600",
     color: "#FFFFFF",
   },
-  avatarWrapper: {
+  headerAvatarWrapper: {
     width: 54,
     height: 54,
     borderRadius: 27,
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.8)",
-  },
-  avatar: {
-    width: "100%",
-    height: "100%",
-  },
-
-  // PÁGINAS DO CARROSSEL
-  pageContainer: {
-    width: SCREEN_WIDTH,
-    paddingHorizontal: 4,
-    paddingTop: 4,
-    paddingBottom: 4,
-  },
-
-  // CARDS DE TREINO
-  cardContainer: {
-    marginBottom: 12,
+    justifyContent: "center",
     alignItems: "center",
   },
+  headerAvatar: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 27,
+  },
+  headerAvatarCircle: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 27,
+    backgroundColor: "rgba(255,255,255,0.9)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  headerAvatarLetter: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#111827",
+  },
+
+  treinoWrapper: {
+    marginBottom: 12,
+  },
   card: {
-    width: "96%",
     borderRadius: 28,
-    padding: 16,
+    padding: 14,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.28)",
+    borderColor: "rgba(255,255,255,0.25)",
     shadowColor: "#000",
-    shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 6 },
-    shadowRadius: 14,
-    elevation: 8,
+    shadowOpacity: 0.35,
+    shadowOffset: { width: 0, height: 10 },
+    shadowRadius: 20,
+    elevation: 6,
   },
   cardRow: {
     flexDirection: "row",
     alignItems: "center",
   },
-  cardInfo: {
-    flex: 1,
-    paddingRight: 8,
-  },
-  cardImageWrapper: {
-    width: "40%",
-    alignItems: "center",
-  },
-  exerciseImage: {
-    width: "100%",
+  imageBox: {
+    width: 110,
     height: 110,
+    borderRadius: 22,
+    backgroundColor: "rgba(255,255,255,0.9)",
+    marginRight: 16,
   },
-  exerciseTitle: {
+  cardTextBox: { flex: 1 },
+  cardTitle: {
     fontSize: 18,
-    fontWeight: "800",
-    color: "#FFFFFF",
-  },
-  exerciseGroup: {
-    marginTop: 2,
-    fontSize: 16,
     fontWeight: "700",
-    color: "rgba(255,255,255,0.9)",
+    color: "#FFFFFF",
+    marginBottom: 6,
   },
-  exerciseDescription: {
-    marginTop: 8,
+  cardDescription: {
     fontSize: 14,
-    color: "rgba(255,255,255,0.9)",
+    color: "rgba(255,255,255,0.95)",
   },
 
-  // DOTS
-  dotsWrapper: {
-    marginTop: 12,
-    marginBottom: 12,
+  detailBox: {
+    marginTop: 8,
+    padding: 12,
+    borderRadius: 16,
+    backgroundColor: "rgba(0,0,0,0.35)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.25)",
+  },
+  exerciseCard: {
+    borderRadius: 14,
+    padding: 12,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.35)",
+  },
+  exerciseName: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#FFFFFF",
+  },
+  exerciseInfo: {
+    fontSize: 13,
+    color: "#FFFFFF",
+  },
+  exerciseDesc: {
+    fontSize: 12,
+    color: "rgba(255,255,255,0.9)",
+    marginBottom: 4,
+  },
+  bold: { fontWeight: "700" },
+
+  centerBox: {
+    marginTop: 32,
     alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    gap: 8,
   },
-  dot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: "rgba(255,255,255,0.4)",
+  loadingText: {
+    marginTop: 8,
+    color: "#FFFFFF",
+    fontSize: 14,
   },
-  dotActive: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#FFFFFF",
+  emptyText: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    textAlign: "center",
+  },
+
+  tabWrapper: {
+    position: "absolute",
+    left: 16,
+    right: 16,
+    bottom: 16,
+  },
+
+  imageBox: {
+    width: 110,
+    height: 110,
+    borderRadius: 22,
+    backgroundColor: "rgba(255,255,255,0.15)", // leve glass se não tiver imagem
+    marginRight: 16,
+    overflow: "hidden",
+  },
+
+  imageBoxImage: {
+    width: "100%",
+    height: "100%",
   },
 });
