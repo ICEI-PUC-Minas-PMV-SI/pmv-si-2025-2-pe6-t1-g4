@@ -546,7 +546,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 16,
   },
-  
+
   content: {
     flex: 1,
     paddingBottom: 80,
@@ -578,7 +578,7 @@ const styles = StyleSheet.create({
   },
 
   nameBox: {
-    backgroundColor: "rgba(0,0,0,0.45)",
+    backgroundColor: "rgba(100, 97, 97, 0.45)",
     borderRadius: 24,
     marginTop: 16,
     padding: 16,
@@ -615,7 +615,7 @@ const styles = StyleSheet.create({
   },
 
   passwordBox: {
-    backgroundColor: "rgba(0,0,0,0.45)",
+    backgroundColor: "rgba(100, 97, 97, 0.45)",
     borderRadius: 24,
     padding: 16,
     marginTop: 16,
@@ -623,6 +623,7 @@ const styles = StyleSheet.create({
   passwordInput: {
     color: "#FFF",
     fontSize: 18,
+    textAlign: "center",
   },
 
   submenuWrapper: {

@@ -260,7 +260,7 @@ export default function ResumoScreen({
               <View style={styles.heartRow}>
                 <MaterialCommunityIcons
                   name="heart-pulse"
-                  size={60}
+                  size={90}
                   color="#FF4B4B"
                 />
                 <View style={{ marginLeft: 12 }}>
@@ -280,7 +280,7 @@ export default function ResumoScreen({
                 <View style={styles.gymIconWrapper}>
                   <MaterialCommunityIcons
                     name="dumbbell"
-                    size={20}
+                    size={25}
                     color="#000"
                   />
                 </View>
@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 24,
   },
-  
+
   title: {
     fontSize: 36,
     color: "#FFFFFF",
@@ -362,15 +362,15 @@ const styles = StyleSheet.create({
   },
   nameHighlight: {
     marginTop: 4,
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "700",
     color: "#FF383C",
   },
 
   // AVATAR HEADER
   avatarWrapper: {
-    width: 54,
-    height: 54,
+    width: 60,
+    height: 60,
     borderRadius: 27,
     overflow: "hidden",
     borderWidth: 1,
@@ -434,7 +434,8 @@ const styles = StyleSheet.create({
   cardSmallSubtitle: {
     marginTop: 6,
     fontSize: 14,
-    color: "rgba(255,255,255,0.85)",
+    fontWeight: 700,
+    color: "rgba(2, 11, 49, 1)",
   },
   cardLevelValue: {
     fontSize: 32,
@@ -443,13 +444,13 @@ const styles = StyleSheet.create({
   },
 
   cardNextTitle: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: "700",
-    color: "rgba(255,90,122,0.95)",
-    lineHeight: 22,
+    color: "rgba(255, 37, 81, 1)",
+    lineHeight: 26,
   },
   cardNextDate: {
-    marginTop: 8,
+    marginTop: 12,
     fontSize: 20,
     fontWeight: "800",
     color: "rgba(255,255,255,0.95)",
@@ -468,7 +469,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   heartBpmValue: {
-    fontSize: 34,
+    fontSize: 44,
     fontWeight: "700",
     color: "#FFFFFF",
   },
@@ -491,10 +492,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   gymIconWrapper: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: "#FFFFFF",
+    width: 38,
+    height: 38,
+    borderRadius: 20,
+    backgroundColor: "#4bff04ff",
     justifyContent: "center",
     alignItems: "center",
     marginRight: 12,
@@ -510,8 +511,8 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,0.85)",
   },
   mapPlaceholder: {
-    width: 90,
-    height: 90,
+    width: 140,
+    height: 120,
     borderRadius: 18,
     backgroundColor: "rgba(255,255,255,0.3)",
     overflow: "hidden",

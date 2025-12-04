@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginTop: 34,
     marginBottom: 12,
     flexDirection: "row",
-    backgroundColor: "rgba(255, 255, 255, 0.50)",
+    backgroundColor: "rgba(154, 152, 152, 0.86)",
     borderRadius: 32,
     padding: 8,
     borderWidth: 1,
