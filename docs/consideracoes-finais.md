@@ -36,8 +36,22 @@ Este documento apresenta a avaliação final do projeto TrainerHub, nas document
 ## 2. Análise crítica da arquitetura e propostas de melhoria
 
 ### 2.1 Arquitetura 
+A arquitetura atual do TrainerHub é funcional, porém fragmentada. O front-end web, o app mobile e o backend PHP se comunicam de formas diferentes, e parte dos dados é acessada diretamente pelo client via Supabase. Isso resulta em:
 
-### 2.3 Propostas de melhoria arquitetural 
+- Falta de padronização entre módulos, com regras de negócio distribuídas em vários pontos.
+- Dependência excessiva de acesso direto ao banco, dificultando segurança e controle.
+- Ausência de uma API centralizada e documentada, o que prejudica integração, testes e evolução do sistema.
+- Baixa previsibilidade na infraestrutura, faltando ambientes claros e fluxo consistente de deploy.
+
+### 2.2 Propostas de melhoria arquitetural 
+1. Padronizar a comunicação entre módulos
+Organizar rotas, respostas e padrões REST; documentar com OpenAPI ou Swagger.
+2. Fortalecer autenticação e autorização
+Manter Supabase Auth, mas validar permissões pelo backend, garantindo segurança consistente.
+3. Implementar processo básico de CI/CD
+Um fluxo simples de build → teste → deploy traz mais previsibilidade e reduz erros.
+4. Estruturar ambientes e migrações
+Criar ambientes separados (dev/staging) e versionar alterações do banco via migrations.
 
 ## 3. Retrato atualizado da gestão do trabalho
 
