@@ -31,8 +31,12 @@ Além de beneficiar os alunos, o aplicativo também proporciona vantagens para o
 | ETAPA 4        |[Planejar, desenvolver e gerenciar uma aplicação Móvel](docs/frontend-mobile.md) <br>  |
 | ETAPA 5         | [Apresentação](presentation/README.md) |
 ## Instruções de utilização
+O projeto utiliza como principais tecnologias React.js (front-end web), React Native com Expo (aplicativo mobile), PHP (backend) e Supabase/PostgreSQL (banco de dados e autenticação). Para realizar uma instalação completa e de qualidade em ambiente local, é necessário configurar o ambiente de desenvolvimento com algumas ferramentas essenciais: 
+- Node.js e npm: utilizados para instalar dependências e executar tanto o front-end web quanto o aplicativo mobile localmente.
+- Expo CLI: necessário para rodar e testar o aplicativo mobile no ambiente React Native.
+- Banco de dados: disponíveis no sistema do Supabase do projeto.
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Com essas ferramentas instaladas e configuradas, o projeto TrainerHub pode ser executado integralmente no ambiente local, permitindo rodar o painel web, o aplicativo mobile e o backend integrados ao banco Supabase com estabilidade e previsibilidade.
 
 # Código
 
